@@ -10,4 +10,8 @@
 
 @interface TripLogController : NSObject
 
++(id)sharedInstance;
+
+- (void)saveContext;
+
 @end

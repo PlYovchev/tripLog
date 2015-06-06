@@ -10,4 +10,7 @@
 
 @interface TripLogWebServiceController : NSObject
 
++(id)sharedInstance;
+-(void)sendLoginRequestToParse:(NSString*)username andWithPassword:(NSString*)pass;
+
 @end
