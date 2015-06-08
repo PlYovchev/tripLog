@@ -40,7 +40,7 @@
 */
 - (IBAction)userDidTabOnButton:(id)sender {
     if ([(UIButton*)sender isEqual: self.buttonSignIn]) {
-        [[TripLogWebServiceController sharedInstance] sendSignInRequestToParse:self.textFieldUsername.text andWithPassword:self.textFieldPassword.text];
+        [[TripLogWebServiceController sharedInstance] sendSignInRequestToParseWithUsername:self.textFieldUsername.text andPassword:self.textFieldPassword.text];
     }
     else{
         NSLog(@"b");

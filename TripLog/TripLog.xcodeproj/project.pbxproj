@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AE20C5AF1B258E800035FEBD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = AE20C5AE1B258E800035FEBD /* User.m */; };
+		AEF843A61B25C099008F9359 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF843A51B25C099008F9359 /* RegisterViewController.m */; };
 		FB1E06D31B22EB05001599C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E06D21B22EB05001599C7 /* main.m */; };
 		FB1E06D61B22EB05001599C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E06D51B22EB05001599C7 /* AppDelegate.m */; };
 		FB1E06D91B22EB05001599C7 /* TripLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB1E06D71B22EB05001599C7 /* TripLog.xcdatamodeld */; };
@@ -41,6 +42,8 @@
 /* Begin PBXFileReference section */
 		AE20C5AD1B258E800035FEBD /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		AE20C5AE1B258E800035FEBD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		AEF843A41B25C099008F9359 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		AEF843A51B25C099008F9359 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		FB1E06CD1B22EB05001599C7 /* TripLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB1E06D11B22EB05001599C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB1E06D21B22EB05001599C7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -213,6 +216,8 @@
 				FB1E07201B22ED5F001599C7 /* SettingsViewController.m */,
 				FB1E07221B22ED6A001599C7 /* WelcomeViewController.h */,
 				FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */,
+				AEF843A41B25C099008F9359 /* RegisterViewController.h */,
+				AEF843A51B25C099008F9359 /* RegisterViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -324,6 +329,7 @@
 				FB1E07061B22EBF2001599C7 /* TripLogController.m in Sources */,
 				AE20C5AF1B258E800035FEBD /* User.m in Sources */,
 				FB1E07241B22ED6A001599C7 /* WelcomeViewController.m in Sources */,
+				AEF843A61B25C099008F9359 /* RegisterViewController.m in Sources */,
 				FB1E070F1B22EC96001599C7 /* LocationDetailsViewController.m in Sources */,
 				FB1E07091B22EC56001599C7 /* TripLogWebServiceController.m in Sources */,
 				FB1E07151B22ED18001599C7 /* LocationsViewController.m in Sources */,

@@ -20,6 +20,7 @@
 @property id <TripLogWebServiceControllerDelegate> delegate;
 
 +(id)sharedInstance;
--(void)sendSignInRequestToParse:(NSString*)username andWithPassword:(NSString*)pass;
-//-(void)sendSignUpRequestToParse:(NSString*)username
+-(void)sendSignInRequestToParseWithUsername:(NSString*)username andPassword:(NSString*)pass;
+-(void)sendSignUpRequestToParseWithUsername:(NSString*)username password: (NSString*)pass andPhone: (NSString*)number;
+
 @end
