@@ -41,20 +41,37 @@ static TripLogWebServiceController* webController;
     return webController;
 }
 
--(void)sendLoginRequestToParse:(NSString*)username andWithPassword:(NSString*)pass{
+-(void)sendSignInRequestToParse:(NSString*)username andWithPassword:(NSString*)password{
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSDictionary *headers = @{@"X-Parse-Application-Id":@"t4rnGe5XRyz1owsyNOs8ZWITPS1Eo8tKzAUOeNTU",
+                              @"X-Parse-REST-API-Key":@"r4WSZnlYMfSTD5VRWuMlvKQRdMZidX9acxec1mMo",
+                              @"X-Parse-Revocable-Session":@"1"};
+    
+    [configuration setHTTPAdditionalHeaders:headers];
     
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
     
-    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:@"https://httpbin.org/get?show_env=1"] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSHTTPURLResponse *resp = (NSHTTPURLResponse*)response;
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.parse.com/1/login?username=%@&password=%@", username, password]] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
-        NSLog(@"%ld", (long)[resp statusCode]);
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
+        
+        if ([httpResponse statusCode] == 200) {
+            User *current = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            self.loggedUser = current;
+            
+            [self.delegate userDidSignInSuccessfully:YES];
+        }
+        else {
+            [self.delegate userDidSignInSuccessfully:NO];
+        }
+        
+        
+        //TODO
+        
     }];
     [dataTask resume];
     
 }
 
--(void)sendRequestWithUrlParams:(NSDictionary *)urlParams andHeaders: (NSDictionary*)headers{
-}
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE20C5AF1B258E800035FEBD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = AE20C5AE1B258E800035FEBD /* User.m */; };
 		FB1E06D31B22EB05001599C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E06D21B22EB05001599C7 /* main.m */; };
 		FB1E06D61B22EB05001599C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E06D51B22EB05001599C7 /* AppDelegate.m */; };
 		FB1E06D91B22EB05001599C7 /* TripLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB1E06D71B22EB05001599C7 /* TripLog.xcdatamodeld */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AE20C5AD1B258E800035FEBD /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		AE20C5AE1B258E800035FEBD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		FB1E06CD1B22EB05001599C7 /* TripLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB1E06D11B22EB05001599C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB1E06D21B22EB05001599C7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -92,6 +95,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE20C5AC1B258E710035FEBD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AE20C5AD1B258E800035FEBD /* User.h */,
+				AE20C5AE1B258E800035FEBD /* User.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		FB1E06C41B22EB05001599C7 = {
 			isa = PBXGroup;
 			children = (
@@ -113,9 +125,9 @@
 		FB1E06CF1B22EB05001599C7 /* TripLog */ = {
 			isa = PBXGroup;
 			children = (
+				AE20C5AC1B258E710035FEBD /* Models */,
 				FB1E06F91B22EB97001599C7 /* Controlles */,
 				FB1E06FA1B22EB97001599C7 /* Images */,
-				FB1E06FB1B22EB97001599C7 /* Models */,
 				FB1E06FC1B22EB97001599C7 /* NSManagedObjectModels */,
 				FB1E06FD1B22EB97001599C7 /* ViewControllers */,
 				FB1E06D41B22EB05001599C7 /* AppDelegate.h */,
@@ -173,13 +185,6 @@
 			children = (
 			);
 			path = Images;
-			sourceTree = "<group>";
-		};
-		FB1E06FB1B22EB97001599C7 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		FB1E06FC1B22EB97001599C7 /* NSManagedObjectModels */ = {
@@ -317,6 +322,7 @@
 				FB1E07031B22EBE0001599C7 /* TripLogCoreDataController.m in Sources */,
 				FB1E071B1B22ED3C001599C7 /* MapViewController.m in Sources */,
 				FB1E07061B22EBF2001599C7 /* TripLogController.m in Sources */,
+				AE20C5AF1B258E800035FEBD /* User.m in Sources */,
 				FB1E07241B22ED6A001599C7 /* WelcomeViewController.m in Sources */,
 				FB1E070F1B22EC96001599C7 /* LocationDetailsViewController.m in Sources */,
 				FB1E07091B22EC56001599C7 /* TripLogWebServiceController.m in Sources */,
@@ -518,6 +524,7 @@
 				FB1E06F51B22EB06001599C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FB1E06F61B22EB06001599C7 /* Build configuration list for PBXNativeTarget "TripLogTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +533,7 @@
 				FB1E06F81B22EB06001599C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

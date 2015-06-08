@@ -7,10 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "User.h"
+@protocol TripLogWebServiceControllerDelegate <NSObject>
+@optional
+-(void)userDidSignInSuccessfully:(BOOL)isSuccessful;
+-(void)userDidSignUpSuccessfully:(BOOL)isSuccessful;
+@end
 
 @interface TripLogWebServiceController : NSObject
 
-+(id)sharedInstance;
--(void)sendLoginRequestToParse:(NSString*)username andWithPassword:(NSString*)pass;
+@property (nonatomic, strong) User*loggedUser;
+@property id <TripLogWebServiceControllerDelegate> delegate;
 
++(id)sharedInstance;
+-(void)sendSignInRequestToParse:(NSString*)username andWithPassword:(NSString*)pass;
+//-(void)sendSignUpRequestToParse:(NSString*)username
 @end

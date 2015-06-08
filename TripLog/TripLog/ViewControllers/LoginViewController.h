@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TripLogWebServiceController.h"
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController <TripLogWebServiceControllerDelegate>
 
 @end

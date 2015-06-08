@@ -9,6 +9,9 @@
 #import "LoginViewController.h"
 
 @interface LoginViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *textFieldUsername;
+@property (weak, nonatomic) IBOutlet UITextField *textFieldPassword;
+@property (weak, nonatomic) IBOutlet UIButton *buttonSignIn;
 
 @end
 
@@ -16,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[TripLogWebServiceController sharedInstance] setDelegate:self];
     // Do any additional setup after loading the view.
 }
 
@@ -33,5 +38,24 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)userDidTabOnButton:(id)sender {
+    if ([(UIButton*)sender isEqual: self.buttonSignIn]) {
+        [[TripLogWebServiceController sharedInstance] sendSignInRequestToParse:self.textFieldUsername.text andWithPassword:self.textFieldPassword.text];
+    }
+    else{
+        NSLog(@"b");
+    }
+}
+
+#pragma mark TripLogWebServicesDelegate
+
+-(void)userDidSignInSuccessfully:(BOOL)isSuccessful{
+    if (isSuccessful) {
+        NSLog(@"Login successful!");
+    }
+    else{
+        NSLog(@"Login failed!");
+    }
+}
 
 @end
