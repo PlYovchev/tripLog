@@ -20,7 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+    [[TripLogWebServiceController sharedInstance] getTestTripWithQuery];
     return YES;
 }
 
