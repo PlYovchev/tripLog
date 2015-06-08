@@ -166,7 +166,7 @@
         <!--Locations-->
         <scene sceneID="Tkb-Ro-UVo">
             <objects>
-                <viewController id="vfl-oP-Pw1" customClass="LocationDetailsViewController" sceneMemberID="viewController">
+                <viewController id="vfl-oP-Pw1" customClass="LocationsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ccn-07-wSh"/>
                         <viewControllerLayoutGuide type="bottom" id="EIe-iy-Zm4"/>
