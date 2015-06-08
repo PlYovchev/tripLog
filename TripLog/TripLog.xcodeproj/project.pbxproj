@@ -27,6 +27,7 @@
 		FB1E071E1B22ED4F001599C7 /* MyTripLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E071D1B22ED4F001599C7 /* MyTripLogViewController.m */; };
 		FB1E07211B22ED5F001599C7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07201B22ED5F001599C7 /* SettingsViewController.m */; };
 		FB1E07241B22ED6A001599C7 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */; };
+		FC21000C1B25D55F008741F9 /* LocationsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC21000B1B25D55F008741F9 /* LocationsTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,8 @@
 		FB1E07201B22ED5F001599C7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FB1E07221B22ED6A001599C7 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		FC21000A1B25D55F008741F9 /* LocationsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationsTableViewCell.h; sourceTree = "<group>"; };
+		FC21000B1B25D55F008741F9 /* LocationsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationsTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +143,8 @@
 				FB1E06E21B22EB06001599C7 /* LaunchScreen.xib */,
 				FB1E06D71B22EB05001599C7 /* TripLog.xcdatamodeld */,
 				FB1E06D01B22EB05001599C7 /* Supporting Files */,
+				FC21000A1B25D55F008741F9 /* LocationsTableViewCell.h */,
+				FC21000B1B25D55F008741F9 /* LocationsTableViewCell.m */,
 			);
 			path = TripLog;
 			sourceTree = "<group>";
@@ -325,6 +330,7 @@
 				FB1E06D91B22EB05001599C7 /* TripLog.xcdatamodeld in Sources */,
 				FB1E06D61B22EB05001599C7 /* AppDelegate.m in Sources */,
 				FB1E07031B22EBE0001599C7 /* TripLogCoreDataController.m in Sources */,
+				FC21000C1B25D55F008741F9 /* LocationsTableViewCell.m in Sources */,
 				FB1E071B1B22ED3C001599C7 /* MapViewController.m in Sources */,
 				FB1E07061B22EBF2001599C7 /* TripLogController.m in Sources */,
 				AE20C5AF1B258E800035FEBD /* User.m in Sources */,

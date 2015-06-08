@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LocationsTableViewCell.h"
+#import "TripLogController.h"
+#import "TripLogCoreDataController.h"
 
 @interface LocationsViewController : UIViewController
 
