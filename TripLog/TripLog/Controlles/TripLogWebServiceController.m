@@ -74,44 +74,44 @@ static TripLogWebServiceController* webController;
 
 -(void)sendSignUpRequestToParseWithUsername:(NSString *)username password:(NSString *)pass andPhone:(NSString *)number{
     
-    NSString *post = [NSString stringWithFormat:@"{\"username\":%@\",\"password\":\"%@,\"phone\":\"%@\"}", username, pass, number];
-    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:@"https://api.parse.com/1/users/"]];
+    
     [request setHTTPMethod:@"POST"];
+    
+    // Set HTTP headers
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:postData];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"t4rnGe5XRyz1owsyNOs8ZWITPS1Eo8tKzAUOeNTU" forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [request setValue:@"r4WSZnlYMfSTD5VRWuMlvKQRdMZidX9acxec1mMo" forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    [request setValue:@"1" forHTTPHeaderField:@"X-Parse-Revocable-Session"];
     
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSDictionary *dict = @{@"username":username, @"password":pass, @"phone":number};
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    [request setValue: [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
     
-    NSDictionary *headers = @{@"X-Parse-Application-Id":@"t4rnGe5XRyz1owsyNOs8ZWITPS1Eo8tKzAUOeNTU",
-                              @"X-Parse-REST-API-Key":@"r4WSZnlYMfSTD5VRWuMlvKQRdMZidX9acxec1mMo",
-                              @"X-Parse-Revocable-Session":@"1", @"Content-Type":@"application/json"};
-    
-    [configuration setHTTPAdditionalHeaders:headers];
-    
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-    NSString *string = [[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding];
-    
-    NSLog(@"%@", request);
-    NSURLSessionDownloadTask *dataTask = [session downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
-                NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-                NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
-        
-                if ([httpResponse statusCode] == 200) {
-                    //User *current = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-                    //self.loggedUser = current;
-        
-                    [self.delegate userDidSignInSuccessfully:YES];
-                }
-                else {
-                    [self.delegate userDidSignInSuccessfully:NO];
-                }
-
-    }];
-    
-    [dataTask resume];
+    [request setHTTPBody:jsonData];
+   
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         if (!data)
+         {
+             [self.delegate userDidSignUpSuccessfully:NO];
+             return;
+         }
+         
+         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+         NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
+         
+         if ([httpResponse statusCode] == 201) {
+             NSLog(@"Registration successful!");
+             [self.delegate userDidSignUpSuccessfully:YES];
+         }
+         else{
+             NSLog(@"Registration failed!");
+             [self.delegate userDidSignUpSuccessfully:NO];
+         }
+     }];
 }
 
 @end
