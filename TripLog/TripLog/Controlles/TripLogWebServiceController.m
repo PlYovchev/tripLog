@@ -93,7 +93,7 @@ static TripLogWebServiceController* webController;
     [request setValue: [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
     
     [request setHTTPBody:jsonData];
-   
+    
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
      {
          if (!data)
@@ -117,8 +117,6 @@ static TripLogWebServiceController* webController;
 }
 
 #pragma mark Fetch/Send objects to Parse
-
-// POST TRIP
 
 -(void)sendPostRequestForTripToParseWithName:(NSString*)name country:(NSString*)country city:(NSString*)city description:(NSString*)description raiting:(int)raiting isPrivate:(BOOL)isPrivate userId:(NSString*)userId{
     
@@ -165,32 +163,29 @@ static TripLogWebServiceController* webController;
 
 // GET TRIPS
 
--(void)getTestTrip{
+-(void)sendGetRequestForAllTrips{
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSDictionary *headers = @{@"X-Parse-Application-Id":@"t4rnGe5XRyz1owsyNOs8ZWITPS1Eo8tKzAUOeNTU",
                               @"X-Parse-REST-API-Key":@"r4WSZnlYMfSTD5VRWuMlvKQRdMZidX9acxec1mMo"};
-
+    
     [configuration setHTTPAdditionalHeaders:headers];
-
+    
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-
+    
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:@"https://api.parse.com/1/classes/Trip"] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-
+        
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
-
+        
         if ([httpResponse statusCode] == 200) {
-           NSString *current = [NSString stringWithFormat:@"%@",[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil]];
-            self.loggedUser = current;
-
-            [self.delegate userDidSignInSuccessfully:YES];
+            [self.delegate didRecieveDataSuccessfully:[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil]];
         }
         else {
-            [self.delegate userDidSignInSuccessfully:NO];
+            [self.delegate didNotRecieveData];
         }
-
+        
     }];
-
+    
     [dataTask resume];
 }
 
@@ -266,9 +261,6 @@ static TripLogWebServiceController* webController;
         NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
         
         if ([httpResponse statusCode] == 200) {
-            NSString *current = [NSString stringWithFormat:@"%@",[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil]];
-            
-            
             [self.delegate didRecieveDataSuccessfully:[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil]];
         }
         else {

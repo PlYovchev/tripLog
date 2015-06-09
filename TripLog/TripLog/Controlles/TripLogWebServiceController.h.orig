@@ -41,6 +41,9 @@
 -(void)sendPostRequestForTripToParseWithName:(NSString*)name country:(NSString*)country city:(NSString*)city description:(NSString*)description raiting:(int)raiting isPrivate:(BOOL)isPrivate userId:(NSString*)userId;
 -(void)sendGetRequestForAllTrips;
 
+<<<<<<< HEAD
 -(void)getTestTrip;
 -(void)getTripsWithCompletionHandler:(void (^)(NSDictionary* result)) completion;
+=======
+>>>>>>> 181af8db996af2a03e3399f7f6fde026d3317ba3
 @end
