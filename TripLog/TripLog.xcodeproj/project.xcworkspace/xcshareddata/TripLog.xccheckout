@@ -10,6 +10,8 @@
 	<string>TripLog</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>49806A09795DD9F96D3F6A5109F81F10959CFEB6</key>
+		<string>https://github.com/PlYovchev/iOSHomeworks.git</string>
 		<key>62760ACBEF13F657FFAF2389F04F3F34C6679686</key>
 		<string>https://github.com/svetoslavpopov93/tripLog.git</string>
 	</dict>
@@ -17,6 +19,8 @@
 	<string>TripLog/TripLog.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>49806A09795DD9F96D3F6A5109F81F10959CFEB6</key>
+		<string>../../../..</string>
 		<key>62760ACBEF13F657FFAF2389F04F3F34C6679686</key>
 		<string>../../..</string>
 	</dict>
@@ -28,6 +32,14 @@
 	<string>62760ACBEF13F657FFAF2389F04F3F34C6679686</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>49806A09795DD9F96D3F6A5109F81F10959CFEB6</string>
+			<key>IDESourceControlWCCName</key>
+			<string></string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
