@@ -48,12 +48,13 @@ static TripLogController* tripController;
 }
 
 -(void)fetchTrips{
+    TripLogWebServiceController* webController = [TripLogWebServiceController sharedInstance];
     
-}
-
-- (void)saveContext {
-    TripLogCoreDataController* coreDataController = [TripLogCoreDataController sharedInstance];
-    [coreDataController saveContext];
+    [webController getTripsWithCompletionHandler:^(NSDictionary *result) {
+        NSArray* trips = [result objectForKey:@"results"];
+        TripLogCoreDataController* coreDataController = [TripLogCoreDataController sharedInstance];
+        [coreDataController addTripsFromArray:trips];
+    }];
 }
 
 @end

@@ -13,26 +13,22 @@
 
 @interface Trip : NSManagedObject
 
-@property (nonatomic, retain) NSString * tripId;
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * country;
 @property (nonatomic, retain) NSString * city;
-@property (nonatomic, retain) NSDecimalNumber * latitude;
-@property (nonatomic, retain) NSDecimalNumber * longitude;
-@property (nonatomic, retain) NSNumber * rating;
+@property (nonatomic, retain) NSString * country;
 @property (nonatomic, retain) NSNumber * isPrivate;
-@property (nonatomic, retain) User *creator;
-@property (nonatomic, retain) NSSet *visitedByUsers;
+@property (nonatomic, retain) NSNumber * latitude;
+@property (nonatomic, retain) NSNumber * longitude;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * rating;
+@property (nonatomic, retain) NSString * tripId;
+@property (nonatomic, retain) NSString * tripDescription;
 @property (nonatomic, retain) NSSet *comments;
+@property (nonatomic, retain) User *creator;
 @property (nonatomic, retain) NSSet *toDoList;
+@property (nonatomic, retain) NSSet *visitedByUsers;
 @end
 
 @interface Trip (CoreDataGeneratedAccessors)
-
-- (void)addVisitedByUsersObject:(User *)value;
-- (void)removeVisitedByUsersObject:(User *)value;
-- (void)addVisitedByUsers:(NSSet *)values;
-- (void)removeVisitedByUsers:(NSSet *)values;
 
 - (void)addCommentsObject:(TripComment *)value;
 - (void)removeCommentsObject:(TripComment *)value;
@@ -43,5 +39,10 @@
 - (void)removeToDoListObject:(ToDoItem *)value;
 - (void)addToDoList:(NSSet *)values;
 - (void)removeToDoList:(NSSet *)values;
+
+- (void)addVisitedByUsersObject:(User *)value;
+- (void)removeVisitedByUsersObject:(User *)value;
+- (void)addVisitedByUsers:(NSSet *)values;
+- (void)removeVisitedByUsers:(NSSet *)values;
 
 @end

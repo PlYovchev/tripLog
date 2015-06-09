@@ -7,7 +7,9 @@
 //
 
 #import "TripLogCoreDataController.h"
-#import "Trip.h"
+#import "Trip+DictionaryInitializator.h"
+
+#define ID_KEY @"objectId"
 
 @implementation TripLogCoreDataController
 
@@ -36,18 +38,72 @@ static TripLogCoreDataController* coreDataController;
         self = [super init];
         if(self){
             coreDataController = self;
+            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+            [notificationCenter addObserver:self selector:@selector(handleSaveNotification) name:NSManagedObjectContextDidSaveNotification object:nil];
         }
     }
     
     return coreDataController;
 }
 
+- (void)dealloc
+{
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
+}
+
+-(void)handleSaveNotification{
+    [self.mainManagedObjectContext performBlock:^{
+        [self.mainManagedObjectContext save:nil];
+        
+        [self.parentManagedObjectContext performBlock:^{
+            [self saveContext];
+        }];
+    }];
+    
+}
+
+-(NSArray*)usersWithId:(NSString*)userId inContext:(NSManagedObjectContext*)context{
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
+    request.predicate = [NSPredicate predicateWithFormat:@"userId = %@",userId];
+    NSSortDescriptor* sortByQuantity = [NSSortDescriptor
+                                        sortDescriptorWithKey:@"userId" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sortByQuantity];
+    NSError *error;
+    NSArray *entries = [context executeFetchRequest:request error:&error];
+    
+    return entries;
+}
+
+-(User*)userWithUserId:(NSString*)userId initInContenxt:(NSManagedObjectContext*)context{
+    NSArray* usersWithId = [self usersWithId:userId inContext:context];
+    if([usersWithId count] != 0){
+        return [usersWithId firstObject];
+    }
+    
+    User* newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+    newUser.userId = userId;
+    
+    return newUser;
+}
+
+-(NSArray*)trips{
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Trip"];
+    NSSortDescriptor* sortByQuantity = [NSSortDescriptor
+                                        sortDescriptorWithKey:@"rating" ascending:NO];
+    request.sortDescriptors = [NSArray arrayWithObject:sortByQuantity];
+    NSError *error;
+    NSArray *entries = [self.mainManagedObjectContext executeFetchRequest:request
+                                                                      error:&error];
+    
+    return entries;
+}
 
 -(NSArray*)tripsWithId:(NSString*)tripId{
     NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Trip"];
     request.predicate = [NSPredicate predicateWithFormat:@"tripId = %@",tripId];
     NSSortDescriptor* sortByQuantity = [NSSortDescriptor
-                                        sortDescriptorWithKey:@"trip" ascending:NO];
+                                        sortDescriptorWithKey:@"rating" ascending:NO];
     request.sortDescriptors = [NSArray arrayWithObject:sortByQuantity];
     NSError *error;
     NSArray *entries = [self.workerManagedObjectContext executeFetchRequest:request
@@ -57,20 +113,33 @@ static TripLogCoreDataController* coreDataController;
 }
 
 -(void)addTripWithUniqueId:(NSDictionary*)tripProperties{
-    NSString* tripId = [tripProperties objectForKey:@"objectId"];
+    NSString* tripId = [tripProperties objectForKey:ID_KEY];
     if([[self tripsWithId:tripId] count] == 0){
-        Trip* trip = [NSEntityDescription insertNewObjectForEntityForName:@"Trip" inManagedObjectContext:self.workerManagedObjectContext];
-        [trip setValuesForKeysWithDictionary:tripProperties];
+        NSManagedObjectContext* context = self.workerManagedObjectContext;
+        Trip* trip = [NSEntityDescription insertNewObjectForEntityForName:@"Trip" inManagedObjectContext:context];
         
-        [self.workerManagedObjectContext save:nil];
+        NSDictionary* userInfo = [tripProperties objectForKey:@"User"];
+        User* creator = [coreDataController userWithUserId:[userInfo objectForKey:ID_KEY] initInContenxt:context];
+        
+        [trip setValuesForKeysWithTripDictionary:tripProperties andCreator:creator];
+        
+        [context save:nil];
     }
 }
 
+-(void)addTripsFromArray:(NSArray*)trips{
+    [self.workerManagedObjectContext performBlock:^{
+        for (NSDictionary* tripProperties in trips) {
+            [self addTripWithUniqueId:tripProperties];
+        }
+    }];
+}
 #pragma mark - Core Data stack
 
 @synthesize parentManagedObjectContext = _parentManagedObjectContext;
 @synthesize mainManagedObjectContext = _mainManagedObjectContext;
 @synthesize workerManagedObjectContext = _workerManagedObjectContext;
+
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
@@ -84,7 +153,7 @@ static TripLogCoreDataController* coreDataController;
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"triOSTourDiary" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"TripLog" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
@@ -98,7 +167,7 @@ static TripLogCoreDataController* coreDataController;
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"triOSTourDiary.sqlite"];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"tripLog.sqlite"];
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
@@ -117,7 +186,7 @@ static TripLogCoreDataController* coreDataController;
     return _persistentStoreCoordinator;
 }
 
-- (NSManagedObjectContext *)parentManagedObjectContext {
+-(NSManagedObjectContext *)parentManagedObjectContext{
     // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
     if (_parentManagedObjectContext != nil) {
         return _parentManagedObjectContext;
@@ -127,6 +196,7 @@ static TripLogCoreDataController* coreDataController;
     if (!coordinator) {
         return nil;
     }
+    
     _parentManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [_parentManagedObjectContext setPersistentStoreCoordinator:coordinator];
     
@@ -140,14 +210,18 @@ static TripLogCoreDataController* coreDataController;
     }
     
     _mainManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    [_mainManagedObjectContext setParentContext:_parentManagedObjectContext];
+    [_mainManagedObjectContext setParentContext:[self parentManagedObjectContext]];
     
     return _mainManagedObjectContext;
 }
 
-- (NSManagedObjectContext *)workerManagedObjectContext {
+-(NSManagedObjectContext *)workerManagedObjectContext{
+//    if (_workerManagedObjectContext != nil) {
+//        return _workerManagedObjectContext;
+//    }
+    
     _workerManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    [_workerManagedObjectContext setParentContext:_mainManagedObjectContext];
+    [_workerManagedObjectContext setParentContext:[self mainManagedObjectContext]];
     
     return _workerManagedObjectContext;
 }
@@ -155,7 +229,7 @@ static TripLogCoreDataController* coreDataController;
 #pragma mark - Core Data Saving support
 
 - (void)saveContext {
-    NSManagedObjectContext *managedObjectContext = self.mainManagedObjectContext;
+    NSManagedObjectContext *managedObjectContext = self.parentManagedObjectContext;
     if (managedObjectContext != nil) {
         NSError *error = nil;
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
@@ -166,4 +240,5 @@ static TripLogCoreDataController* coreDataController;
         }
     }
 }
+
 @end

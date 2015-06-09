@@ -12,6 +12,6 @@
 
 +(id)sharedInstance;
 
-- (void)saveContext;
+-(void)fetchTrips;
 
 @end

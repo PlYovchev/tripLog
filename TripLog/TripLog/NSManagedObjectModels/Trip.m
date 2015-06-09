@@ -14,17 +14,18 @@
 
 @implementation Trip
 
-@dynamic tripId;
-@dynamic name;
-@dynamic country;
 @dynamic city;
+@dynamic country;
+@dynamic isPrivate;
 @dynamic latitude;
 @dynamic longitude;
+@dynamic name;
 @dynamic rating;
-@dynamic isPrivate;
-@dynamic creator;
-@dynamic visitedByUsers;
+@dynamic tripId;
+@dynamic tripDescription;
 @dynamic comments;
+@dynamic creator;
 @dynamic toDoList;
+@dynamic visitedByUsers;
 
 @end

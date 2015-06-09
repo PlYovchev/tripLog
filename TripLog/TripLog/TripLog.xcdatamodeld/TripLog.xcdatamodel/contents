@@ -10,10 +10,11 @@
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isPrivate" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="latitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="tripDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tripId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TripComment" inverseName="trip" inverseEntity="TripComment" syncable="YES"/>
         <relationship name="creator" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="tripsCreated" inverseEntity="User" syncable="YES"/>
@@ -37,9 +38,9 @@
         <relationship name="tripsVisited" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Trip" inverseName="visitedByUsers" inverseEntity="Trip" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Trip" positionX="-63" positionY="-18" width="128" height="225"/>
-        <element name="User" positionX="-54" positionY="54" width="128" height="150"/>
-        <element name="TripComment" positionX="-36" positionY="81" width="128" height="120"/>
         <element name="ToDoItem" positionX="-27" positionY="108" width="128" height="105"/>
+        <element name="Trip" positionX="-63" positionY="-18" width="128" height="240"/>
+        <element name="TripComment" positionX="-36" positionY="81" width="128" height="120"/>
+        <element name="User" positionX="-54" positionY="54" width="128" height="150"/>
     </elements>
 </model>
