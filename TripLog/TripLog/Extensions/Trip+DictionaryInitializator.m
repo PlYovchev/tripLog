@@ -28,7 +28,7 @@
     self.city = [tripDictionary objectForKey:CITY_KEY];
     self.country = [tripDictionary objectForKey:COUNTRY_KEY];
     self.rating = [tripDictionary objectForKey:RATING_KEY];
-    
+    self.tripDescription = [tripDictionary objectForKeyedSubscript:DESCRIPTION_KEY];
     self.creator = creator;
     
     NSDictionary* location = [tripDictionary objectForKey:LOCATION_KEY];
