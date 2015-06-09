@@ -59,7 +59,7 @@ static TripLogWebServiceController* webController;
         NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
         
         if ([httpResponse statusCode] == 200) {
-            User *current = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            UserModel *current = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             self.loggedUser = current;
             
             [self.delegate userDidSignInSuccessfully:YES];

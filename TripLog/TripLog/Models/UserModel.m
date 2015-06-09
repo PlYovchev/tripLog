@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 triOS. All rights reserved.
 //
 
-#import "User.h"
+#import "UserModel.h"
 
-@implementation User
+@implementation UserModel
 
 @end

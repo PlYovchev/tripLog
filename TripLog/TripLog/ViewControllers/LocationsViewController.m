@@ -83,7 +83,7 @@
         return _fetchedResultsController;
     }
     
-    NSManagedObjectContext *context = [[TripLogCoreDataController sharedInstance] managedObjectContext];
+    NSManagedObjectContext *context = [[TripLogCoreDataController sharedInstance] mainManagedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Trip"
                                               inManagedObjectContext:context];

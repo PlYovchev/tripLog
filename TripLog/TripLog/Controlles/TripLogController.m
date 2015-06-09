@@ -47,6 +47,10 @@ static TripLogController* tripController;
     return tripController;
 }
 
+-(void)fetchTrips{
+    
+}
+
 - (void)saveContext {
     TripLogCoreDataController* coreDataController = [TripLogCoreDataController sharedInstance];
     [coreDataController saveContext];

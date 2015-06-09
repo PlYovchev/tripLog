@@ -11,7 +11,7 @@
 		82EE8A751B26FCC200D0CEA8 /* ToDoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE8A741B26FCC200D0CEA8 /* ToDoItem.m */; };
 		82EE8A781B26FCC200D0CEA8 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE8A771B26FCC200D0CEA8 /* Trip.m */; };
 		82EE8A7B1B26FCC300D0CEA8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE8A7A1B26FCC300D0CEA8 /* User.m */; };
-		AE20C5AF1B258E800035FEBD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = AE20C5AE1B258E800035FEBD /* User.m */; };
+		AE20C5AF1B258E800035FEBD /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE20C5AE1B258E800035FEBD /* UserModel.m */; };
 		AEF843A61B25C099008F9359 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF843A51B25C099008F9359 /* RegisterViewController.m */; };
 		FB1E06D31B22EB05001599C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E06D21B22EB05001599C7 /* main.m */; };
 		FB1E06D61B22EB05001599C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E06D51B22EB05001599C7 /* AppDelegate.m */; };
@@ -53,8 +53,8 @@
 		82EE8A771B26FCC200D0CEA8 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
 		82EE8A791B26FCC300D0CEA8 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		82EE8A7A1B26FCC300D0CEA8 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		AE20C5AD1B258E800035FEBD /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		AE20C5AE1B258E800035FEBD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		AE20C5AD1B258E800035FEBD /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		AE20C5AE1B258E800035FEBD /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		AEF843A41B25C099008F9359 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		AEF843A51B25C099008F9359 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		FB1E06CD1B22EB05001599C7 /* TripLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,8 +131,8 @@
 		AE20C5AC1B258E710035FEBD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AE20C5AD1B258E800035FEBD /* User.h */,
-				AE20C5AE1B258E800035FEBD /* User.m */,
+				AE20C5AD1B258E800035FEBD /* UserModel.h */,
+				AE20C5AE1B258E800035FEBD /* UserModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -354,7 +354,7 @@
 				FC21000C1B25D55F008741F9 /* LocationsTableViewCell.m in Sources */,
 				FB1E071B1B22ED3C001599C7 /* MapViewController.m in Sources */,
 				FB1E07061B22EBF2001599C7 /* TripLogController.m in Sources */,
-				AE20C5AF1B258E800035FEBD /* User.m in Sources */,
+				AE20C5AF1B258E800035FEBD /* UserModel.m in Sources */,
 				82EE8A7B1B26FCC300D0CEA8 /* User.m in Sources */,
 				FB1E07241B22ED6A001599C7 /* WelcomeViewController.m in Sources */,
 				82EE8A721B26FCC200D0CEA8 /* TripComment.m in Sources */,
@@ -492,6 +492,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TripLog/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -502,6 +503,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TripLog/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

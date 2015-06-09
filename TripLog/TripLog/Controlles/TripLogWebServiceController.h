@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "User.h"
+#import "UserModel.h"
 
 @protocol TripLogWebServiceControllerDelegate <NSObject>
 @optional
@@ -25,7 +25,7 @@
 
 @interface TripLogWebServiceController : NSObject
 
-@property (nonatomic, strong) User*loggedUser;
+@property (nonatomic, strong) UserModel* loggedUser;
 @property id <TripLogWebServiceControllerDelegate> delegate;
 
 +(id)sharedInstance;

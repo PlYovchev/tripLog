@@ -7,6 +7,7 @@
 //
 
 #import "TripLogCoreDataController.h"
+#import "Trip.h"
 
 @implementation TripLogCoreDataController
 
@@ -42,10 +43,34 @@ static TripLogCoreDataController* coreDataController;
 }
 
 
+-(NSArray*)tripsWithId:(NSString*)tripId{
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Trip"];
+    request.predicate = [NSPredicate predicateWithFormat:@"tripId = %@",tripId];
+    NSSortDescriptor* sortByQuantity = [NSSortDescriptor
+                                        sortDescriptorWithKey:@"trip" ascending:NO];
+    request.sortDescriptors = [NSArray arrayWithObject:sortByQuantity];
+    NSError *error;
+    NSArray *entries = [self.workerManagedObjectContext executeFetchRequest:request
+                                                                    error:&error];
+    
+    return entries;
+}
+
+-(void)addTripWithUniqueId:(NSDictionary*)tripProperties{
+    NSString* tripId = [tripProperties objectForKey:@"objectId"];
+    if([[self tripsWithId:tripId] count] == 0){
+        Trip* trip = [NSEntityDescription insertNewObjectForEntityForName:@"Trip" inManagedObjectContext:self.workerManagedObjectContext];
+        [trip setValuesForKeysWithDictionary:tripProperties];
+        
+        [self.workerManagedObjectContext save:nil];
+    }
+}
 
 #pragma mark - Core Data stack
 
-@synthesize managedObjectContext = _managedObjectContext;
+@synthesize parentManagedObjectContext = _parentManagedObjectContext;
+@synthesize mainManagedObjectContext = _mainManagedObjectContext;
+@synthesize workerManagedObjectContext = _workerManagedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
@@ -92,26 +117,45 @@ static TripLogCoreDataController* coreDataController;
     return _persistentStoreCoordinator;
 }
 
-
-- (NSManagedObjectContext *)managedObjectContext {
+- (NSManagedObjectContext *)parentManagedObjectContext {
     // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
+    if (_parentManagedObjectContext != nil) {
+        return _parentManagedObjectContext;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (!coordinator) {
         return nil;
     }
-    _managedObjectContext = [[NSManagedObjectContext alloc] init];
-    [_managedObjectContext setPersistentStoreCoordinator:coordinator];
-    return _managedObjectContext;
+    _parentManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    [_parentManagedObjectContext setPersistentStoreCoordinator:coordinator];
+    
+    return _parentManagedObjectContext;
+}
+
+- (NSManagedObjectContext *)mainManagedObjectContext {
+    // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
+    if (_mainManagedObjectContext != nil) {
+        return _mainManagedObjectContext;
+    }
+    
+    _mainManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    [_mainManagedObjectContext setParentContext:_parentManagedObjectContext];
+    
+    return _mainManagedObjectContext;
+}
+
+- (NSManagedObjectContext *)workerManagedObjectContext {
+    _workerManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    [_workerManagedObjectContext setParentContext:_mainManagedObjectContext];
+    
+    return _workerManagedObjectContext;
 }
 
 #pragma mark - Core Data Saving support
 
 - (void)saveContext {
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    NSManagedObjectContext *managedObjectContext = self.mainManagedObjectContext;
     if (managedObjectContext != nil) {
         NSError *error = nil;
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
