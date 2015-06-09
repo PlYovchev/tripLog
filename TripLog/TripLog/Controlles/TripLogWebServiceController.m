@@ -133,9 +133,7 @@ static TripLogWebServiceController* webController;
     [request setValue:@"t4rnGe5XRyz1owsyNOs8ZWITPS1Eo8tKzAUOeNTU" forHTTPHeaderField:@"X-Parse-Application-Id"];
     [request setValue:@"r4WSZnlYMfSTD5VRWuMlvKQRdMZidX9acxec1mMo" forHTTPHeaderField:@"X-Parse-REST-API-Key"];
     
-    NSString *userIdQueryString = [NSString stringWithFormat:@"\"User\":{\"__type\": \"Pointer\",\"className\": \"_User\",\"objectId\": \"%@\"}", userId];
-    
-    NSDictionary *dict = @{@"Name":name, @"Country":country, @"City":city, @"Description":description, @"Raiting":[NSNumber numberWithInt:raiting], @"IsPrivate":[NSNumber numberWithBool:isPrivate], @"User":userIdQueryString};
+    NSDictionary *dict = @{@"Name":name, @"Country":country, @"City":city, @"Description":description, @"Raiting":[NSNumber numberWithInt:raiting], @"IsPrivate":[NSNumber numberWithBool:isPrivate], @"User":@{ @"__type": @"Pointer",@"className": @"_User",@"objectId": userId}};
     
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
     [request setValue: [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
