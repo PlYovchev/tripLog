@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		82EE8A651B26FA0A00D0CEA8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE8A641B26FA0A00D0CEA8 /* User.m */; };
-		82EE8A681B26FA0B00D0CEA8 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE8A671B26FA0B00D0CEA8 /* Trip.m */; };
-		82EE8A6B1B26FA0B00D0CEA8 /* TripComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE8A6A1B26FA0B00D0CEA8 /* TripComment.m */; };
-		82EE8A6E1B26FA0B00D0CEA8 /* ToDoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE8A6D1B26FA0B00D0CEA8 /* ToDoItem.m */; };
+		82EE8A721B26FCC200D0CEA8 /* TripComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE8A711B26FCC200D0CEA8 /* TripComment.m */; };
+		82EE8A751B26FCC200D0CEA8 /* ToDoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE8A741B26FCC200D0CEA8 /* ToDoItem.m */; };
+		82EE8A781B26FCC200D0CEA8 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE8A771B26FCC200D0CEA8 /* Trip.m */; };
+		82EE8A7B1B26FCC300D0CEA8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE8A7A1B26FCC300D0CEA8 /* User.m */; };
 		AE20C5AF1B258E800035FEBD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = AE20C5AE1B258E800035FEBD /* User.m */; };
 		AEF843A61B25C099008F9359 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF843A51B25C099008F9359 /* RegisterViewController.m */; };
 		FB1E06D31B22EB05001599C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E06D21B22EB05001599C7 /* main.m */; };
@@ -45,14 +45,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		82EE8A631B26FA0A00D0CEA8 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		82EE8A641B26FA0A00D0CEA8 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		82EE8A661B26FA0B00D0CEA8 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
-		82EE8A671B26FA0B00D0CEA8 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
-		82EE8A691B26FA0B00D0CEA8 /* TripComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripComment.h; sourceTree = "<group>"; };
-		82EE8A6A1B26FA0B00D0CEA8 /* TripComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripComment.m; sourceTree = "<group>"; };
-		82EE8A6C1B26FA0B00D0CEA8 /* ToDoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoItem.h; sourceTree = "<group>"; };
-		82EE8A6D1B26FA0B00D0CEA8 /* ToDoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoItem.m; sourceTree = "<group>"; };
+		82EE8A701B26FCC200D0CEA8 /* TripComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripComment.h; sourceTree = "<group>"; };
+		82EE8A711B26FCC200D0CEA8 /* TripComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripComment.m; sourceTree = "<group>"; };
+		82EE8A731B26FCC200D0CEA8 /* ToDoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoItem.h; sourceTree = "<group>"; };
+		82EE8A741B26FCC200D0CEA8 /* ToDoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoItem.m; sourceTree = "<group>"; };
+		82EE8A761B26FCC200D0CEA8 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
+		82EE8A771B26FCC200D0CEA8 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
+		82EE8A791B26FCC300D0CEA8 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		82EE8A7A1B26FCC300D0CEA8 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		AE20C5AD1B258E800035FEBD /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		AE20C5AE1B258E800035FEBD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		AEF843A41B25C099008F9359 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -113,17 +113,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		82EE8A621B26F9FD00D0CEA8 /* NSManagedObjectModels */ = {
+		82EE8A6F1B26FCB100D0CEA8 /* NSManagedObjectModels */ = {
 			isa = PBXGroup;
 			children = (
-				82EE8A6C1B26FA0B00D0CEA8 /* ToDoItem.h */,
-				82EE8A6D1B26FA0B00D0CEA8 /* ToDoItem.m */,
-				82EE8A691B26FA0B00D0CEA8 /* TripComment.h */,
-				82EE8A6A1B26FA0B00D0CEA8 /* TripComment.m */,
-				82EE8A661B26FA0B00D0CEA8 /* Trip.h */,
-				82EE8A671B26FA0B00D0CEA8 /* Trip.m */,
-				82EE8A631B26FA0A00D0CEA8 /* User.h */,
-				82EE8A641B26FA0A00D0CEA8 /* User.m */,
+				82EE8A791B26FCC300D0CEA8 /* User.h */,
+				82EE8A7A1B26FCC300D0CEA8 /* User.m */,
+				82EE8A761B26FCC200D0CEA8 /* Trip.h */,
+				82EE8A771B26FCC200D0CEA8 /* Trip.m */,
+				82EE8A731B26FCC200D0CEA8 /* ToDoItem.h */,
+				82EE8A741B26FCC200D0CEA8 /* ToDoItem.m */,
+				82EE8A701B26FCC200D0CEA8 /* TripComment.h */,
+				82EE8A711B26FCC200D0CEA8 /* TripComment.m */,
 			);
 			path = NSManagedObjectModels;
 			sourceTree = "<group>";
@@ -158,7 +158,7 @@
 		FB1E06CF1B22EB05001599C7 /* TripLog */ = {
 			isa = PBXGroup;
 			children = (
-				82EE8A621B26F9FD00D0CEA8 /* NSManagedObjectModels */,
+				82EE8A6F1B26FCB100D0CEA8 /* NSManagedObjectModels */,
 				AE20C5AC1B258E710035FEBD /* Models */,
 				FB1E06F91B22EB97001599C7 /* Controlles */,
 				FB1E06FA1B22EB97001599C7 /* Images */,
@@ -347,23 +347,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82EE8A681B26FA0B00D0CEA8 /* Trip.m in Sources */,
+				82EE8A781B26FCC200D0CEA8 /* Trip.m in Sources */,
 				FB1E06D91B22EB05001599C7 /* TripLog.xcdatamodeld in Sources */,
-				82EE8A6B1B26FA0B00D0CEA8 /* TripComment.m in Sources */,
 				FB1E06D61B22EB05001599C7 /* AppDelegate.m in Sources */,
-				82EE8A651B26FA0A00D0CEA8 /* User.m in Sources */,
 				FB1E07031B22EBE0001599C7 /* TripLogCoreDataController.m in Sources */,
 				FC21000C1B25D55F008741F9 /* LocationsTableViewCell.m in Sources */,
 				FB1E071B1B22ED3C001599C7 /* MapViewController.m in Sources */,
 				FB1E07061B22EBF2001599C7 /* TripLogController.m in Sources */,
-				82EE8A6E1B26FA0B00D0CEA8 /* ToDoItem.m in Sources */,
 				AE20C5AF1B258E800035FEBD /* User.m in Sources */,
+				82EE8A7B1B26FCC300D0CEA8 /* User.m in Sources */,
 				FB1E07241B22ED6A001599C7 /* WelcomeViewController.m in Sources */,
+				82EE8A721B26FCC200D0CEA8 /* TripComment.m in Sources */,
 				AEF843A61B25C099008F9359 /* RegisterViewController.m in Sources */,
 				FB1E070F1B22EC96001599C7 /* LocationDetailsViewController.m in Sources */,
 				FB1E07091B22EC56001599C7 /* TripLogWebServiceController.m in Sources */,
 				FB1E07151B22ED18001599C7 /* LocationsViewController.m in Sources */,
 				FB1E06D31B22EB05001599C7 /* main.m in Sources */,
+				82EE8A751B26FCC200D0CEA8 /* ToDoItem.m in Sources */,
 				FB1E071E1B22ED4F001599C7 /* MyTripLogViewController.m in Sources */,
 				FB1E07181B22ED28001599C7 /* LoginViewController.m in Sources */,
 				FB1E070C1B22EC87001599C7 /* AddLocationViewController.m in Sources */,

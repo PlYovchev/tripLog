@@ -13,7 +13,7 @@
 
 @interface Trip : NSManagedObject
 
-@property (nonatomic, retain) NSString * id;
+@property (nonatomic, retain) NSString * tripId;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * country;
 @property (nonatomic, retain) NSString * city;
@@ -24,7 +24,7 @@
 @property (nonatomic, retain) User *creator;
 @property (nonatomic, retain) NSSet *visitedByUsers;
 @property (nonatomic, retain) NSSet *comments;
-@property (nonatomic, retain) ToDoItem *toDoList;
+@property (nonatomic, retain) NSSet *toDoList;
 @end
 
 @interface Trip (CoreDataGeneratedAccessors)
@@ -38,5 +38,10 @@
 - (void)removeCommentsObject:(TripComment *)value;
 - (void)addComments:(NSSet *)values;
 - (void)removeComments:(NSSet *)values;
+
+- (void)addToDoListObject:(ToDoItem *)value;
+- (void)removeToDoListObject:(ToDoItem *)value;
+- (void)addToDoList:(NSSet *)values;
+- (void)removeToDoList:(NSSet *)values;
 
 @end

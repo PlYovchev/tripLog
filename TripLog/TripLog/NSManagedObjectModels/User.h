@@ -13,13 +13,13 @@
 
 @interface User : NSManagedObject
 
-@property (nonatomic, retain) NSString * id;
+@property (nonatomic, retain) NSString * userId;
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSSet *tripsCreated;
 @property (nonatomic, retain) NSSet *tripsVisited;
 @property (nonatomic, retain) NSSet *comments;
-@property (nonatomic, retain) ToDoItem *toDoList;
+@property (nonatomic, retain) NSSet *toDoList;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
@@ -38,5 +38,10 @@
 - (void)removeCommentsObject:(TripComment *)value;
 - (void)addComments:(NSSet *)values;
 - (void)removeComments:(NSSet *)values;
+
+- (void)addToDoListObject:(ToDoItem *)value;
+- (void)removeToDoListObject:(ToDoItem *)value;
+- (void)addToDoList:(NSSet *)values;
+- (void)removeToDoList:(NSSet *)values;
 
 @end

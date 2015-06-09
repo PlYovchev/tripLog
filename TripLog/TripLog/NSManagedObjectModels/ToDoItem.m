@@ -13,7 +13,7 @@
 
 @implementation ToDoItem
 
-@dynamic id;
+@dynamic toDoItemId;
 @dynamic task;
 @dynamic trip;
 @dynamic user;

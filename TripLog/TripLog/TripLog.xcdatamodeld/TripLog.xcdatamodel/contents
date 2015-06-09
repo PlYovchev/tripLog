@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ToDoItem" representedClassName="ToDoItem" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="task" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="toDoItemId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="toDoList" inverseEntity="Trip" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="toDoList" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Trip" representedClassName="Trip" syncable="YES">
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isPrivate" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="tripId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TripComment" inverseName="trip" inverseEntity="TripComment" syncable="YES"/>
         <relationship name="creator" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="tripsCreated" inverseEntity="User" syncable="YES"/>
-        <relationship name="toDoList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ToDoItem" inverseName="trip" inverseEntity="ToDoItem" syncable="YES"/>
+        <relationship name="toDoList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ToDoItem" inverseName="trip" inverseEntity="ToDoItem" syncable="YES"/>
         <relationship name="visitedByUsers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="tripsVisited" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="TripComment" representedClassName="TripComment" syncable="YES">
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="commentId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="creationDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="comments" inverseEntity="Trip" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="comments" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TripComment" inverseName="user" inverseEntity="TripComment" syncable="YES"/>
-        <relationship name="toDoList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ToDoItem" inverseName="user" inverseEntity="ToDoItem" syncable="YES"/>
+        <relationship name="toDoList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ToDoItem" inverseName="user" inverseEntity="ToDoItem" syncable="YES"/>
         <relationship name="tripsCreated" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Trip" inverseName="creator" inverseEntity="Trip" syncable="YES"/>
         <relationship name="tripsVisited" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Trip" inverseName="visitedByUsers" inverseEntity="Trip" syncable="YES"/>
     </entity>

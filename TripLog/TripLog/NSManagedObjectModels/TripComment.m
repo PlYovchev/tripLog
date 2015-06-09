@@ -13,7 +13,7 @@
 
 @implementation TripComment
 
-@dynamic id;
+@dynamic commentId;
 @dynamic comment;
 @dynamic creationDate;
 @dynamic trip;

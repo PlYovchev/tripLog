@@ -13,7 +13,7 @@
 
 @interface ToDoItem : NSManagedObject
 
-@property (nonatomic, retain) NSString * id;
+@property (nonatomic, retain) NSString * toDoItemId;
 @property (nonatomic, retain) NSString * task;
 @property (nonatomic, retain) Trip *trip;
 @property (nonatomic, retain) User *user;

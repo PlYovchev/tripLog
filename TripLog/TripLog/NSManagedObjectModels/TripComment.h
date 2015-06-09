@@ -13,7 +13,7 @@
 
 @interface TripComment : NSManagedObject
 
-@property (nonatomic, retain) NSString * id;
+@property (nonatomic, retain) NSString * commentId;
 @property (nonatomic, retain) NSString * comment;
 @property (nonatomic, retain) NSDate * creationDate;
 @property (nonatomic, retain) Trip *trip;

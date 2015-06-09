@@ -14,7 +14,7 @@
 
 @implementation Trip
 
-@dynamic id;
+@dynamic tripId;
 @dynamic name;
 @dynamic country;
 @dynamic city;

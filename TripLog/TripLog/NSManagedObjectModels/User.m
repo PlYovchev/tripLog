@@ -14,7 +14,7 @@
 
 @implementation User
 
-@dynamic id;
+@dynamic userId;
 @dynamic username;
 @dynamic email;
 @dynamic tripsCreated;
