@@ -20,7 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [[TripLogWebServiceController sharedInstance] getTestTrip];
+    [[TripLogWebServiceController sharedInstance] sendGetRequestForAllTrips];
     // Override point for customization after application launch.
 //    [[TripLogWebServiceController sharedInstance] sendPostRequestForTripToParseWithName:@"thetestname" country:@"testcountry" city:@"testcity" description:@"testDescription" raiting:1 isPrivate:YES userId:@"6RNmOu3wgu"];
     return YES;

@@ -39,6 +39,6 @@
 #warning reorder methods!!!!!!!!!!!!!!!
 -(void)sendGetRequestForTripCommentWithTripId: (NSString*)tripId;
 -(void)sendPostRequestForTripToParseWithName:(NSString*)name country:(NSString*)country city:(NSString*)city description:(NSString*)description raiting:(int)raiting isPrivate:(BOOL)isPrivate userId:(NSString*)userId;
+-(void)sendGetRequestForAllTrips;
 
--(void)getTestTrip;
 @end
