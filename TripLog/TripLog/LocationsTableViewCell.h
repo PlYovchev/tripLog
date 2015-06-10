@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-/* #import "Trip.h"*/
+#import "Trip.h"
+#import "User.h"
+
 
 
 @interface LocationsTableViewCell : UITableViewCell
-//@property (nonatomic, strong) Trip *trip;
-//- (void)setLocationsCellForTrip(Trip*)trip;
+@property (nonatomic, strong) Trip *trip;
+- (void)setLocationsCellForTrip:(Trip*)trip withURL:(NSString *)url;
 @end

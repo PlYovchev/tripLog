@@ -7,8 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Trip.h"
+#import "User.h"
 
 @interface TripLogController : NSObject
+@property (nonatomic,strong) Trip *selectedTrip;
+@property (nonatomic,strong) User *user;
+
 
 +(id)sharedInstance;
 

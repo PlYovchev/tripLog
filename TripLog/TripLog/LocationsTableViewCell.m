@@ -11,8 +11,9 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *locationsImage;
 @property (weak, nonatomic) IBOutlet UILabel *labelLocation;
-@property (weak, nonatomic) IBOutlet UILabel *labelDate;
-@property (weak, nonatomic) IBOutlet UILabel *labelUser;
+@property (weak, nonatomic) IBOutlet UILabel *labelCreator;
+@property (weak, nonatomic) IBOutlet UILabel *labelTripName;
+
 
 
 @end
@@ -32,20 +33,31 @@
 - (void)prepareForReuse{
     self.locationsImage = nil;
     self.labelLocation.text = @"";
-    self.labelDate.text = @"";
-    self.labelUser.text = @"";
+    self.labelCreator.text = @"";
+    self.labelTripName.text = @"";
 }
-/*
-- (void)setLocationsCellForTrip(Trip*)trip{
- 
- _trip = trip;
- self.locationsImage = _trip.image;
- self.labelLocation.text = _trip.location;
- NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
- [dateFormatter setDateFormat:@"dd MMM yyyy HH:mm "];
- NSString *dateStr = [dateFormatter stringFromDate:_trip.date];
- self.labelDate.text = dateStr;
- self.labelUser.text = _trip.user;
+
+- (void)setLocationsCellForTrip:(Trip*)trip withURL:(NSString *)url{
+    
+    _trip = trip;
+    User *user = _trip.creator;
+    self.labelLocation.text = [NSString stringWithFormat:@"%@,%@",_trip.country, _trip.city];
+    self.labelCreator.text = [NSString stringWithFormat:@"%@", user.username];
+    self.labelTripName.text = _trip.name;
+    NSURL *imageURL = [NSURL URLWithString:url];
+    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    NSURLSession *session =  [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:nil delegateQueue:nil];
+    
+    NSURLSessionDataTask *task = [session dataTaskWithURL:imageURL
+                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                self.locationsImage.image = [UIImage imageWithData:data];
+                                            });
+                                        }];
+    
+    [task resume];
+
 }
-*/
+
 @end

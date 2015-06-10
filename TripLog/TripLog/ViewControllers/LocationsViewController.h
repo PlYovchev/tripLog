@@ -10,6 +10,9 @@
 #import "LocationsTableViewCell.h"
 #import "TripLogController.h"
 #import "TripLogCoreDataController.h"
+#import "TripLogWebServiceController.h"
+#import "Trip.h"
+#import "User.h"
 
 @interface LocationsViewController : UIViewController
 

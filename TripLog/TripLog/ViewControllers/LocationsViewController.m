@@ -8,10 +8,14 @@
 
 #import "LocationsViewController.h"
 
-@interface LocationsViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
+@interface LocationsViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>{
+    TripLogController *tripManager;
+    TripLogWebServiceController *tripWebService;
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *locationsTableView;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong,nonatomic) NSString *url;
 
 @end
 
@@ -20,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    tripManager = [TripLogController sharedInstance];
     self.locationsTableView.delegate = self;
     self.locationsTableView.dataSource = self;
     NSError *error;
@@ -56,8 +61,21 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LocationsTableViewCell *cell = [self.locationsTableView dequeueReusableCellWithIdentifier:@"locationsCell"];
+    Trip *currentTrip = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSString *tripID=currentTrip.tripId;
+
+    [[TripLogWebServiceController sharedInstance]sendGetRequestForImagesWithTripId:tripID andCompletitionHandler:^(NSDictionary *result) {
+        if(result!=nil){
+            //NSLog(@"Cell fetch images result:%@",result);
+            self.url=[result objectForKey:@"url"];
+            NSLog(@"Image url:%@",self.url);
+        }else{
+            //NSLog(@"Cell fetch unsuccessfull!");
+        }
+    } ];
     
-    //use - (void)setLocationsCellForTrip(Trip*)trip
+  
+    [cell setLocationsCellForTrip:currentTrip withURL:self.url];
     return cell;
 }
 
@@ -72,7 +90,7 @@
     
     
     UIViewController *detailsController = [self.storyboard instantiateViewControllerWithIdentifier:@"locationDetailsVC"];
-    
+    tripManager.selectedTrip = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [self.navigationController pushViewController:detailsController animated:YES];
 }
 
@@ -87,7 +105,7 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Trip"
                                               inManagedObjectContext:context];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"publishedDate" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"country" ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     [fetchRequest setSortDescriptors:sortDescriptors];
     

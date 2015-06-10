@@ -27,6 +27,8 @@
 
 @property (nonatomic, strong) UserModel* loggedUser;
 @property id <TripLogWebServiceControllerDelegate> delegate;
+@property (nonatomic, strong) NSMutableDictionary *imageURL;
+@property (nonatomic, strong) NSString *test;
 
 +(id)sharedInstance;
 
@@ -44,7 +46,7 @@
 -(void)getTestTrip;
 -(void)getTripsWithCompletionHandler:(void (^)(NSDictionary* result)) completion;
 
-
+-(void)sendGetRequestForImagesWithTripId: (NSString*)tripId andCompletitionHandler: (void (^)(NSDictionary *result)) completition;
 
 -(void)testRequest;
 @end
