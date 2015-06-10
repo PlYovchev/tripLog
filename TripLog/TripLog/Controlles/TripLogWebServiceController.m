@@ -246,7 +246,7 @@ static TripLogWebServiceController* webController;
         if ([httpResponse statusCode] == 200) {
             NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
             completition(result);
-            NSLog(@"Get images:%@",result);
+            NSLog(@"Get images:%@",[result objectForKey:@"results"]);
             self.imageURL = [[NSMutableDictionary alloc]initWithDictionary:result ];
             //self.imageURL = [result objectForKey:@"Image"];
             self.test = [self.imageURL objectForKey:@"objectId"];
