@@ -37,10 +37,14 @@
 #pragma mark Parse interaction methods
 
 #warning reorder methods!!!!!!!!!!!!!!!
--(void)sendGetRequestForTripCommentWithTripId: (NSString*)tripId;
--(void)sendPostRequestForTripToParseWithName:(NSString*)name country:(NSString*)country city:(NSString*)city description:(NSString*)description raiting:(int)raiting isPrivate:(BOOL)isPrivate userId:(NSString*)userId;
+-(void)sendGetRequestForAllTripsWithCompletitionHandler: (void (^)(NSDictionary *result)) completition;
+-(void)sendPostRequestForTripToParseWithName:(NSString*)name country:(NSString*)country city:(NSString*)city description:(NSString*)description raiting:(int)raiting isPrivate:(BOOL)isPrivate userId:(NSString*)userId withCompletitionHandler: (void (^)(NSDictionary* response)) completition;
 -(void)sendGetRequestForAllTrips;
 
 -(void)getTestTrip;
 -(void)getTripsWithCompletionHandler:(void (^)(NSDictionary* result)) completion;
+
+
+
+-(void)testRequest;
 @end

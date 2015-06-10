@@ -22,8 +22,7 @@
     
     TripLogController* controller = [TripLogController sharedInstance];
     [controller fetchTrips];
-    // Override point for customization after application launch.
-//    [[TripLogWebServiceController sharedInstance] sendPostRequestForTripToParseWithName:@"thetestname" country:@"testcountry" city:@"testcity" description:@"testDescription" raiting:1 isPrivate:YES userId:@"6RNmOu3wgu"];
+    
     return YES;
 }
 

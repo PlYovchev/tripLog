@@ -122,46 +122,40 @@ static TripLogWebServiceController* webController;
 
 -(void)sendPostRequestForTripToParseWithName:(NSString*)name country:(NSString*)country city:(NSString*)city description:(NSString*)description raiting:(int)raiting isPrivate:(BOOL)isPrivate userId:(NSString*)userId withCompletitionHandler: (void (^)(NSDictionary* response)) completition{
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:@"https://api.parse.com/1/classes/Trip"]];
-    [request setHTTPMethod:@"POST"];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     
-    // Set HTTP headers
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://api.parse.com/1/classes/Trip"]
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"t4rnGe5XRyz1owsyNOs8ZWITPS1Eo8tKzAUOeNTU" forHTTPHeaderField:@"X-Parse-Application-Id"];
     [request setValue:@"r4WSZnlYMfSTD5VRWuMlvKQRdMZidX9acxec1mMo" forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    [request setHTTPMethod:@"POST"];
+    
     
     NSDictionary *dict = @{@"Name":name, @"Country":country, @"City":city, @"Description":description, @"Raiting":[NSNumber numberWithInt:raiting], @"IsPrivate":[NSNumber numberWithBool:isPrivate], @"User":@{ @"__type": @"Pointer",@"className": @"_User",@"objectId": userId}};
     
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
-    [request setValue: [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
-    
     [request setHTTPBody:jsonData];
     
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-     {
-         if (!data)
-         {
-             [self.delegate userDidSignUpSuccessfully:NO];
-             return;
-         }
-         
-         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-         NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
-         
-         if ([httpResponse statusCode] == 201) {
-             NSLog(@"Trip added successfully!");
-             completition([NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error]);
-         }
-         else{
-             NSLog(@"Trip adding failed!");
-         }
-     }];
+    NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
+        
+                if ([httpResponse statusCode] == 201) {
+                    NSLog(@"Trip added successfully!");
+                    completition([NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error]);
+                }
+                else{
+                    NSLog(@"Trip adding failed! Error: %@", error);
+                }
+    }];
+
+    [uploadTask resume];
 }
-
-
-// GET TRIPS
 
 -(void)sendGetRequestForAllTripsWithCompletitionHandler: (void (^)(NSDictionary *result)) completition{
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -182,7 +176,6 @@ static TripLogWebServiceController* webController;
         else {
             NSLog(@"%@", error);
         }
-        
     }];
     
     [dataTask resume];
@@ -234,10 +227,6 @@ static TripLogWebServiceController* webController;
     }];
     
     [dataTask resume];
-}
-
--(void)getTestTripWithQuery{
-    
 }
 
 -(NSString *)urlencode: (NSString*)url {
