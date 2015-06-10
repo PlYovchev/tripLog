@@ -32,6 +32,8 @@
         NSLog(@"Fetching data failed. Error %@, %@", error, [error userInfo]);
     }
     
+    self.locationsTableView.editing = NO;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,6 +79,17 @@
   
     [cell setLocationsCellForTrip:currentTrip withURL:self.url];
     return cell;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Detemine if it's in editing mode
+    if (self.locationsTableView.editing)
+    {
+        return UITableViewCellEditingStyleDelete;
+    }
+    
+    return UITableViewCellEditingStyleNone;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
