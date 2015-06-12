@@ -248,7 +248,7 @@ static TripLogCoreDataController* coreDataController;
         return _fetchedResultsController;
     }
     
-    NSManagedObjectContext *context = _mainManagedObjectContext;
+    NSManagedObjectContext *context = self.mainManagedObjectContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Trip"
                                               inManagedObjectContext:context];
@@ -264,7 +264,6 @@ static TripLogCoreDataController* coreDataController;
                                                                       sectionNameKeyPath:nil
                                                                                cacheName:nil];
     
-    _fetchedResultsController.delegate = self;
     return _fetchedResultsController;
 }
 
