@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uuF-2d-wUq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uuF-2d-wUq">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -164,112 +164,6 @@
             </objects>
             <point key="canvasLocation" x="3229" y="841"/>
         </scene>
-        <!--Locations-->
-        <scene sceneID="Tkb-Ro-UVo">
-            <objects>
-                <viewController id="vfl-oP-Pw1" customClass="LocationsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ccn-07-wSh"/>
-                        <viewControllerLayoutGuide type="bottom" id="EIe-iy-Zm4"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Zro-p5-oHg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="All locations" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q34-gc-3ul">
-                                <rect key="frame" x="156" y="271" width="246" height="58"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HM9-fb-4EE">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="locationsCell" rowHeight="125" id="uG8-4v-Fj1" customClass="LocationsTableViewCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uG8-4v-Fj1" id="bEA-9t-aLg">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FND-DW-8w1">
-                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="190" y="65" width="160" height="25"/>
-                                                    </variation>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nF4-4L-DkX">
-                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="5" y="5" width="358" height="20"/>
-                                                    </variation>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfq-J7-BGG">
-                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="190" y="35" width="160" height="25"/>
-                                                    </variation>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z6V-uV-N00">
-                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="5" y="30" width="180" height="80"/>
-                                                    </variation>
-                                                </imageView>
-                                            </subviews>
-                                            <variation key="default">
-                                                <mask key="subviews">
-                                                    <exclude reference="FND-DW-8w1"/>
-                                                    <exclude reference="nF4-4L-DkX"/>
-                                                    <exclude reference="nfq-J7-BGG"/>
-                                                    <exclude reference="Z6V-uV-N00"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="widthClass=compact">
-                                                <mask key="subviews">
-                                                    <include reference="FND-DW-8w1"/>
-                                                    <include reference="nF4-4L-DkX"/>
-                                                    <include reference="nfq-J7-BGG"/>
-                                                    <include reference="Z6V-uV-N00"/>
-                                                </mask>
-                                            </variation>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="labelCreator" destination="FND-DW-8w1" id="Bw9-U6-m6W"/>
-                                            <outlet property="labelLocation" destination="nfq-J7-BGG" id="kRy-ZA-Rp0"/>
-                                            <outlet property="labelTripName" destination="nF4-4L-DkX" id="GnW-1H-L1G"/>
-                                            <outlet property="locationsImage" destination="Z6V-uV-N00" id="rWK-sw-dvj"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="HM9-fb-4EE" firstAttribute="leading" secondItem="Zro-p5-oHg" secondAttribute="leadingMargin" constant="-16" id="4CG-Ee-ZTe"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="HM9-fb-4EE" secondAttribute="trailing" constant="-16" id="Iwj-Sg-Xyl"/>
-                            <constraint firstItem="HM9-fb-4EE" firstAttribute="top" secondItem="ccn-07-wSh" secondAttribute="bottom" id="cyg-Wv-zbz"/>
-                            <constraint firstItem="HM9-fb-4EE" firstAttribute="bottom" secondItem="Zro-p5-oHg" secondAttribute="bottomMargin" constant="-49" id="h9E-u3-6Hr"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Locations" id="ugV-aJ-Ol3"/>
-                    <connections>
-                        <outlet property="locationsTableView" destination="HM9-fb-4EE" id="ffE-x5-uky"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WPJ-iq-zbX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2574" y="57"/>
-        </scene>
         <!--Login View Controller-->
         <scene sceneID="aze-Bw-csc">
             <objects>
@@ -321,7 +215,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FVu-j8-SOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="480" y="1483"/>
+            <point key="canvasLocation" x="380" y="1483"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="P3c-dS-Wr6">
@@ -388,6 +282,112 @@
             </objects>
             <point key="canvasLocation" x="1152" y="1222"/>
         </scene>
+        <!--Trips-->
+        <scene sceneID="WyG-LQ-MNC">
+            <objects>
+                <collectionViewController id="XOH-LB-JLF" customClass="AllTripsCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" dataMode="prototypes" id="Cb0-Qm-1kg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewLayout key="collectionViewLayout" id="PYY-kg-6sL" customClass="GalleryItemsLayout">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="horizontalInset">
+                                    <integer key="value" value="15"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="verticalInset">
+                                    <integer key="value" value="15"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="minimumItemWidth">
+                                    <integer key="value" value="150"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="maximumItemWidth">
+                                    <integer key="value" value="300"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="itemHeight">
+                                    <integer key="value" value="250"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </collectionViewLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="z0u-L3-IVz" customClass="AllTripsCollectionViewCell">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="230" height="135"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R0J-WB-lIL">
+                                            <rect key="frame" x="0.0" y="0.0" width="230" height="135"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeG-iz-hhO">
+                                            <rect key="frame" x="8" y="8" width="214" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6td-x9-ZgW">
+                                            <rect key="frame" x="15" y="31" width="200" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creator" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBu-nE-GI5">
+                                            <rect key="frame" x="8" y="106" width="100" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Raiting" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWc-ft-JwB">
+                                            <rect key="frame" x="180" y="106" width="42" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="42" id="ckt-RK-lmt"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="R0J-WB-lIL" firstAttribute="top" secondItem="z0u-L3-IVz" secondAttribute="top" id="2YP-NS-cnu"/>
+                                    <constraint firstItem="SeG-iz-hhO" firstAttribute="trailing" secondItem="MWc-ft-JwB" secondAttribute="trailing" id="4no-Gs-Cz2"/>
+                                    <constraint firstItem="6td-x9-ZgW" firstAttribute="top" secondItem="SeG-iz-hhO" secondAttribute="bottom" constant="2" id="5Zg-Ir-DOR"/>
+                                    <constraint firstItem="CBu-nE-GI5" firstAttribute="leading" secondItem="SeG-iz-hhO" secondAttribute="leading" id="A7P-se-7Bp"/>
+                                    <constraint firstItem="MWc-ft-JwB" firstAttribute="baseline" secondItem="CBu-nE-GI5" secondAttribute="baseline" id="EWg-rh-L91"/>
+                                    <constraint firstItem="CBu-nE-GI5" firstAttribute="bottom" secondItem="z0u-L3-IVz" secondAttribute="bottomMargin" id="Lst-Fd-EBU"/>
+                                    <constraint firstItem="MWc-ft-JwB" firstAttribute="leading" secondItem="CBu-nE-GI5" secondAttribute="trailing" constant="72" id="O1c-td-wyU"/>
+                                    <constraint firstItem="SeG-iz-hhO" firstAttribute="top" secondItem="z0u-L3-IVz" secondAttribute="topMargin" id="TwO-tz-Y01"/>
+                                    <constraint firstAttribute="trailing" secondItem="R0J-WB-lIL" secondAttribute="trailing" id="aco-ei-LF8"/>
+                                    <constraint firstItem="CBu-nE-GI5" firstAttribute="leading" secondItem="z0u-L3-IVz" secondAttribute="leadingMargin" id="bPF-Go-uwO"/>
+                                    <constraint firstItem="R0J-WB-lIL" firstAttribute="leading" secondItem="z0u-L3-IVz" secondAttribute="leading" id="eyq-WZ-7tr"/>
+                                    <constraint firstItem="SeG-iz-hhO" firstAttribute="centerX" secondItem="6td-x9-ZgW" secondAttribute="centerX" id="gcB-bt-pag"/>
+                                    <constraint firstItem="6td-x9-ZgW" firstAttribute="leading" secondItem="z0u-L3-IVz" secondAttribute="leadingMargin" constant="7" id="kRy-cQ-cKq"/>
+                                    <constraint firstAttribute="bottom" secondItem="R0J-WB-lIL" secondAttribute="bottom" id="lfS-BX-4U5"/>
+                                    <constraint firstItem="SeG-iz-hhO" firstAttribute="centerX" secondItem="R0J-WB-lIL" secondAttribute="centerX" id="rQS-QY-0Sq"/>
+                                </constraints>
+                                <size key="customSize" width="230" height="135"/>
+                                <connections>
+                                    <outlet property="imageView" destination="R0J-WB-lIL" id="olw-lI-yz4"/>
+                                    <outlet property="labelCreator" destination="CBu-nE-GI5" id="p2k-qg-Mo7"/>
+                                    <outlet property="labelRaiting" destination="MWc-ft-JwB" id="HZU-uT-Dn6"/>
+                                    <outlet property="labelTripLocation" destination="6td-x9-ZgW" id="6ef-Zh-tuT"/>
+                                    <outlet property="labelTripName" destination="SeG-iz-hhO" id="DmD-oP-1uL"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="XOH-LB-JLF" id="yuK-lY-3aM"/>
+                            <outlet property="delegate" destination="XOH-LB-JLF" id="ZBb-RI-Est"/>
+                        </connections>
+                    </collectionView>
+                    <tabBarItem key="tabBarItem" title="Trips" id="H4N-K4-jmJ"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7ti-AD-I0g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1579" y="560"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="YzU-X6-lT8">
             <objects>
@@ -400,10 +400,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="vfl-oP-Pw1" kind="relationship" relationship="viewControllers" id="pG0-QJ-hSp"/>
-                        <segue destination="aRq-i3-ehJ" kind="relationship" relationship="viewControllers" id="cjE-cn-n2b"/>
                         <segue destination="DZY-3f-gfq" kind="relationship" relationship="viewControllers" id="ro4-cF-9Pd"/>
+                        <segue destination="aRq-i3-ehJ" kind="relationship" relationship="viewControllers" id="cjE-cn-n2b"/>
                         <segue destination="g9e-5w-t5s" kind="relationship" relationship="viewControllers" id="YFJ-qL-UKp"/>
+                        <segue destination="XOH-LB-JLF" kind="relationship" relationship="viewControllers" id="Tch-4W-0fn"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgn-h9-2bd" userLabel="First Responder" sceneMemberID="firstResponder"/>

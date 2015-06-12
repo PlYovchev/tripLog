@@ -32,7 +32,11 @@
 		FB1E071E1B22ED4F001599C7 /* MyTripLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E071D1B22ED4F001599C7 /* MyTripLogViewController.m */; };
 		FB1E07211B22ED5F001599C7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07201B22ED5F001599C7 /* SettingsViewController.m */; };
 		FB1E07241B22ED6A001599C7 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */; };
-		FC21000C1B25D55F008741F9 /* LocationsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC21000B1B25D55F008741F9 /* LocationsTableViewCell.m */; };
+		FF11AD3A1B2AF17000C00C8A /* AllTripsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF11AD391B2AF17000C00C8A /* AllTripsCollectionViewController.m */; };
+		FF11AD3F1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF11AD3C1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.m */; };
+		FF11AD401B2AF1BF00C00C8A /* LocationsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF11AD3E1B2AF1BF00C00C8A /* LocationsTableViewCell.m */; };
+		FF11AD431B2AF24D00C00C8A /* GalleryItemsLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FF11AD421B2AF24D00C00C8A /* GalleryItemsLayout.m */; };
+		FF11AD451B2AF9FA00C00C8A /* default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF11AD441B2AF9FA00C00C8A /* default.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,8 +98,15 @@
 		FB1E07201B22ED5F001599C7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FB1E07221B22ED6A001599C7 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
-		FC21000A1B25D55F008741F9 /* LocationsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationsTableViewCell.h; path = ../LocationsTableViewCell.h; sourceTree = "<group>"; };
-		FC21000B1B25D55F008741F9 /* LocationsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationsTableViewCell.m; path = ../LocationsTableViewCell.m; sourceTree = "<group>"; };
+		FF11AD381B2AF17000C00C8A /* AllTripsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTripsCollectionViewController.h; sourceTree = "<group>"; };
+		FF11AD391B2AF17000C00C8A /* AllTripsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTripsCollectionViewController.m; sourceTree = "<group>"; };
+		FF11AD3B1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTripsCollectionViewCell.h; sourceTree = "<group>"; };
+		FF11AD3C1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTripsCollectionViewCell.m; sourceTree = "<group>"; };
+		FF11AD3D1B2AF1BF00C00C8A /* LocationsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationsTableViewCell.h; sourceTree = "<group>"; };
+		FF11AD3E1B2AF1BF00C00C8A /* LocationsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationsTableViewCell.m; sourceTree = "<group>"; };
+		FF11AD411B2AF24D00C00C8A /* GalleryItemsLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryItemsLayout.h; sourceTree = "<group>"; };
+		FF11AD421B2AF24D00C00C8A /* GalleryItemsLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryItemsLayout.m; sourceTree = "<group>"; };
+		FF11AD441B2AF9FA00C00C8A /* default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = default.jpg; path = ../../../../Desktop/Test2Collection/Test2Collection/default.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +266,8 @@
 				FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */,
 				AEF843A41B25C099008F9359 /* RegisterViewController.h */,
 				AEF843A51B25C099008F9359 /* RegisterViewController.m */,
+				FF11AD381B2AF17000C00C8A /* AllTripsCollectionViewController.h */,
+				FF11AD391B2AF17000C00C8A /* AllTripsCollectionViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -262,8 +275,13 @@
 		FC6797131B28B22D009F6A65 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FC21000A1B25D55F008741F9 /* LocationsTableViewCell.h */,
-				FC21000B1B25D55F008741F9 /* LocationsTableViewCell.m */,
+				FF11AD441B2AF9FA00C00C8A /* default.jpg */,
+				FF11AD411B2AF24D00C00C8A /* GalleryItemsLayout.h */,
+				FF11AD421B2AF24D00C00C8A /* GalleryItemsLayout.m */,
+				FF11AD3B1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.h */,
+				FF11AD3C1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.m */,
+				FF11AD3D1B2AF1BF00C00C8A /* LocationsTableViewCell.h */,
+				FF11AD3E1B2AF1BF00C00C8A /* LocationsTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -351,6 +369,7 @@
 				FB1E06DF1B22EB05001599C7 /* Main.storyboard in Resources */,
 				FB1E06E41B22EB06001599C7 /* LaunchScreen.xib in Resources */,
 				FB1E06E11B22EB06001599C7 /* Images.xcassets in Resources */,
+				FF11AD451B2AF9FA00C00C8A /* default.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,24 +391,27 @@
 				FB1E06D91B22EB05001599C7 /* TripLog.xcdatamodeld in Sources */,
 				FB1E06D61B22EB05001599C7 /* AppDelegate.m in Sources */,
 				FB1E07031B22EBE0001599C7 /* TripLogCoreDataController.m in Sources */,
-				FC21000C1B25D55F008741F9 /* LocationsTableViewCell.m in Sources */,
 				FB1E071B1B22ED3C001599C7 /* MapViewController.m in Sources */,
 				82A0932A1B272406001EAD5A /* Trip.m in Sources */,
 				FB1E07061B22EBF2001599C7 /* TripLogController.m in Sources */,
 				AE20C5AF1B258E800035FEBD /* UserModel.m in Sources */,
 				82EE8A7B1B26FCC300D0CEA8 /* User.m in Sources */,
+				FF11AD3F1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.m in Sources */,
 				FB1E07241B22ED6A001599C7 /* WelcomeViewController.m in Sources */,
 				82EE8A721B26FCC200D0CEA8 /* TripComment.m in Sources */,
 				AEF843A61B25C099008F9359 /* RegisterViewController.m in Sources */,
 				FB1E070F1B22EC96001599C7 /* LocationDetailsViewController.m in Sources */,
+				FF11AD3A1B2AF17000C00C8A /* AllTripsCollectionViewController.m in Sources */,
 				FB1E07091B22EC56001599C7 /* TripLogWebServiceController.m in Sources */,
 				FB1E07151B22ED18001599C7 /* LocationsViewController.m in Sources */,
 				FB1E06D31B22EB05001599C7 /* main.m in Sources */,
 				82EE8A751B26FCC200D0CEA8 /* ToDoItem.m in Sources */,
+				FF11AD431B2AF24D00C00C8A /* GalleryItemsLayout.m in Sources */,
 				FB1E071E1B22ED4F001599C7 /* MyTripLogViewController.m in Sources */,
 				FB1E07181B22ED28001599C7 /* LoginViewController.m in Sources */,
 				FB1E070C1B22EC87001599C7 /* AddLocationViewController.m in Sources */,
 				FB1E07211B22ED5F001599C7 /* SettingsViewController.m in Sources */,
+				FF11AD401B2AF1BF00C00C8A /* LocationsTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
