@@ -46,7 +46,6 @@
 		FF11AD3A1B2AF17000C00C8A /* AllTripsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF11AD391B2AF17000C00C8A /* AllTripsCollectionViewController.m */; };
 		FF11AD3F1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF11AD3C1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.m */; };
 		FF11AD431B2AF24D00C00C8A /* GalleryItemsLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FF11AD421B2AF24D00C00C8A /* GalleryItemsLayout.m */; };
-		FF11AD451B2AF9FA00C00C8A /* default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF11AD441B2AF9FA00C00C8A /* default.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,7 +131,6 @@
 		FF11AD3C1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTripsCollectionViewCell.m; sourceTree = "<group>"; };
 		FF11AD411B2AF24D00C00C8A /* GalleryItemsLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryItemsLayout.h; sourceTree = "<group>"; };
 		FF11AD421B2AF24D00C00C8A /* GalleryItemsLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryItemsLayout.m; sourceTree = "<group>"; };
-		FF11AD441B2AF9FA00C00C8A /* default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = default.jpg; path = ../../../../Desktop/Test2Collection/Test2Collection/default.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,7 +354,6 @@
 		FC6797131B28B22D009F6A65 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FF11AD441B2AF9FA00C00C8A /* default.jpg */,
 				FF11AD411B2AF24D00C00C8A /* GalleryItemsLayout.h */,
 				FF11AD421B2AF24D00C00C8A /* GalleryItemsLayout.m */,
 				FF11AD3B1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.h */,
@@ -460,7 +457,6 @@
 				AE5DF7CE1B2AEEF600C7D3A4 /* background.png in Resources */,
 				FB1E06E41B22EB06001599C7 /* LaunchScreen.xib in Resources */,
 				FB1E06E11B22EB06001599C7 /* Images.xcassets in Resources */,
-				FF11AD451B2AF9FA00C00C8A /* default.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
