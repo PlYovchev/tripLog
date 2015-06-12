@@ -8,7 +8,11 @@
 
 #import "AllTripsCollectionViewController.h"
 
-@interface AllTripsCollectionViewController ()
+@interface AllTripsCollectionViewController (){
+    TripLogController *tripManager;
+    TripLogCoreDataController *tripCDManager;
+}
+
 
 @end
 
@@ -19,7 +23,12 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    tripCDManager = [TripLogCoreDataController sharedInstance];
+    tripManager = [TripLogController sharedInstance];
+    NSError *error;
+    if (![tripCDManager.fetchedResultsController performFetch:&error]) {
+        NSLog(@"Fetching data failed. Error %@, %@", error, [error userInfo]);
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,14 +50,16 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    id sectionInfo = [[tripCDManager.fetchedResultsController sections]objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     AllTripsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    Trip *currentTrip = [tripCDManager.fetchedResultsController objectAtIndexPath:indexPath];
     
-    [cell setCellTrip];
+    [cell setCellforTrip:currentTrip];
     
     return cell;
 }
@@ -62,18 +73,12 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle: @"didSelectItemAtIndexPath:"
-                                                                        message: [NSString stringWithFormat: @"Indexpath = %@", indexPath]
-                                                                 preferredStyle: UIAlertControllerStyleAlert];
-    
-    UIAlertAction *alertAction = [UIAlertAction actionWithTitle: @"Dismiss"
-                                                          style: UIAlertActionStyleDestructive
-                                                        handler: nil];
-    
-    [controller addAction: alertAction];
-    
-    [self presentViewController: controller animated: YES completion: nil];
+    tripManager.selectedTrip = [tripCDManager.fetchedResultsController objectAtIndexPath:indexPath];
+    UIViewController *detailsController = [self.storyboard instantiateViewControllerWithIdentifier:@"locationDetailsVC"];
+    [self.navigationController pushViewController:detailsController animated:YES];
 }
+
+
 
 #pragma mark - UICollectionViewFlowLayout
 

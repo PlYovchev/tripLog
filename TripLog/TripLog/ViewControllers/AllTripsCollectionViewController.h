@@ -10,6 +10,8 @@
 #import "AllTripsCollectionViewCell.h"
 #import "Trip.h"
 #import "GalleryItemsLayout.h"
+#import "TripLogController.h"
+#import "TripLogCoreDataController.h"
 
 @interface AllTripsCollectionViewController : UICollectionViewController
 

@@ -26,4 +26,14 @@
     
     _imageView.image = [UIImage imageNamed:@"default.jpg"];
 }
+-(void)setCellforTrip:(Trip*)trip{
+    _trip = trip;
+    _labelTripName.text=_trip.name;
+    _labelTripLocation.text=[NSString stringWithFormat:@"%@,%@",_trip.country, _trip.city];
+    _labelCreator.text=@"Creator";
+    _labelRaiting.text=[NSString stringWithFormat:@"%@",_trip.rating];
+    
+    _imageView.image = [UIImage imageNamed:@"default.jpg"];
+
+}
 @end

@@ -26,7 +26,6 @@
 		FB1E07091B22EC56001599C7 /* TripLogWebServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07081B22EC56001599C7 /* TripLogWebServiceController.m */; };
 		FB1E070C1B22EC87001599C7 /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E070B1B22EC87001599C7 /* AddLocationViewController.m */; };
 		FB1E070F1B22EC96001599C7 /* LocationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E070E1B22EC96001599C7 /* LocationDetailsViewController.m */; };
-		FB1E07151B22ED18001599C7 /* LocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07141B22ED18001599C7 /* LocationsViewController.m */; };
 		FB1E07181B22ED28001599C7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07171B22ED28001599C7 /* LoginViewController.m */; };
 		FB1E071B1B22ED3C001599C7 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E071A1B22ED3C001599C7 /* MapViewController.m */; };
 		FB1E071E1B22ED4F001599C7 /* MyTripLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E071D1B22ED4F001599C7 /* MyTripLogViewController.m */; };
@@ -34,7 +33,6 @@
 		FB1E07241B22ED6A001599C7 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */; };
 		FF11AD3A1B2AF17000C00C8A /* AllTripsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF11AD391B2AF17000C00C8A /* AllTripsCollectionViewController.m */; };
 		FF11AD3F1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF11AD3C1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.m */; };
-		FF11AD401B2AF1BF00C00C8A /* LocationsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF11AD3E1B2AF1BF00C00C8A /* LocationsTableViewCell.m */; };
 		FF11AD431B2AF24D00C00C8A /* GalleryItemsLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FF11AD421B2AF24D00C00C8A /* GalleryItemsLayout.m */; };
 		FF11AD451B2AF9FA00C00C8A /* default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF11AD441B2AF9FA00C00C8A /* default.jpg */; };
 /* End PBXBuildFile section */
@@ -86,8 +84,6 @@
 		FB1E070B1B22EC87001599C7 /* AddLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationViewController.m; sourceTree = "<group>"; };
 		FB1E070D1B22EC96001599C7 /* LocationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationDetailsViewController.h; sourceTree = "<group>"; };
 		FB1E070E1B22EC96001599C7 /* LocationDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationDetailsViewController.m; sourceTree = "<group>"; };
-		FB1E07131B22ED18001599C7 /* LocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationsViewController.h; sourceTree = "<group>"; };
-		FB1E07141B22ED18001599C7 /* LocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationsViewController.m; sourceTree = "<group>"; };
 		FB1E07161B22ED28001599C7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		FB1E07171B22ED28001599C7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		FB1E07191B22ED3C001599C7 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -102,8 +98,6 @@
 		FF11AD391B2AF17000C00C8A /* AllTripsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTripsCollectionViewController.m; sourceTree = "<group>"; };
 		FF11AD3B1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTripsCollectionViewCell.h; sourceTree = "<group>"; };
 		FF11AD3C1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTripsCollectionViewCell.m; sourceTree = "<group>"; };
-		FF11AD3D1B2AF1BF00C00C8A /* LocationsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationsTableViewCell.h; sourceTree = "<group>"; };
-		FF11AD3E1B2AF1BF00C00C8A /* LocationsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationsTableViewCell.m; sourceTree = "<group>"; };
 		FF11AD411B2AF24D00C00C8A /* GalleryItemsLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryItemsLayout.h; sourceTree = "<group>"; };
 		FF11AD421B2AF24D00C00C8A /* GalleryItemsLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryItemsLayout.m; sourceTree = "<group>"; };
 		FF11AD441B2AF9FA00C00C8A /* default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = default.jpg; path = ../../../../Desktop/Test2Collection/Test2Collection/default.jpg; sourceTree = "<group>"; };
@@ -252,8 +246,6 @@
 				FB1E070B1B22EC87001599C7 /* AddLocationViewController.m */,
 				FB1E070D1B22EC96001599C7 /* LocationDetailsViewController.h */,
 				FB1E070E1B22EC96001599C7 /* LocationDetailsViewController.m */,
-				FB1E07131B22ED18001599C7 /* LocationsViewController.h */,
-				FB1E07141B22ED18001599C7 /* LocationsViewController.m */,
 				FB1E07161B22ED28001599C7 /* LoginViewController.h */,
 				FB1E07171B22ED28001599C7 /* LoginViewController.m */,
 				FB1E07191B22ED3C001599C7 /* MapViewController.h */,
@@ -280,8 +272,6 @@
 				FF11AD421B2AF24D00C00C8A /* GalleryItemsLayout.m */,
 				FF11AD3B1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.h */,
 				FF11AD3C1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.m */,
-				FF11AD3D1B2AF1BF00C00C8A /* LocationsTableViewCell.h */,
-				FF11AD3E1B2AF1BF00C00C8A /* LocationsTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -403,7 +393,6 @@
 				FB1E070F1B22EC96001599C7 /* LocationDetailsViewController.m in Sources */,
 				FF11AD3A1B2AF17000C00C8A /* AllTripsCollectionViewController.m in Sources */,
 				FB1E07091B22EC56001599C7 /* TripLogWebServiceController.m in Sources */,
-				FB1E07151B22ED18001599C7 /* LocationsViewController.m in Sources */,
 				FB1E06D31B22EB05001599C7 /* main.m in Sources */,
 				82EE8A751B26FCC200D0CEA8 /* ToDoItem.m in Sources */,
 				FF11AD431B2AF24D00C00C8A /* GalleryItemsLayout.m in Sources */,
@@ -411,7 +400,6 @@
 				FB1E07181B22ED28001599C7 /* LoginViewController.m in Sources */,
 				FB1E070C1B22EC87001599C7 /* AddLocationViewController.m in Sources */,
 				FB1E07211B22ED5F001599C7 /* SettingsViewController.m in Sources */,
-				FF11AD401B2AF1BF00C00C8A /* LocationsTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
