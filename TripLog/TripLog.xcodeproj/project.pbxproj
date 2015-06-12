@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		820125B81B2AE9AD00432D60 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820125B71B2AE9AD00432D60 /* MapKit.framework */; };
-		820125BC1B2AF12700432D60 /* LocationsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 820125BB1B2AF12700432D60 /* LocationsTableViewCell.m */; };
-		820125BF1B2AF17400432D60 /* TripAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 820125BE1B2AF17400432D60 /* TripAnnotation.m */; };
+		82104D821B2AFAF5008CC14D /* LocationsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82104D7F1B2AFAF5008CC14D /* LocationsTableViewCell.m */; };
+		82104D831B2AFAF5008CC14D /* TripAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 82104D811B2AFAF5008CC14D /* TripAnnotation.m */; };
+		82104D851B2AFBD9008CC14D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82104D841B2AFBD9008CC14D /* MapKit.framework */; };
 		82A0932A1B272406001EAD5A /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A093291B272406001EAD5A /* Trip.m */; };
 		82EE8A721B26FCC200D0CEA8 /* TripComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE8A711B26FCC200D0CEA8 /* TripComment.m */; };
 		82EE8A751B26FCC200D0CEA8 /* ToDoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE8A741B26FCC200D0CEA8 /* ToDoItem.m */; };
@@ -57,11 +57,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		820125B71B2AE9AD00432D60 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		820125BA1B2AF12700432D60 /* LocationsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationsTableViewCell.h; sourceTree = "<group>"; };
-		820125BB1B2AF12700432D60 /* LocationsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationsTableViewCell.m; sourceTree = "<group>"; };
-		820125BD1B2AF17400432D60 /* TripAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripAnnotation.h; sourceTree = "<group>"; };
-		820125BE1B2AF17400432D60 /* TripAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripAnnotation.m; sourceTree = "<group>"; };
+		82104D7E1B2AFAF5008CC14D /* LocationsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationsTableViewCell.h; sourceTree = "<group>"; };
+		82104D7F1B2AFAF5008CC14D /* LocationsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationsTableViewCell.m; sourceTree = "<group>"; };
+		82104D801B2AFAF5008CC14D /* TripAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripAnnotation.h; sourceTree = "<group>"; };
+		82104D811B2AFAF5008CC14D /* TripAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripAnnotation.m; sourceTree = "<group>"; };
+		82104D841B2AFBD9008CC14D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		82A093281B272406001EAD5A /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
 		82A093291B272406001EAD5A /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
 		82EE8A701B26FCC200D0CEA8 /* TripComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripComment.h; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				820125B81B2AE9AD00432D60 /* MapKit.framework in Frameworks */,
+				82104D851B2AFBD9008CC14D /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,17 +146,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		820125B91B2AF0B900432D60 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				820125BA1B2AF12700432D60 /* LocationsTableViewCell.h */,
-				820125BB1B2AF12700432D60 /* LocationsTableViewCell.m */,
-				820125BD1B2AF17400432D60 /* TripAnnotation.h */,
-				820125BE1B2AF17400432D60 /* TripAnnotation.m */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		82EE8A6F1B26FCB100D0CEA8 /* NSManagedObjectModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,7 +231,7 @@
 		FB1E06C41B22EB05001599C7 = {
 			isa = PBXGroup;
 			children = (
-				820125B71B2AE9AD00432D60 /* MapKit.framework */,
+				82104D841B2AFBD9008CC14D /* MapKit.framework */,
 				FB1E06CF1B22EB05001599C7 /* TripLog */,
 				FB1E06EC1B22EB06001599C7 /* TripLogTests */,
 				FB1E06CE1B22EB05001599C7 /* Products */,
@@ -261,12 +250,8 @@
 		FB1E06CF1B22EB05001599C7 /* TripLog */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				820125B91B2AF0B900432D60 /* Views */,
-=======
 				AE5DF7B71B2AED2900C7D3A4 /* Libraries */,
 				FC6797131B28B22D009F6A65 /* Views */,
->>>>>>> c66394f7c1670d7325200431f9fa8d540d162841
 				82EE8A7C1B27160F00D0CEA8 /* Extensions */,
 				82EE8A6F1B26FCB100D0CEA8 /* NSManagedObjectModels */,
 				AE20C5AC1B258E710035FEBD /* Models */,
@@ -358,6 +343,17 @@
 				AE5DF7B51B2AEC2900C7D3A4 /* ImageGalleryViewController.m */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FC6797131B28B22D009F6A65 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				82104D7E1B2AFAF5008CC14D /* LocationsTableViewCell.h */,
+				82104D7F1B2AFAF5008CC14D /* LocationsTableViewCell.m */,
+				82104D801B2AFAF5008CC14D /* TripAnnotation.h */,
+				82104D811B2AFAF5008CC14D /* TripAnnotation.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -469,14 +465,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				82EE8A7F1B27163F00D0CEA8 /* Trip+DictionaryInitializator.m in Sources */,
+				82104D831B2AFAF5008CC14D /* TripAnnotation.m in Sources */,
 				FB1E06D91B22EB05001599C7 /* TripLog.xcdatamodeld in Sources */,
 				FB1E06D61B22EB05001599C7 /* AppDelegate.m in Sources */,
 				FB1E07031B22EBE0001599C7 /* TripLogCoreDataController.m in Sources */,
-<<<<<<< HEAD
-=======
-				FC21000C1B25D55F008741F9 /* LocationsTableViewCell.m in Sources */,
 				AE5DF7CA1B2AEDC200C7D3A4 /* iCarousel.m in Sources */,
->>>>>>> c66394f7c1670d7325200431f9fa8d540d162841
 				FB1E071B1B22ED3C001599C7 /* MapViewController.m in Sources */,
 				82A0932A1B272406001EAD5A /* Trip.m in Sources */,
 				AE5DF7C31B2AED2900C7D3A4 /* AsyncImageView.m in Sources */,
@@ -485,7 +478,6 @@
 				AE20C5AF1B258E800035FEBD /* UserModel.m in Sources */,
 				82EE8A7B1B26FCC300D0CEA8 /* User.m in Sources */,
 				FB1E07241B22ED6A001599C7 /* WelcomeViewController.m in Sources */,
-				820125BC1B2AF12700432D60 /* LocationsTableViewCell.m in Sources */,
 				82EE8A721B26FCC200D0CEA8 /* TripComment.m in Sources */,
 				AE5DF7B61B2AEC2900C7D3A4 /* ImageGalleryViewController.m in Sources */,
 				AEF843A61B25C099008F9359 /* RegisterViewController.m in Sources */,
@@ -499,8 +491,8 @@
 				FB1E071E1B22ED4F001599C7 /* MyTripLogViewController.m in Sources */,
 				FB1E07181B22ED28001599C7 /* LoginViewController.m in Sources */,
 				FB1E070C1B22EC87001599C7 /* AddLocationViewController.m in Sources */,
+				82104D821B2AFAF5008CC14D /* LocationsTableViewCell.m in Sources */,
 				FB1E07211B22ED5F001599C7 /* SettingsViewController.m in Sources */,
-				820125BF1B2AF17400432D60 /* TripAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
