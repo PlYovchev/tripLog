@@ -78,8 +78,6 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.navigationController pushViewController:detailsController animated:YES];
 }
 
-
-
 #pragma mark - UICollectionViewFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

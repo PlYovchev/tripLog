@@ -8,6 +8,10 @@
 
 #import "TripLogWebServiceController.h"
 
+@interface TripLogWebServiceController () <NSURLSessionDelegate>
+
+@end
+
 @implementation TripLogWebServiceController{
     NSDictionary *mainHeaders;
 }
