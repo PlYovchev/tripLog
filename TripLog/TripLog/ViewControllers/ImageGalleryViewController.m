@@ -5,6 +5,8 @@
 @interface ImageGalleryViewController ()
 
 @property (strong, nonatomic) NSMutableArray *items;
+@property (nonatomic) BOOL directionIsLeft;
+@property (nonatomic) NSInteger *previousIndex;
 
 @end
 
@@ -42,8 +44,8 @@
     }
     self.items = [NSMutableArray new];;
     
-    for (int i = 1; i < 10; i++) {
-        [self.items addObject:[UIImage imageNamed:@"placeholder.png"]];
+    for (int i = 0; i < 10; i++) {
+        [self.items addObject:[UIImage imageNamed:@"splashScreenImage2.jpg"]];
     }
     
     [self.carousel reloadData];
@@ -64,10 +66,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.directionIsLeft = NO;
     //configure carousel
-    carousel.type = iCarouselTypeCoverFlow2;
     carousel.scrollSpeed = 0.5;
+    carousel.type = iCarouselTypeCoverFlow2;
     carousel.autoscroll = -0.1;
 }
 
@@ -84,7 +86,6 @@
     return YES;
 }
 
-#pragma mark -
 #pragma mark iCarousel methods
 
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
@@ -100,7 +101,7 @@
     {
         FXImageView *imageView = [[FXImageView alloc] initWithFrame:CGRectMake(0, 0, 250.0f, 250.0f)];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
-        imageView.asynchronous = YES;
+        imageView.asynchronous = NO;
         imageView.reflectionScale = 0.5f;
         imageView.reflectionAlpha = 0.25f;
         imageView.reflectionGap = 10.0f;
@@ -116,6 +117,70 @@
     [(FXImageView *)view setImage:[self.items objectAtIndex:index]];
     
     return view;
+}
+
+#pragma mark iCarousel delegate
+
+- (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value{
+    switch (option) {
+        case iCarouselOptionWrap:
+            return NO;
+            break;
+            
+        default:
+            return value;
+            break;
+    }
+}
+
+- (void)carouselDidScroll:(iCarousel *)carousl{
+    if (self.previousIndex == nil) {
+        self.previousIndex = (NSInteger*)carousel.currentItemIndex;
+    }
+    if (self.previousIndex == nil) {
+        self.previousIndex = (NSInteger*)carousel.currentItemIndex -1;
+    }
+    
+    if (self.directionIsLeft == NO) {
+        if (self.previousIndex > (NSInteger*)carousel.currentItemIndex) {
+            carousel.autoscroll *= -1;
+            self.directionIsLeft = YES;
+            NSLog(@"Direction changed to RIGHT!");
+        }
+    }
+    else{
+        if (self.previousIndex < (NSInteger*)carousel.currentItemIndex) {
+            carousel.autoscroll *= -1;
+            self.directionIsLeft = NO;
+            NSLog(@"Direction changed to LEFT!");
+        }
+    }
+    
+    if ((long)self.previousIndex != (long)carousel.currentItemIndex) {
+        NSLog(@"%ld", (long)self.previousIndex);
+        self.previousIndex = (NSInteger*)carousel.currentItemIndex;
+        NSLog(@"%ld", (long)self.previousIndex);
+    }
+}
+
+- (void)carousel:(iCarousel *)carousl didSelectItemAtIndex:(NSInteger)index{
+    if (carousel.currentItemIndex == index) {
+        carousel.autoscroll = 0;
+    }
+    
+    if ((NSInteger*)carousel.currentItemIndex != nil) {
+        if ((NSInteger*)index > (NSInteger*)carousel.currentItemIndex || (carousel.currentItemIndex == carousel.numberOfItems - 1 && index == 0)) {
+            carousel.autoscroll = 0.1;
+            self.directionIsLeft = NO;
+        }
+        else if((NSInteger*)index < (NSInteger*)carousel.currentItemIndex || (index == carousel.numberOfItems - 1 && carousel.currentItemIndex == 0)){
+            carousel.autoscroll = -0.1;
+            self.directionIsLeft = YES;
+        }
+    }
+    
+    NSLog(@"%ld", (long)index);
+    self.previousIndex = (NSInteger*)index;
 }
 
 @end

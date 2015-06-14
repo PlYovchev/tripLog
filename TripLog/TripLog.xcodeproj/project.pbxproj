@@ -43,6 +43,7 @@
 		FB1E071E1B22ED4F001599C7 /* MyTripLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E071D1B22ED4F001599C7 /* MyTripLogViewController.m */; };
 		FB1E07211B22ED5F001599C7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07201B22ED5F001599C7 /* SettingsViewController.m */; };
 		FB1E07241B22ED6A001599C7 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */; };
+		FBA563201B2DB60A0065A8D1 /* sunsetBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FBA5631F1B2DB60A0065A8D1 /* sunsetBackground.jpg */; };
 		FF07C8CB1B2BF4BA0064DF74 /* EASplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = FF07C8CA1B2BF4BA0064DF74 /* EASplashScreen.m */; };
 		FF07C8D11B2BF69D0064DF74 /* splashScreenImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF07C8D01B2BF69D0064DF74 /* splashScreenImage.jpg */; };
 		FF07C8D61B2BFA8A0064DF74 /* splashScreenImage2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF07C8D51B2BFA8A0064DF74 /* splashScreenImage2.jpg */; };
@@ -128,6 +129,7 @@
 		FB1E07201B22ED5F001599C7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FB1E07221B22ED6A001599C7 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		FBA5631F1B2DB60A0065A8D1 /* sunsetBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sunsetBackground.jpg; sourceTree = "<group>"; };
 		FF07C8C91B2BF4BA0064DF74 /* EASplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EASplashScreen.h; sourceTree = "<group>"; };
 		FF07C8CA1B2BF4BA0064DF74 /* EASplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EASplashScreen.m; sourceTree = "<group>"; };
 		FF07C8D01B2BF69D0064DF74 /* splashScreenImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = splashScreenImage.jpg; path = TripLog/Libraries/EASpashScreen/splashScreenImage.jpg; sourceTree = SOURCE_ROOT; };
@@ -325,6 +327,7 @@
 		FB1E06FA1B22EB97001599C7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				FBA5631F1B2DB60A0065A8D1 /* sunsetBackground.jpg */,
 				FF07C8D51B2BFA8A0064DF74 /* splashScreenImage2.jpg */,
 				FF07C8D01B2BF69D0064DF74 /* splashScreenImage.jpg */,
 				AE5DF7CB1B2AEEF600C7D3A4 /* background.png */,
@@ -473,6 +476,7 @@
 				FB1E06DF1B22EB05001599C7 /* Main.storyboard in Resources */,
 				AE5DF7D01B2AEEF600C7D3A4 /* placeholder.png in Resources */,
 				AE5DF7CF1B2AEEF600C7D3A4 /* page.png in Resources */,
+				FBA563201B2DB60A0065A8D1 /* sunsetBackground.jpg in Resources */,
 				AE5DF7CE1B2AEEF600C7D3A4 /* background.png in Resources */,
 				FB1E06E41B22EB06001599C7 /* LaunchScreen.xib in Resources */,
 				FF07C8D61B2BFA8A0064DF74 /* splashScreenImage2.jpg in Resources */,
