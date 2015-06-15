@@ -8,6 +8,8 @@
 
 #import "TripLogCoreDataController.h"
 #import "Trip+DictionaryInitializator.h"
+#import "User+DictionaryInitializator.h"
+#import "TripLogWebServiceController.h"
 
 #define ID_KEY @"objectId"
 
@@ -82,7 +84,15 @@ static TripLogCoreDataController* coreDataController;
     }
     
     User* newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
-    newUser.userId = userId;
+    
+    TripLogWebServiceController* webController = [TripLogWebServiceController sharedInstance];
+    [webController sendGetRequestForUserWithId:userId andCompletitionHandler:^(NSDictionary *result) {
+        NSArray* users = [result objectForKey:@"results"];
+        if([users count] > 0){
+            [newUser setValuesForKeysWithUserInfoDictionary:[users firstObject]];
+            [context save:nil];
+        }
+    }];
     
     return newUser;
 }
@@ -122,6 +132,17 @@ static TripLogCoreDataController* coreDataController;
         User* creator = [coreDataController userWithUserId:[userInfo objectForKey:ID_KEY] initInContenxt:context];
         
         [trip setValuesForKeysWithTripDictionary:tripProperties andCreator:creator];
+        TripLogWebServiceController* webController = [TripLogWebServiceController sharedInstance];
+        [webController sendGetRequestForSingleImageWithTripIdAndHighestRating:trip.tripId andCompletitionHandler:^(NSDictionary *result) {
+            NSArray* images = [result objectForKey:@"results"];
+            if([images count] > 0){
+                NSDictionary* entryInfo = [images firstObject];
+                NSDictionary* imageInfo = [entryInfo objectForKey:@"Image"];
+                trip.imageUrl = [imageInfo objectForKey:@"url"];
+                
+                [context save:nil];
+            }
+        }];
         
         [context save:nil];
     }

@@ -2,7 +2,7 @@
 //  Trip.m
 //  TripLog
 //
-//  Created by plt3ch on 6/9/15.
+//  Created by plt3ch on 6/15/15.
 //  Copyright (c) 2015 triOS. All rights reserved.
 //
 
@@ -21,8 +21,9 @@
 @dynamic longitude;
 @dynamic name;
 @dynamic rating;
-@dynamic tripId;
 @dynamic tripDescription;
+@dynamic tripId;
+@dynamic imageUrl;
 @dynamic comments;
 @dynamic creator;
 @dynamic toDoList;

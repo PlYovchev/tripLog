@@ -9,6 +9,7 @@
     <entity name="Trip" representedClassName="Trip" syncable="YES">
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isPrivate" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -39,7 +40,7 @@
     </entity>
     <elements>
         <element name="ToDoItem" positionX="-27" positionY="108" width="128" height="105"/>
-        <element name="Trip" positionX="-63" positionY="-18" width="128" height="240"/>
+        <element name="Trip" positionX="-63" positionY="-18" width="128" height="255"/>
         <element name="TripComment" positionX="-36" positionY="81" width="128" height="120"/>
         <element name="User" positionX="-54" positionY="54" width="128" height="150"/>
     </elements>

@@ -152,7 +152,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" id="dkq-My-um9"/>
-                    <navigationItem key="navigationItem" id="lo0-Fp-EOl"/>
+                    <navigationItem key="navigationItem" title="Map" id="KES-01-nIe"/>
                     <connections>
                         <outlet property="mapView" destination="BP8-iJ-TOr" id="csW-QK-nap"/>
                     </connections>

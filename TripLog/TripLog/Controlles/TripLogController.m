@@ -51,7 +51,7 @@ static NSOperationQueue *sharedQueue;
 -(void)fetchTrips{
     TripLogWebServiceController* webController = [TripLogWebServiceController sharedInstance];
     
-    [webController getTripsWithCompletionHandler:^(NSDictionary *result) {
+    [webController sendGetRequestForTripsWithCompletionHandler:^(NSDictionary *result) {
         NSArray* trips = [result objectForKey:@"results"];
         TripLogCoreDataController* coreDataController = [TripLogCoreDataController sharedInstance];
         [coreDataController addTripsFromArray:trips];
