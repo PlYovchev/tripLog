@@ -29,8 +29,14 @@
     
     self.selectedTrip = [[TripLogController sharedInstance] selectedTrip];
    
+    [[TripLogWebServiceController sharedInstance] sendGetRequestForImagesWithTripId:self.selectedTrip.tripId andCompletitionHandler:^(NSDictionary *result) {
+        
+        self.imageURLs = [result objectForKey:@"results"];
+        [self.carousel reloadData];
+    }];
     
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Images" ofType:@"plist"];
+    
     NSArray *imagePaths = [NSArray arrayWithContentsOfFile:plistPath];
     
     //remote image URLs
@@ -114,6 +120,35 @@
         imageView.shadowBlur = 5.0f;
         view = imageView;
     }
+    //////////
+   
+    NSString *imageUrl = [[[self.imageURLs objectAtIndex:index] valueForKey:@"Image"] valueForKey:@"url"];
+    
+    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];
+
+    NSURLSessionDownloadTask *getImageTask = [session downloadTaskWithURL:[NSURL URLWithString:imageUrl]
+                                                        completionHandler:^(NSURL *location,
+                                                                            NSURLResponse *response,
+                                                                            NSError *error) {
+                   // 2
+//                   UIImage *downloadedImage =
+//                   [UIImage imageWithData:
+//                    [NSData dataWithContentsOfURL:location]];
+//                   //3
+//                   dispatch_async(dispatch_get_main_queue(), ^{
+//                       // do stuff with image
+//                       _imageWithBlock.image = downloadedImage;
+//                   });
+               }];
+    
+    [getImageTask resume];
+    
+    
+    
+    //////////
+    
     
     //show placeholder
     ((FXImageView *)view).processedImage = [UIImage imageNamed:@"placeholder.png"];

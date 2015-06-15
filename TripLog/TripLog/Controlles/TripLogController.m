@@ -17,6 +17,7 @@
 @implementation TripLogController
 
 static TripLogController* tripController;
+static NSOperationQueue *sharedQueue;
 
 +(id)sharedInstance{
     @synchronized(self){
