@@ -4,9 +4,12 @@
 
 @interface ImageGalleryViewController ()
 
+@property (nonatomic, strong) Trip* selectedTrip;
 @property (strong, nonatomic) NSMutableArray *items;
+@property (strong, nonatomic) NSMutableArray *imageURLs;
 @property (nonatomic) BOOL directionIsLeft;
 @property (nonatomic) NSInteger *previousIndex;
+@property (nonatomic, strong) NSURL *url;
 
 @end
 
@@ -24,7 +27,9 @@
     //or the recycling mechanism will destroy your data once
     //your item views move off-screen
     
-    //get image URLs
+    self.selectedTrip = [[TripLogController sharedInstance] selectedTrip];
+   
+    
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Images" ofType:@"plist"];
     NSArray *imagePaths = [NSArray arrayWithContentsOfFile:plistPath];
     
@@ -66,10 +71,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.directionIsLeft = NO;
+    self.directionIsLeft = YES;
     //configure carousel
-    carousel.scrollSpeed = 0.5;
     carousel.type = iCarouselTypeCoverFlow2;
+    carousel.scrollSpeed = 0.5;
     carousel.autoscroll = -0.1;
 }
 
@@ -91,7 +96,7 @@
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
     //return the total number of items in the carousel
-    return [items count];
+    return [self.imageURLs count];
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
@@ -170,11 +175,11 @@
     
     if ((NSInteger*)carousel.currentItemIndex != nil) {
         if ((NSInteger*)index > (NSInteger*)carousel.currentItemIndex || (carousel.currentItemIndex == carousel.numberOfItems - 1 && index == 0)) {
-            carousel.autoscroll = 0.1;
+            carousel.autoscroll = -0.1;
             self.directionIsLeft = NO;
         }
         else if((NSInteger*)index < (NSInteger*)carousel.currentItemIndex || (index == carousel.numberOfItems - 1 && carousel.currentItemIndex == 0)){
-            carousel.autoscroll = -0.1;
+            carousel.autoscroll = 0.1;
             self.directionIsLeft = YES;
         }
     }
