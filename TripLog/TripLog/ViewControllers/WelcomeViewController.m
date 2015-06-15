@@ -8,7 +8,7 @@
 
 #import "WelcomeViewController.h"
 
-@interface WelcomeViewController ()
+@interface WelcomeViewController ()<EASplashScreenDelegate>
 
 @end
 
@@ -16,7 +16,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    EASplashScreen *splashScreen = [[EASplashScreen alloc] initWithSplashScreenImage:[UIImage imageNamed:@"splashScreenImage2.jpg"] amountOfSlides:7];
+    splashScreen.delegate = self;
+    splashScreen.view.frame = self.view.bounds;
+    [self.view addSubview:splashScreen.view];
+}
+
+- (void)splashScreenDidFinishTransisioning:(EASplashScreen *)splashController {
+    NSLog(@"Splash screen is off the screen!");
 }
 
 - (void)didReceiveMemoryWarning {

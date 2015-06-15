@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "iCarousel.h"
+#import "TripLogController.h"
+#import "TripLogWebServiceController.h"
 
 
 @interface ImageGalleryViewController : UIViewController <iCarouselDataSource, iCarouselDelegate>

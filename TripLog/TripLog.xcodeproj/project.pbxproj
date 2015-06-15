@@ -45,6 +45,10 @@
 		FB1E071E1B22ED4F001599C7 /* MyTripLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E071D1B22ED4F001599C7 /* MyTripLogViewController.m */; };
 		FB1E07211B22ED5F001599C7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07201B22ED5F001599C7 /* SettingsViewController.m */; };
 		FB1E07241B22ED6A001599C7 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */; };
+		FBA563201B2DB60A0065A8D1 /* sunsetBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FBA5631F1B2DB60A0065A8D1 /* sunsetBackground.jpg */; };
+		FF07C8CB1B2BF4BA0064DF74 /* EASplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = FF07C8CA1B2BF4BA0064DF74 /* EASplashScreen.m */; };
+		FF07C8D11B2BF69D0064DF74 /* splashScreenImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF07C8D01B2BF69D0064DF74 /* splashScreenImage.jpg */; };
+		FF07C8D61B2BFA8A0064DF74 /* splashScreenImage2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF07C8D51B2BFA8A0064DF74 /* splashScreenImage2.jpg */; };
 		FF11AD3A1B2AF17000C00C8A /* AllTripsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF11AD391B2AF17000C00C8A /* AllTripsCollectionViewController.m */; };
 		FF11AD3F1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF11AD3C1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.m */; };
 		FF11AD431B2AF24D00C00C8A /* GalleryItemsLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FF11AD421B2AF24D00C00C8A /* GalleryItemsLayout.m */; };
@@ -130,6 +134,11 @@
 		FB1E07201B22ED5F001599C7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FB1E07221B22ED6A001599C7 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		FBA5631F1B2DB60A0065A8D1 /* sunsetBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sunsetBackground.jpg; sourceTree = "<group>"; };
+		FF07C8C91B2BF4BA0064DF74 /* EASplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EASplashScreen.h; sourceTree = "<group>"; };
+		FF07C8CA1B2BF4BA0064DF74 /* EASplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EASplashScreen.m; sourceTree = "<group>"; };
+		FF07C8D01B2BF69D0064DF74 /* splashScreenImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = splashScreenImage.jpg; path = TripLog/Libraries/EASpashScreen/splashScreenImage.jpg; sourceTree = SOURCE_ROOT; };
+		FF07C8D51B2BFA8A0064DF74 /* splashScreenImage2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = splashScreenImage2.jpg; path = TripLog/Libraries/EASpashScreen/splashScreenImage2.jpg; sourceTree = SOURCE_ROOT; };
 		FF11AD381B2AF17000C00C8A /* AllTripsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTripsCollectionViewController.h; sourceTree = "<group>"; };
 		FF11AD391B2AF17000C00C8A /* AllTripsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTripsCollectionViewController.m; sourceTree = "<group>"; };
 		FF11AD3B1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTripsCollectionViewCell.h; sourceTree = "<group>"; };
@@ -193,6 +202,7 @@
 		AE5DF7B71B2AED2900C7D3A4 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				FF07C8C81B2BF4BA0064DF74 /* EASpashScreen */,
 				AE5DF7C71B2AEDC200C7D3A4 /* iCarousel */,
 				AE5DF7B81B2AED2900C7D3A4 /* AsyncImageView */,
 				AE5DF7BB1B2AED2900C7D3A4 /* FXImageView */,
@@ -325,6 +335,9 @@
 		FB1E06FA1B22EB97001599C7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				FBA5631F1B2DB60A0065A8D1 /* sunsetBackground.jpg */,
+				FF07C8D51B2BFA8A0064DF74 /* splashScreenImage2.jpg */,
+				FF07C8D01B2BF69D0064DF74 /* splashScreenImage.jpg */,
 				AE5DF7CB1B2AEEF600C7D3A4 /* background.png */,
 				AE5DF7CC1B2AEEF600C7D3A4 /* page.png */,
 				AE5DF7CD1B2AEEF600C7D3A4 /* placeholder.png */,
@@ -372,6 +385,15 @@
 				82104D811B2AFAF5008CC14D /* TripAnnotation.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		FF07C8C81B2BF4BA0064DF74 /* EASpashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				FF07C8C91B2BF4BA0064DF74 /* EASplashScreen.h */,
+				FF07C8CA1B2BF4BA0064DF74 /* EASplashScreen.m */,
+			);
+			path = EASpashScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -466,9 +488,12 @@
 				FB1E06DF1B22EB05001599C7 /* Main.storyboard in Resources */,
 				AE5DF7D01B2AEEF600C7D3A4 /* placeholder.png in Resources */,
 				AE5DF7CF1B2AEEF600C7D3A4 /* page.png in Resources */,
+				FBA563201B2DB60A0065A8D1 /* sunsetBackground.jpg in Resources */,
 				AE5DF7CE1B2AEEF600C7D3A4 /* background.png in Resources */,
 				FB1E06E41B22EB06001599C7 /* LaunchScreen.xib in Resources */,
+				FF07C8D61B2BFA8A0064DF74 /* splashScreenImage2.jpg in Resources */,
 				FB1E06E11B22EB06001599C7 /* Images.xcassets in Resources */,
+				FF07C8D11B2BF69D0064DF74 /* splashScreenImage.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,7 +540,12 @@
 				FF11AD431B2AF24D00C00C8A /* GalleryItemsLayout.m in Sources */,
 				FB1E071E1B22ED4F001599C7 /* MyTripLogViewController.m in Sources */,
 				FB1E07181B22ED28001599C7 /* LoginViewController.m in Sources */,
+<<<<<<< HEAD
 				FB1E070C1B22EC87001599C7 /* AddLocationTableViewController.m in Sources */,
+=======
+				FF07C8CB1B2BF4BA0064DF74 /* EASplashScreen.m in Sources */,
+				FB1E070C1B22EC87001599C7 /* AddLocationViewController.m in Sources */,
+>>>>>>> 900f3d0b8df144049f4cf5236af5dc9944665e07
 				82104D821B2AFAF5008CC14D /* LocationsTableViewCell.m in Sources */,
 				FB1E07211B22ED5F001599C7 /* SettingsViewController.m in Sources */,
 			);

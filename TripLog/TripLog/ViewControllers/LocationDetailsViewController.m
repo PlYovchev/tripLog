@@ -9,14 +9,13 @@
 #import "LocationDetailsViewController.h"
 
 @interface LocationDetailsViewController ()
-
 @end
 
 @implementation LocationDetailsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,5 +32,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)userDidTabOnGalleryButton:(id)sender {
+    [self performSegueWithIdentifier:@"gallerySegue" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if ([[segue identifier] isEqualToString:@"gallerySegue"]) {
+        NSLog(@"gallerySegue called!");
+    }
+    
+}
 
 @end
