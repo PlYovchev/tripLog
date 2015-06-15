@@ -5,7 +5,6 @@
 @interface ImageGalleryViewController ()
 
 @property (nonatomic, strong) Trip* selectedTrip;
-@property (strong, nonatomic) NSMutableArray *items;
 @property (strong, nonatomic) NSMutableArray *imageURLs;
 @property (nonatomic) BOOL directionIsLeft;
 @property (nonatomic) NSInteger *previousIndex;
@@ -17,7 +16,6 @@
 @implementation ImageGalleryViewController
 
 @synthesize carousel;
-@synthesize items;
 
 - (void)awakeFromNib
 {
@@ -32,32 +30,44 @@
     [[TripLogWebServiceController sharedInstance] sendGetRequestForImagesWithTripId:self.selectedTrip.tripId andCompletitionHandler:^(NSDictionary *result) {
         
         self.imageURLs = [result objectForKey:@"results"];
-        [self.carousel reloadData];
     }];
     
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Images" ofType:@"plist"];
     
-    NSArray *imagePaths = [NSArray arrayWithContentsOfFile:plistPath];
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    [spinner setCenter:CGPointMake(screenRect.size.width / 2, screenRect.size.width /2)]; // I do this because I'm in landscape mode
+    [self.view addSubview:spinner];
+    [
+     carousel setHidden:YES];
+    [spinner startAnimating];
     
-    //remote image URLs
-    NSMutableArray *URLs = [NSMutableArray array];
-    for (NSString *path in imagePaths)
-    {
-        NSURL *URL = [NSURL URLWithString:path];
-        if (URL)
-        {
-            [URLs addObject:URL];
-        }
-        else
-        {
-            NSLog(@"'%@' is not a valid URL", path);
-        }
+    
+    NSString *imageUrl;
+    
+    NSURLSessionConfiguration *sessionConfig;
+    
+    NSURLSession *session;
+    
+    for (int i = 0; i < self.imageURLs.count; i++) {
+        imageUrl = [[[self.imageURLs objectAtIndex:index] valueForKey:@"Image"] valueForKey:@"url"];
+        sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+        session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];
+        
+        NSURLSessionDownloadTask *getImageTask = [session downloadTaskWithURL:[NSURL URLWithString:imageUrl]
+                                                            completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+                                                                UIImage *downloadedImage = [UIImage imageWithData: [NSData dataWithContentsOfURL:location]];
+                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                    
+                                                                });
+                                                            }];
+        
+        
+        [getImageTask resume];
     }
-    self.items = [NSMutableArray new];;
     
-    for (int i = 0; i < 10; i++) {
-        [self.items addObject:[UIImage imageNamed:@"splashScreenImage2.jpg"]];
-    }
+   
+    
+    
     
     [self.carousel reloadData];
 }
@@ -102,7 +112,7 @@
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
     //return the total number of items in the carousel
-    return [self.imageURLs count];
+    return 0;//[self.imageURLs count];
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
@@ -122,40 +132,17 @@
     }
     //////////
    
-    NSString *imageUrl = [[[self.imageURLs objectAtIndex:index] valueForKey:@"Image"] valueForKey:@"url"];
-    
-    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];
-
-    NSURLSessionDownloadTask *getImageTask = [session downloadTaskWithURL:[NSURL URLWithString:imageUrl]
-                                                        completionHandler:^(NSURL *location,
-                                                                            NSURLResponse *response,
-                                                                            NSError *error) {
-                   // 2
-//                   UIImage *downloadedImage =
-//                   [UIImage imageWithData:
-//                    [NSData dataWithContentsOfURL:location]];
-//                   //3
-//                   dispatch_async(dispatch_get_main_queue(), ^{
-//                       // do stuff with image
-//                       _imageWithBlock.image = downloadedImage;
-//                   });
-               }];
-    
-    [getImageTask resume];
     
     
     
-    //////////
     
     
-    //show placeholder
-    ((FXImageView *)view).processedImage = [UIImage imageNamed:@"placeholder.png"];
     
-    //set image with URL. FXImageView will then download and process the image
-    [(FXImageView *)view setImage:[self.items objectAtIndex:index]];
     
+//    ((FXImageView *)view).processedImage = downloadedImage;
+//    [(FXImageView *)view setImage:downloadedImage];
+    
+    [carousel reloadItemAtIndex:index animated:YES];
     return view;
 }
 
@@ -217,6 +204,10 @@
             carousel.autoscroll = 0.1;
             self.directionIsLeft = YES;
         }
+    }
+    else{
+        carousel.autoscroll *= -1;
+        self.directionIsLeft = YES;
     }
     
     NSLog(@"%ld", (long)index);

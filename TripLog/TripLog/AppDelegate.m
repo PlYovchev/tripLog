@@ -25,6 +25,8 @@
         [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
     }
     
+    [[TripLogController sharedInstance] fetchTrips];
+    
     TripLogController* controller = [TripLogController sharedInstance];
     [controller fetchTrips];
     
