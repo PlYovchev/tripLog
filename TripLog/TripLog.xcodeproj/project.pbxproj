@@ -540,12 +540,8 @@
 				FF11AD431B2AF24D00C00C8A /* GalleryItemsLayout.m in Sources */,
 				FB1E071E1B22ED4F001599C7 /* MyTripLogViewController.m in Sources */,
 				FB1E07181B22ED28001599C7 /* LoginViewController.m in Sources */,
-<<<<<<< HEAD
-				FB1E070C1B22EC87001599C7 /* AddLocationTableViewController.m in Sources */,
-=======
 				FF07C8CB1B2BF4BA0064DF74 /* EASplashScreen.m in Sources */,
-				FB1E070C1B22EC87001599C7 /* AddLocationViewController.m in Sources */,
->>>>>>> 900f3d0b8df144049f4cf5236af5dc9944665e07
+				FB1E070C1B22EC87001599C7 /* AddLocationTableViewController.m in Sources */,
 				82104D821B2AFAF5008CC14D /* LocationsTableViewCell.m in Sources */,
 				FB1E07211B22ED5F001599C7 /* SettingsViewController.m in Sources */,
 			);
