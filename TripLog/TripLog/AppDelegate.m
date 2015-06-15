@@ -10,6 +10,7 @@
 #import "TripLogController.h"
 #import "TripLogCoreDataController.h"
 #import "TripLogWebServiceController.h"
+#import "TripLogLocationController.h"
 
 @interface AppDelegate ()
 
@@ -20,10 +21,26 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+    }
+    
     TripLogController* controller = [TripLogController sharedInstance];
     [controller fetchTrips];
     
+    [TripLogLocationController sharedInstance];
+    
+    UILocalNotification *localNotif =
+    [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (localNotif) {
+        NSLog(@"Recieved Notification %@",localNotif);
+    }
+    
     return YES;
+}
+
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
+    NSLog(@"Recieved Notification %@",notification);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

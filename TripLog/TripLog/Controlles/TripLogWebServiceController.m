@@ -100,10 +100,8 @@ static TripLogWebServiceController* webController;
     
     [request setHTTPBody:jsonData];
     
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-     {
-         if (!data)
-         {
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+         if (!data) {
              [self.delegate userDidSignUpSuccessfully:NO];
              return;
          }
@@ -255,6 +253,32 @@ static TripLogWebServiceController* webController;
             //self.imageURL = [result objectForKey:@"Image"];
             self.test = [self.imageURL objectForKey:@"objectId"];
             NSLog(@"Get image url:%@", self.test);
+        }
+        else {
+            NSLog(@"%@", error);
+        }
+    }];
+    
+    [dataTask resume];
+}
+
+-(void)sendGetRequestForSingleImageWithTripIdAndHighestRating: (NSString*)tripId andCompletitionHandler: (void (^)(NSDictionary *result)) completition{
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    [configuration setHTTPAdditionalHeaders:mainHeaders];
+    
+    NSString *urlString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Images?where={\"Trip\": {\"__type\": \"Pointer\",\"className\": \"Trip\",\"objectId\": \"%@\"}}&order=-raiting&limit=1", tripId];
+    NSString* urlString2 = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:urlString2] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
+        
+        if ([httpResponse statusCode] == 200) {
+            NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            completition(result);
         }
         else {
             NSLog(@"%@", error);

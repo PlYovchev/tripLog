@@ -15,12 +15,4 @@
     return self;
 }
 
-- (NSString *)subtitle{
-    return nil;
-}
-
-- (NSString *)title{
-    return nil;
-}
-
 @end

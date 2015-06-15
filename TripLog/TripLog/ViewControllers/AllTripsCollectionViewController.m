@@ -29,6 +29,8 @@ static NSString * const reuseIdentifier = @"Cell";
     if (![tripCDManager.fetchedResultsController performFetch:&error]) {
         NSLog(@"Fetching data failed. Error %@, %@", error, [error userInfo]);
     }
+    
+    self.navigationController.navigationItem.title = @"test";
 }
 
 - (void)didReceiveMemoryWarning {

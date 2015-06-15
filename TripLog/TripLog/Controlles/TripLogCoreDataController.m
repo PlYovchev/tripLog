@@ -216,10 +216,6 @@ static TripLogCoreDataController* coreDataController;
 }
 
 -(NSManagedObjectContext *)workerManagedObjectContext{
-//    if (_workerManagedObjectContext != nil) {
-//        return _workerManagedObjectContext;
-//    }
-    
     _workerManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [_workerManagedObjectContext setParentContext:[self mainManagedObjectContext]];
     
