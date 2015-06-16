@@ -5,6 +5,7 @@
 @interface ImageGalleryViewController ()
 
 @property (nonatomic, strong) Trip* selectedTrip;
+@property (strong, nonatomic) NSMutableArray *items;
 @property (strong, nonatomic) NSMutableArray *imageURLs;
 @property (nonatomic) BOOL directionIsLeft;
 @property (nonatomic) NSInteger *previousIndex;
@@ -19,86 +20,92 @@
 
 - (void)awakeFromNib
 {
-    //set up data
-    //your carousel should always be driven by an array of
-    //data of some kind - don't store data in your item views
-    //or the recycling mechanism will destroy your data once
-    //your item views move off-screen
-    
     self.selectedTrip = [[TripLogController sharedInstance] selectedTrip];
-   
-    [[TripLogWebServiceController sharedInstance] sendGetRequestForImagesWithTripId:self.selectedTrip.tripId andCompletitionHandler:^(NSDictionary *result) {
-        
-        self.imageURLs = [result objectForKey:@"results"];
-    }];
     
-    
+    // Set up the activity indicator
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     CGRect screenRect = [[UIScreen mainScreen] bounds];
-    [spinner setCenter:CGPointMake(screenRect.size.width / 2, screenRect.size.width /2)]; // I do this because I'm in landscape mode
+    [spinner setCenter:CGPointMake(screenRect.size.width / 2, screenRect.size.width /2)];
+    
+    // Add the activity indicator to the view
     [self.view addSubview:spinner];
-    [
-     carousel setHidden:YES];
+    
+    // Hide the carousel view and start animationg the activity indicator
+    [self.carousel setHidden:YES];
     [spinner startAnimating];
     
-    
-    NSString *imageUrl;
-    
-    NSURLSessionConfiguration *sessionConfig;
-    
-    NSURLSession *session;
-    
-    for (int i = 0; i < self.imageURLs.count; i++) {
-        imageUrl = [[[self.imageURLs objectAtIndex:index] valueForKey:@"Image"] valueForKey:@"url"];
-        sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-        session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];
-        
-        NSURLSessionDownloadTask *getImageTask = [session downloadTaskWithURL:[NSURL URLWithString:imageUrl]
-                                                            completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
-                                                                UIImage *downloadedImage = [UIImage imageWithData: [NSData dataWithContentsOfURL:location]];
-                                                                dispatch_async(dispatch_get_main_queue(), ^{
-                                                                    
-                                                                });
-                                                            }];
-        
-        
-        [getImageTask resume];
-    }
-    
-   
-    
-    
-    
-    [self.carousel reloadData];
+    /*!
+     * Perform download of all images in background thread. 
+     * Every image is downloaded synchronously so when every
+     * image is downloaded the activity indicator will be hidden
+     * and the carousel view will be shown.
+     */
+    dispatch_queue_t queue = dispatch_queue_create("downloadQueue", NULL);
+    dispatch_async(queue, ^{
+        [[TripLogWebServiceController sharedInstance] sendGetRequestForImagesWithTripId:self.selectedTrip.tripId andCompletitionHandler:^(NSDictionary *result) {
+            
+            self.imageURLs = [result objectForKey:@"results"];
+            
+            NSMutableArray *URLs = [NSMutableArray array];
+            for (NSDictionary *path in self.imageURLs)
+            {
+                NSURL *URL = [NSURL URLWithString:[[path valueForKey:@"Image"] valueForKey:@"url" ]];
+                if (URL)
+                {
+                    [URLs addObject:URL];
+                }
+                else
+                {
+                    NSLog(@"'%@' is not a valid URL", path);
+                }
+            }
+            self.items = [NSMutableArray new];;
+            
+            for (int i = 0; i < URLs.count; i++) {
+                NSData *myData = [NSData dataWithContentsOfURL:[URLs objectAtIndex:i]];
+                UIImage *img = [UIImage imageWithData:myData];
+                [self.items addObject:img];
+            }
+            
+            [spinner stopAnimating];
+            [spinner setHidden:YES];
+            [carousel setHidden:NO];
+            
+            
+            // Get back to the main thread and reload carousel data
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.carousel reloadData];
+            });
+        }];
+    });
 }
 
 - (void)dealloc
 {
-    //it's a good idea to set these to nil here to avoid
-    //sending messages to a deallocated viewcontroller
     carousel.delegate = nil;
     carousel.dataSource = nil;
-    
 }
 
-#pragma mark -
 #pragma mark View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Set carousel configurations
     self.directionIsLeft = YES;
-    //configure carousel
     carousel.type = iCarouselTypeCoverFlow2;
     carousel.scrollSpeed = 0.5;
     carousel.autoscroll = -0.1;
+    
+    [self.carousel reloadData];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     
-    //free up memory by releasing subviews
+    // Free up memory by releasing subviews
     self.carousel = nil;
 }
 
@@ -112,7 +119,7 @@
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
     //return the total number of items in the carousel
-    return 0;//[self.imageURLs count];
+    return [self.items count];
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
@@ -130,19 +137,14 @@
         imageView.shadowBlur = 5.0f;
         view = imageView;
     }
-    //////////
-   
     
+    //show placeholder
+    ((FXImageView *)view).processedImage = [UIImage imageNamed:@"placeholder.png"];
     
+    //set image with URL. FXImageView will then download and process the image
+    [(FXImageView *)view setImage:[self.items objectAtIndex:index]];
     
-    
-    
-    
-    
-//    ((FXImageView *)view).processedImage = downloadedImage;
-//    [(FXImageView *)view setImage:downloadedImage];
-    
-    [carousel reloadItemAtIndex:index animated:YES];
+    [self.carousel reloadItemAtIndex:index animated:YES];
     return view;
 }
 
@@ -160,41 +162,14 @@
     }
 }
 
-- (void)carouselDidScroll:(iCarousel *)carousl{
-    if (self.previousIndex == nil) {
-        self.previousIndex = (NSInteger*)carousel.currentItemIndex;
-    }
-    if (self.previousIndex == nil) {
-        self.previousIndex = (NSInteger*)carousel.currentItemIndex -1;
-    }
-    
-    if (self.directionIsLeft == NO) {
-        if (self.previousIndex > (NSInteger*)carousel.currentItemIndex) {
-            carousel.autoscroll *= -1;
-            self.directionIsLeft = YES;
-            NSLog(@"Direction changed to RIGHT!");
-        }
-    }
-    else{
-        if (self.previousIndex < (NSInteger*)carousel.currentItemIndex) {
-            carousel.autoscroll *= -1;
-            self.directionIsLeft = NO;
-            NSLog(@"Direction changed to LEFT!");
-        }
-    }
-    
-    if ((long)self.previousIndex != (long)carousel.currentItemIndex) {
-        NSLog(@"%ld", (long)self.previousIndex);
-        self.previousIndex = (NSInteger*)carousel.currentItemIndex;
-        NSLog(@"%ld", (long)self.previousIndex);
-    }
-}
-
 - (void)carousel:(iCarousel *)carousl didSelectItemAtIndex:(NSInteger)index{
+    // When the user taps on the middle image, the autoscroll will be disabled and the animation will stop.
     if (carousel.currentItemIndex == index) {
         carousel.autoscroll = 0;
     }
     
+    // When the user taps on the user taps on the next or previous image, the autoscroll
+    // will be enabled and the animation will run.
     if ((NSInteger*)carousel.currentItemIndex != nil) {
         if ((NSInteger*)index > (NSInteger*)carousel.currentItemIndex || (carousel.currentItemIndex == carousel.numberOfItems - 1 && index == 0)) {
             carousel.autoscroll = -0.1;
