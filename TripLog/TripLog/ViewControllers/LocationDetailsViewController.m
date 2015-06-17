@@ -23,10 +23,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)userDidTabOnGalleryButton:(id)sender {
-    [self performSegueWithIdentifier:@"gallerySegue" sender:self];
-}
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if ([[segue identifier] isEqualToString:@"gallerySegue"]) {
