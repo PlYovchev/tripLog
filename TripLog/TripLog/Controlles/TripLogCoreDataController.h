@@ -20,6 +20,7 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic) NSMutableDictionary* searchCriteria;
 
 +(id)sharedInstance;
 

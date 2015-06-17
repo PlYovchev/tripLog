@@ -42,6 +42,7 @@ static TripLogCoreDataController* coreDataController;
             coreDataController = self;
             NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
             [notificationCenter addObserver:self selector:@selector(handleSaveNotification) name:NSManagedObjectContextDidSaveNotification object:nil];
+            _searchCriteria = [NSMutableDictionary dictionary];
         }
     }
     
@@ -189,6 +190,7 @@ static TripLogCoreDataController* coreDataController;
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"tripLog.sqlite"];
+    NSLog(@"StoreURL:%@:",storeURL);
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {

@@ -18,22 +18,44 @@
 
 
 @implementation AllTripsCollectionViewCell
--(void)setCellTrip{
-    _labelTripName.text=@"Trip Name";
-    _labelTripLocation.text=@"Trip, Location";
-    _labelCreator.text=@"Creator";
-    _labelRaiting.text=@"7";
-    
-    _imageView.image = [UIImage imageNamed:@"default.jpg"];
+
+- (void)prepareForReuse{
+    [super prepareForReuse];
+    self.imageView.image = nil;
+    self.labelTripLocation.text = @"";
+    self.labelCreator.text = @"";
+    self.labelTripName.text = @"";
+    self.labelRaiting.text = @"";
 }
+
+
 -(void)setCellforTrip:(Trip*)trip{
     _trip = trip;
-    _labelTripName.text=_trip.name;
-    _labelTripLocation.text=[NSString stringWithFormat:@"%@,%@",_trip.country, _trip.city];
-    _labelCreator.text=@"Creator";
-    _labelRaiting.text=[NSString stringWithFormat:@"%@",_trip.rating];
+    self.labelTripName.text=_trip.name;
+    self.labelTripLocation.text=[NSString stringWithFormat:@"%@,%@",_trip.country, _trip.city];
+    self.labelCreator.text=@"Creator";
+    self.labelRaiting.text=[NSString stringWithFormat:@"%@",_trip.rating];
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [indicator startAnimating];
+    [indicator setCenter:self.imageView.center];
+    [self.contentView addSubview:indicator];
     
-    _imageView.image = [UIImage imageNamed:@"default.jpg"];
 
+    
+    dispatch_queue_t imageLoadingQueue = dispatch_queue_create("imageLoadingQueue", NULL);
+
+        dispatch_async(imageLoadingQueue, ^{
+        NSString * urlString = _trip.imageUrl;
+        NSData * imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+        UIImage * image = [UIImage imageWithData:imageData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.imageView.image=image;
+            [indicator stopAnimating];
+        });
+    });
+    
+    
+
+    
 }
 @end

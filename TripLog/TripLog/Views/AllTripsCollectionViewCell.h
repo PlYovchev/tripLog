@@ -12,6 +12,6 @@
 @interface AllTripsCollectionViewCell : UICollectionViewCell
 @property (nonatomic,strong) Trip *trip;
 
--(void)setCellTrip;
+
 -(void)setCellforTrip:(Trip*)trip;
 @end

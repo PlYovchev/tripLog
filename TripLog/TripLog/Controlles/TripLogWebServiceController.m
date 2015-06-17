@@ -248,11 +248,15 @@ static TripLogWebServiceController* webController;
         if ([httpResponse statusCode] == 200) {
             NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
             completition(result);
-            //NSLog(@"Get images:%@",[result objectForKey:@"results"]);
-            self.imageURL = [[NSMutableDictionary alloc]initWithDictionary:result ];
-            //self.imageURL = [result objectForKey:@"Image"];
-            self.test = [self.imageURL objectForKey:@"objectId"];
-            NSLog(@"Get image url:%@", self.test);
+            NSMutableArray *results = [result objectForKey:@"results"];
+            
+            if([results count] > 0){
+                self.imageURL = [[results[0] objectForKey:@"Image"] objectForKey:@"url"];
+                NSLog(@"%@", [[results[0] objectForKey:@"Image"] objectForKey:@"url"]);
+                NSLog(@"ImageURL:%@",self.imageURL);
+            }else{
+                NSLog(@"Fetch unsuccessfull!");
+            }
         }
         else {
             NSLog(@"%@", error);

@@ -30,13 +30,42 @@ static NSString * const reuseIdentifier = @"Cell";
         NSLog(@"Fetching data failed. Error %@, %@", error, [error userInfo]);
     }
     
-    self.navigationController.navigationItem.title = @"test";
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchButtonTapped:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonTapped:)];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
   
 }
+
+-(IBAction)cancelButtonTapped:(id)sender{
+    tripCDManager.fetchedResultsController.fetchRequest.predicate = nil;
+    NSError *error;
+    if (![tripCDManager.fetchedResultsController performFetch:&error]) {
+        NSLog(@"Fetching data failed. Error %@, %@", error, [error userInfo]);
+    }
+    [self.collectionView reloadData];
+}
+
+- (IBAction)searchButtonTapped:(id)sender {
+    AllTripsSearchViewController* searchViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"allTripsSearch"];
+    searchViewController.searchPredicatesApplied = ^{
+        NSError *error;
+        if (![tripCDManager.fetchedResultsController performFetch:&error]) {
+            NSLog(@"Fetching data failed. Error %@, %@", error, [error userInfo]);
+        }
+        [self.collectionView reloadData];
+    };
+    
+    
+    UIPopoverController *popoverController = [[UIPopoverController alloc]initWithContentViewController:searchViewController];
+    popoverController.popoverContentSize = CGSizeMake(300, 400);
+    [popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    
+}
+
 
 /*
  #pragma mark - Navigation

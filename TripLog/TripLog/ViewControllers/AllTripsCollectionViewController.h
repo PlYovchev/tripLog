@@ -12,6 +12,8 @@
 #import "GalleryItemsLayout.h"
 #import "TripLogController.h"
 #import "TripLogCoreDataController.h"
+#import "AllTripsSearchViewController.h"
+#import "AllTripsSearchViewController.h"
 
 @interface AllTripsCollectionViewController : UICollectionViewController
 
