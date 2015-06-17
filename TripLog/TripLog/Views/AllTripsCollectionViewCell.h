@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Trip.h"
+#import "User.h"
 
 @interface AllTripsCollectionViewCell : UICollectionViewCell
 @property (nonatomic,strong) Trip *trip;

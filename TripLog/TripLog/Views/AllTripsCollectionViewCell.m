@@ -33,7 +33,9 @@
     _trip = trip;
     self.labelTripName.text=_trip.name;
     self.labelTripLocation.text=[NSString stringWithFormat:@"%@,%@",_trip.country, _trip.city];
-    self.labelCreator.text=@"Creator";
+    User *user = _trip.creator;
+    
+    self.labelCreator.text=[NSString stringWithFormat:@"%@",user.username];
     self.labelRaiting.text=[NSString stringWithFormat:@"%@",_trip.rating];
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [indicator startAnimating];
