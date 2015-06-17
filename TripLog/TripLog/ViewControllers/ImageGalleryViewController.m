@@ -5,7 +5,7 @@
 @interface ImageGalleryViewController ()
 
 @property (nonatomic, strong) Trip* selectedTrip;
-@property (strong, nonatomic) NSMutableArray *items;
+@property (strong, nonatomic) NSMutableArray *images;
 @property (strong, nonatomic) NSMutableArray *imageURLs;
 @property (nonatomic) BOOL directionIsLeft;
 @property (nonatomic) NSInteger *previousIndex;
@@ -46,34 +46,38 @@
             
             self.imageURLs = [result objectForKey:@"results"];
             
-            NSMutableArray *URLs = [NSMutableArray array];
-            for (NSDictionary *path in self.imageURLs)
-            {
-                NSURL *URL = [NSURL URLWithString:[[path valueForKey:@"Image"] valueForKey:@"url" ]];
-                if (URL)
+            if ([self.imageURLs count]) {
+                NSMutableArray *URLs = [NSMutableArray array];
+                for (NSDictionary *path in self.imageURLs)
                 {
-                    [URLs addObject:URL];
+                    NSURL *URL = [NSURL URLWithString:[[path valueForKey:@"Image"] valueForKey:@"url" ]];
+                    if (URL)
+                    {
+                        [URLs addObject:URL];
+                    }
+                    else
+                    {
+                        NSLog(@"'%@' is not a valid URL", path);
+                    }
                 }
-                else
-                {
-                    NSLog(@"'%@' is not a valid URL", path);
+                self.images = [NSMutableArray new];;
+                
+                for (int i = 0; i < URLs.count; i++) {
+                    NSData *myData = [NSData dataWithContentsOfURL:[URLs objectAtIndex:i]];
+                    UIImage *img = [UIImage imageWithData:myData];
+                    [self.images addObject:img];
                 }
+                
+                [spinner stopAnimating];
+                [spinner setHidden:YES];
+                [carousel setHidden:NO];
             }
-            self.items = [NSMutableArray new];;
-            
-            for (int i = 0; i < URLs.count; i++) {
-                NSData *myData = [NSData dataWithContentsOfURL:[URLs objectAtIndex:i]];
-                UIImage *img = [UIImage imageWithData:myData];
-                [self.items addObject:img];
-            }
-            
-            [spinner stopAnimating];
-            [spinner setHidden:YES];
-            [carousel setHidden:NO];
-            
             
             // Get back to the main thread and reload carousel data
             dispatch_async(dispatch_get_main_queue(), ^{
+                [spinner stopAnimating];
+                [spinner setHidden:YES];
+                [carousel setHidden:NO];
                 [self.carousel reloadData];
             });
         }];
@@ -91,6 +95,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
     
     // Set carousel configurations
     self.directionIsLeft = YES;
@@ -118,8 +123,16 @@
 
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
-    //return the total number of items in the carousel
-    return [self.items count];
+    /*!
+     * Return the total number of images in the carousel.
+     * If the number of images is equal to zero, the method returns zero and
+     * the carousel will display placeholder
+    !*/
+    if ([self.images count] == 0) {
+        return 1;
+    }
+    
+    return [self.images count];
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
@@ -138,11 +151,14 @@
         view = imageView;
     }
     
-    //show placeholder
-    ((FXImageView *)view).processedImage = [UIImage imageNamed:@"placeholder.png"];
+    // Show placeholder
+    [(FXImageView *)view setImage:[UIImage imageNamed:@"placeholder.png"]];
     
-    //set image with URL. FXImageView will then download and process the image
-    [(FXImageView *)view setImage:[self.items objectAtIndex:index]];
+    // Checks if the images count is greater than ZERO. If the count is equal to ZERO, the carousel will display single placeholder image.
+    if ([self.images count] > 0) {
+        [(FXImageView *)view setImage:[self.images objectAtIndex:index]];
+    }
+    
     
     [self.carousel reloadItemAtIndex:index animated:YES];
     return view;

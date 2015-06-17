@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TripLog/ViewControllers/ImageGalleryViewController.m"
-            timestampString = "456151293.660244"
+            timestampString = "456223810.279669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "-awakeFromNib"
             landmarkType = "5">
          </BreakpointContent>

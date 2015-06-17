@@ -106,7 +106,8 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     tripManager.selectedTrip = [tripCDManager.fetchedResultsController objectAtIndexPath:indexPath];
     UIViewController *detailsController = [self.storyboard instantiateViewControllerWithIdentifier:@"locationDetailsVC"];
-    [self.navigationController pushViewController:detailsController animated:YES];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:detailsController];
+    [self.navigationController presentViewController:nc animated:YES completion:nil];
 }
 
 #pragma mark - UICollectionViewFlowLayout

@@ -27,7 +27,8 @@
 		AE5DF7CA1B2AEDC200C7D3A4 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5DF7C91B2AEDC200C7D3A4 /* iCarousel.m */; };
 		AE5DF7CE1B2AEEF600C7D3A4 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = AE5DF7CB1B2AEEF600C7D3A4 /* background.png */; };
 		AE5DF7CF1B2AEEF600C7D3A4 /* page.png in Resources */ = {isa = PBXBuildFile; fileRef = AE5DF7CC1B2AEEF600C7D3A4 /* page.png */; };
-		AE5DF7D01B2AEEF600C7D3A4 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = AE5DF7CD1B2AEEF600C7D3A4 /* placeholder.png */; };
+		AE5DF7D01B2AEEF600C7D3A4 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = AE5DF7CD1B2AEEF600C7D3A4 /* loading.png */; };
+		AE6981601B316B7D0099D206 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = AE69815F1B316B7D0099D206 /* placeholder.png */; };
 		AEF843A61B25C099008F9359 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF843A51B25C099008F9359 /* RegisterViewController.m */; };
 		FB1E06D31B22EB05001599C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E06D21B22EB05001599C7 /* main.m */; };
 		FB1E06D61B22EB05001599C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E06D51B22EB05001599C7 /* AppDelegate.m */; };
@@ -103,7 +104,8 @@
 		AE5DF7C91B2AEDC200C7D3A4 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		AE5DF7CB1B2AEEF600C7D3A4 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = TripLog/Images.xcassets/background.png; sourceTree = SOURCE_ROOT; };
 		AE5DF7CC1B2AEEF600C7D3A4 /* page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page.png; path = TripLog/Images.xcassets/page.png; sourceTree = SOURCE_ROOT; };
-		AE5DF7CD1B2AEEF600C7D3A4 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = placeholder.png; path = TripLog/Images.xcassets/placeholder.png; sourceTree = SOURCE_ROOT; };
+		AE5DF7CD1B2AEEF600C7D3A4 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loading.png; path = TripLog/Images.xcassets/loading.png; sourceTree = SOURCE_ROOT; };
+		AE69815F1B316B7D0099D206 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = placeholder.png; path = TripLog/Images.xcassets/placeholder.png; sourceTree = SOURCE_ROOT; };
 		AEF843A41B25C099008F9359 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		AEF843A51B25C099008F9359 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		FB1E06CD1B22EB05001599C7 /* TripLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -343,12 +345,13 @@
 		FB1E06FA1B22EB97001599C7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AE69815F1B316B7D0099D206 /* placeholder.png */,
 				FBA5631F1B2DB60A0065A8D1 /* sunsetBackground.jpg */,
 				FF07C8D51B2BFA8A0064DF74 /* splashScreenImage2.jpg */,
 				FF07C8D01B2BF69D0064DF74 /* splashScreenImage.jpg */,
 				AE5DF7CB1B2AEEF600C7D3A4 /* background.png */,
 				AE5DF7CC1B2AEEF600C7D3A4 /* page.png */,
-				AE5DF7CD1B2AEEF600C7D3A4 /* placeholder.png */,
+				AE5DF7CD1B2AEEF600C7D3A4 /* loading.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -496,13 +499,14 @@
 			files = (
 				82EEEF311B2E69AE0002F717 /* example.caf in Resources */,
 				FB1E06DF1B22EB05001599C7 /* Main.storyboard in Resources */,
-				AE5DF7D01B2AEEF600C7D3A4 /* placeholder.png in Resources */,
+				AE5DF7D01B2AEEF600C7D3A4 /* loading.png in Resources */,
 				AE5DF7CF1B2AEEF600C7D3A4 /* page.png in Resources */,
 				FBA563201B2DB60A0065A8D1 /* sunsetBackground.jpg in Resources */,
 				AE5DF7CE1B2AEEF600C7D3A4 /* background.png in Resources */,
 				FB1E06E41B22EB06001599C7 /* LaunchScreen.xib in Resources */,
 				FF07C8D61B2BFA8A0064DF74 /* splashScreenImage2.jpg in Resources */,
 				FB1E06E11B22EB06001599C7 /* Images.xcassets in Resources */,
+				AE6981601B316B7D0099D206 /* placeholder.png in Resources */,
 				FF07C8D11B2BF69D0064DF74 /* splashScreenImage.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
