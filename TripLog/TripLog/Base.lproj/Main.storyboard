@@ -37,7 +37,7 @@
         <scene sceneID="Z0G-fb-4Sn">
             <objects>
                 <navigationController title="My log" id="k4V-u9-yao" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My log" id="h6u-Nn-vwx"/>
+                    <tabBarItem key="tabBarItem" title="My log" image="mylog.png" id="h6u-Nn-vwx"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4OY-pb-k42">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -54,7 +54,7 @@
         <scene sceneID="Ifo-Qn-kpF">
             <objects>
                 <navigationController title="Settings" id="Zgn-eu-mTq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="JJZ-ud-ISc"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings.png" id="JJZ-ud-ISc"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DHt-nx-wbV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -175,22 +175,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4k-t8-3vl">
-                                <rect key="frame" x="277" y="428" width="48" height="30"/>
-                                <state key="normal" title="Gallery">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="userDidTabOnGalleryButton:" destination="fOM-Vz-8na" eventType="touchUpInside" id="idb-GK-GNX"/>
-                                    <segue destination="0XG-x1-LtE" kind="presentation" identifier="gallerySegue" id="aO0-G5-Nvb"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrE-1k-aDY">
                                 <rect key="frame" x="177" y="288" width="246" height="58"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4k-t8-3vl">
+                                <rect key="frame" x="276" y="428" width="48" height="30"/>
+                                <state key="normal" title="Gallery">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="0XG-x1-LtE" kind="show" identifier="gallerySegue" id="aO0-G5-Nvb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -474,7 +473,7 @@
         <scene sceneID="sCE-BA-dds">
             <objects>
                 <navigationController title="All trips" id="bZn-5E-0j0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="All trips" id="Ziy-5p-S52"/>
+                    <tabBarItem key="tabBarItem" title="All trips" image="alltrips.png" id="Ziy-5p-S52"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gGI-zQ-ayI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -748,7 +747,7 @@
         <scene sceneID="7ZF-ZD-ji1">
             <objects>
                 <navigationController title="Map" id="ZUA-Rp-8Tk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" id="adA-fR-HKR"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="map.png" id="adA-fR-HKR"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fKN-dn-07U">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -773,10 +772,10 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="sunsetBackground.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Jpy-Ph-vpS">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sunsetBackground.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Jpy-Ph-vpS">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lHQ-Uj-eVb" userLabel="iCarousel" customClass="iCarousel">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lHQ-Uj-eVb" userLabel="iCarousel" customClass="iCarousel">
                                 <rect key="frame" x="-5" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
@@ -810,6 +809,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="alltrips.png" width="25" height="25"/>
+        <image name="map.png" width="25" height="25"/>
+        <image name="mylog.png" width="25" height="25"/>
+        <image name="settings.png" width="25" height="25"/>
         <image name="sunsetBackground.jpg" width="320" height="480"/>
     </resources>
 </document>
