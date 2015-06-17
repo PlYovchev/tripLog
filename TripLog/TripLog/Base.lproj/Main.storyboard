@@ -650,10 +650,9 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R0J-WB-lIL">
                                             <rect key="frame" x="0.0" y="0.0" width="230" height="135"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6td-x9-ZgW">
-                                            <rect key="frame" x="15" y="30" width="200" height="21"/>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeG-iz-hhO">
+                                            <rect key="frame" x="8" y="8" width="214" height="20"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -673,10 +672,9 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeG-iz-hhO">
-                                            <rect key="frame" x="8" y="8" width="214" height="21"/>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6td-x9-ZgW">
+                                            <rect key="frame" x="15" y="27" width="200" height="14"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -688,7 +686,7 @@
                                     <constraint firstItem="SeG-iz-hhO" firstAttribute="leading" secondItem="z0u-L3-IVz" secondAttribute="leadingMargin" id="5zr-tj-2K9"/>
                                     <constraint firstItem="SeG-iz-hhO" firstAttribute="centerX" secondItem="6td-x9-ZgW" secondAttribute="centerX" id="AXU-z6-owJ"/>
                                     <constraint firstItem="SeG-iz-hhO" firstAttribute="trailing" secondItem="MWc-ft-JwB" secondAttribute="trailing" id="Ewf-2L-HJd"/>
-                                    <constraint firstItem="6td-x9-ZgW" firstAttribute="top" secondItem="SeG-iz-hhO" secondAttribute="bottom" constant="1" id="FTj-0U-6jD"/>
+                                    <constraint firstItem="6td-x9-ZgW" firstAttribute="top" secondItem="SeG-iz-hhO" secondAttribute="bottom" constant="-1" id="FTj-0U-6jD"/>
                                     <constraint firstItem="MWc-ft-JwB" firstAttribute="bottom" secondItem="z0u-L3-IVz" secondAttribute="bottomMargin" id="FdK-Ly-vfz"/>
                                     <constraint firstItem="SeG-iz-hhO" firstAttribute="centerX" secondItem="R0J-WB-lIL" secondAttribute="centerX" id="K51-KW-Bhq"/>
                                     <constraint firstItem="SeG-iz-hhO" firstAttribute="leading" secondItem="CBu-nE-GI5" secondAttribute="leading" id="XPs-jL-naw"/>
