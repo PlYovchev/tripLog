@@ -43,6 +43,17 @@
     [self.contentView addSubview:indicator];
     
 
+    self.backgroundColor = [UIColor blackColor];
+    self.layer.borderColor = [UIColor colorWithRed:113 green:113 blue:113 alpha:1].CGColor;
+    self.layer.borderWidth = 1.0f;
+    self.tintColor = [UIColor yellowColor];
+    
+    //
+    //    labelTripLocation.text = @"";
+    //    self.labelCreator.text = @"";
+    //    self.labelTripName.text = @"";
+    //    self.labelRaiting
+    
     
     dispatch_queue_t imageLoadingQueue = dispatch_queue_create("imageLoadingQueue", NULL);
 

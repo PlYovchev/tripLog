@@ -13,7 +13,6 @@
     TripLogCoreDataController *tripCDManager;
 }
 
-
 @end
 
 @implementation AllTripsCollectionViewController
@@ -23,13 +22,17 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Set custom UI Appearances
+    [self setCustomUIAppearanceStyles];
+    
     tripCDManager = [TripLogCoreDataController sharedInstance];
     tripManager = [TripLogController sharedInstance];
+    
     NSError *error;
     if (![tripCDManager.fetchedResultsController performFetch:&error]) {
         NSLog(@"Fetching data failed. Error %@, %@", error, [error userInfo]);
     }
-    
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchButtonTapped:)];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonTapped:)];
@@ -65,17 +68,6 @@ static NSString * const reuseIdentifier = @"Cell";
     [popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     
 }
-
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 #pragma mark - UICollectionViewDataSource
 
@@ -123,5 +115,20 @@ static NSString * const reuseIdentifier = @"Cell";
     return UIEdgeInsetsMake(0, leftRightInset, 0, leftRightInset);
 }
 
+#pragma mark UI appearance methods
+-(void)setCustomUIAppearanceStyles{
+    
+    // Navigation bar appearance styles
+    self.navigationController.navigationBar.backIndicatorImage = [UIImage new];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0 green:255 blue:198 alpha:1];
+    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    
+    // View appearance styles
+    self.view.backgroundColor = [UIColor blackColor];
+    
+    // Tab bar appearance styles
+    self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:0 green:255 blue:198 alpha:1];
+    self.tabBarController.tabBar.barTintColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+}
 
 @end
