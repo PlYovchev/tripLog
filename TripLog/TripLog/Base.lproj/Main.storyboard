@@ -641,91 +641,138 @@
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="221" height="185"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="221" height="226"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eLM-Pg-8WR">
-                                            <rect key="frame" x="0.0" y="0.0" width="221" height="150"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eLM-Pg-8WR">
+                                            <rect key="frame" x="0.0" y="0.0" width="221" height="186"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R0J-WB-lIL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="221" height="150"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R0J-WB-lIL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="221" height="186"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="R0J-WB-lIL" firstAttribute="top" secondItem="eLM-Pg-8WR" secondAttribute="top" id="Uuu-x5-Dsq"/>
+                                                <constraint firstItem="R0J-WB-lIL" firstAttribute="leading" secondItem="eLM-Pg-8WR" secondAttribute="leading" id="e2A-8K-SJA"/>
+                                                <constraint firstAttribute="trailing" secondItem="R0J-WB-lIL" secondAttribute="trailing" id="kx0-5J-vDZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="R0J-WB-lIL" secondAttribute="bottom" id="sCx-jQ-LQH"/>
+                                            </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWc-ft-JwB">
-                                            <rect key="frame" x="171" y="106" width="42" height="21"/>
-                                            <attributedString key="attributedText">
-                                                <fragment content="Raiting">
-                                                    <attributes>
-                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <font key="NSFont" size="17" name="Courier"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <nil key="highlightedColor"/>
-                                            <color key="shadowColor" red="1" green="0.97682472109999996" blue="0.90896477229999995" alpha="1" colorSpace="calibratedRGB"/>
-                                            <size key="shadowOffset" width="1" height="2"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeG-iz-hhO">
-                                            <rect key="frame" x="10" y="147" width="152" height="20"/>
-                                            <attributedString key="attributedText">
-                                                <fragment content="Trip Name">
-                                                    <attributes>
-                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <font key="NSFont" size="15" name="Courier-Bold"/>
-                                                        <font key="NSOriginalFont" size="17" name="Courier-Bold"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <nil key="highlightedColor"/>
-                                            <color key="shadowColor" red="1" green="0.97682472109999996" blue="0.90896477229999995" alpha="1" colorSpace="calibratedRGB"/>
-                                            <size key="shadowOffset" width="1" height="2"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6td-x9-ZgW">
-                                            <rect key="frame" x="10" y="163" width="127" height="14"/>
-                                            <attributedString key="attributedText">
-                                                <fragment content="Trip Location">
-                                                    <attributes>
-                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <font key="NSFont" size="14" name="Courier"/>
-                                                        <font key="NSOriginalFont" size="17" name="Courier"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <nil key="highlightedColor"/>
-                                            <color key="shadowColor" red="1" green="0.97682472109999996" blue="0.90896477229999995" alpha="1" colorSpace="calibratedRGB"/>
-                                            <size key="shadowOffset" width="1" height="2"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBu-nE-GI5">
-                                            <rect key="frame" x="140" y="156" width="73" height="21"/>
-                                            <attributedString key="attributedText">
-                                                <fragment content="Creator">
-                                                    <attributes>
-                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <font key="NSFont" size="14" name="Courier"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <nil key="highlightedColor"/>
-                                            <color key="shadowColor" red="1" green="0.97682472109999996" blue="0.90896477229999995" alpha="1" colorSpace="calibratedRGB"/>
-                                            <size key="shadowOffset" width="1" height="2"/>
-                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y6B-fS-IsK">
+                                            <rect key="frame" x="0.0" y="186" width="221" height="40"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeG-iz-hhO">
+                                                    <rect key="frame" x="0.0" y="3" width="173" height="15"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Trip Name">
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="15" name="Courier-Bold"/>
+                                                                <font key="NSOriginalFont" size="17" name="Courier-Bold"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                    <color key="shadowColor" red="1" green="0.97682472109999996" blue="0.90896477229999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBu-nE-GI5">
+                                                    <rect key="frame" x="140" y="9" width="73" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="73" id="WF1-0e-FqZ"/>
+                                                    </constraints>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Creator">
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="14" name="Courier"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                    <color key="shadowColor" red="1" green="0.97682472109999996" blue="0.90896477229999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWc-ft-JwB">
+                                                    <rect key="frame" x="176" y="6" width="42" height="10"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="Cpk-7I-wZ2"/>
+                                                        <constraint firstAttribute="width" constant="42" id="Pgg-Bx-K8j"/>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="42" id="ils-mx-2VL"/>
+                                                    </constraints>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Raiting">
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="10" name="Courier"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                    <color key="shadowColor" red="1" green="0.97682472109999996" blue="0.90896477229999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6td-x9-ZgW">
+                                                    <rect key="frame" x="0.0" y="16" width="127" height="17"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Trip Location">
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="14" name="Courier"/>
+                                                                <font key="NSOriginalFont" size="17" name="Courier"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                    <color key="shadowColor" red="1" green="0.97682472109999996" blue="0.90896477229999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SeG-iz-hhO" secondAttribute="bottom" constant="3" id="4Ev-y1-bc4"/>
+                                                <constraint firstItem="MWc-ft-JwB" firstAttribute="leading" secondItem="SeG-iz-hhO" secondAttribute="trailing" constant="3" id="GUJ-aT-BRV"/>
+                                                <constraint firstAttribute="height" constant="40" id="GaL-sQ-raC"/>
+                                                <constraint firstItem="SeG-iz-hhO" firstAttribute="top" secondItem="Y6B-fS-IsK" secondAttribute="top" constant="3" id="I9J-A1-3BM"/>
+                                                <constraint firstItem="SeG-iz-hhO" firstAttribute="leading" secondItem="Y6B-fS-IsK" secondAttribute="leading" id="NTW-T2-lmh"/>
+                                                <constraint firstItem="MWc-ft-JwB" firstAttribute="top" secondItem="Y6B-fS-IsK" secondAttribute="top" constant="6" id="TLa-vk-J9Z"/>
+                                                <constraint firstItem="6td-x9-ZgW" firstAttribute="top" secondItem="SeG-iz-hhO" secondAttribute="bottom" constant="-2" id="aLR-uF-n1C"/>
+                                                <constraint firstItem="CBu-nE-GI5" firstAttribute="leading" secondItem="6td-x9-ZgW" secondAttribute="trailing" constant="13" id="flI-Tw-CR4"/>
+                                                <constraint firstItem="SeG-iz-hhO" firstAttribute="leading" secondItem="Y6B-fS-IsK" secondAttribute="leading" id="h9O-cT-L7j"/>
+                                                <constraint firstAttribute="trailing" secondItem="CBu-nE-GI5" secondAttribute="trailing" constant="8" id="kAj-SV-HkM"/>
+                                                <constraint firstItem="6td-x9-ZgW" firstAttribute="leading" secondItem="Y6B-fS-IsK" secondAttribute="leading" id="map-pd-yu5"/>
+                                                <constraint firstAttribute="bottom" secondItem="6td-x9-ZgW" secondAttribute="bottom" constant="7" id="oVx-84-FWo"/>
+                                                <constraint firstAttribute="bottom" secondItem="CBu-nE-GI5" secondAttribute="bottom" constant="8" id="v4I-ah-fyu"/>
+                                                <constraint firstAttribute="trailing" secondItem="MWc-ft-JwB" secondAttribute="trailing" constant="3" id="vCO-vv-6Ov"/>
+                                                <constraint firstItem="CBu-nE-GI5" firstAttribute="top" secondItem="MWc-ft-JwB" secondAttribute="bottom" constant="-7" id="yOp-Hx-ceK"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <size key="customSize" width="221" height="185"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailingMargin" secondItem="Y6B-fS-IsK" secondAttribute="trailing" constant="-8" id="2Yr-AN-1Z7"/>
+                                    <constraint firstItem="Y6B-fS-IsK" firstAttribute="leading" secondItem="z0u-L3-IVz" secondAttribute="leadingMargin" constant="-8" id="NTQ-Fz-lho"/>
+                                    <constraint firstItem="Y6B-fS-IsK" firstAttribute="top" secondItem="eLM-Pg-8WR" secondAttribute="bottom" id="WE7-59-3A3"/>
+                                    <constraint firstItem="eLM-Pg-8WR" firstAttribute="leading" secondItem="z0u-L3-IVz" secondAttribute="leadingMargin" constant="-8" id="fUT-BD-pbd"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="Y6B-fS-IsK" secondAttribute="bottom" constant="-8" id="grK-Ug-iEn"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="eLM-Pg-8WR" secondAttribute="trailing" constant="-8" id="jKP-Dk-Keh"/>
+                                    <constraint firstItem="eLM-Pg-8WR" firstAttribute="top" secondItem="z0u-L3-IVz" secondAttribute="topMargin" constant="-8" id="zWm-7P-ODq"/>
+                                </constraints>
+                                <size key="customSize" width="221" height="226"/>
                                 <connections>
                                     <outlet property="imageView" destination="R0J-WB-lIL" id="olw-lI-yz4"/>
                                     <outlet property="labelCreator" destination="CBu-nE-GI5" id="p2k-qg-Mo7"/>
                                     <outlet property="labelRaiting" destination="MWc-ft-JwB" id="HZU-uT-Dn6"/>
                                     <outlet property="labelTripLocation" destination="6td-x9-ZgW" id="6ef-Zh-tuT"/>
                                     <outlet property="labelTripName" destination="SeG-iz-hhO" id="DmD-oP-1uL"/>
+                                    <outlet property="labelsView" destination="Y6B-fS-IsK" id="w0Q-ps-ZbJ"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

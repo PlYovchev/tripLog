@@ -29,6 +29,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Set the color of the View Controller title
+    NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                               [UIColor colorWithRed:0 green:255 blue:198 alpha:1],
+                                               NSForegroundColorAttributeName, nil];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
+    
     self.mapView.delegate = self;
     self.mapView.showsUserLocation = YES;
     
