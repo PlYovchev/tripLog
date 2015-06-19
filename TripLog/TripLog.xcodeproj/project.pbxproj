@@ -389,11 +389,8 @@
 		FB1E06FA1B22EB97001599C7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				8296329D1B344E4D0046BF99 /* stars */,
-=======
 				AED4376E1B343C3000F7EB55 /* login-background.jpg */,
->>>>>>> 7abc080b9d8ba526131331a780acc5992941e341
 				AE9DBC3D1B319E2B00F59AE1 /* map.png */,
 				AE9DBC391B319E0B00F59AE1 /* alltrips.png */,
 				AE9DBC3A1B319E0B00F59AE1 /* mylog.png */,
@@ -562,11 +559,8 @@
 				AE5DF7CF1B2AEEF600C7D3A4 /* page.png in Resources */,
 				FBA563201B2DB60A0065A8D1 /* sunsetBackground.jpg in Resources */,
 				AE5DF7CE1B2AEEF600C7D3A4 /* background.png in Resources */,
-<<<<<<< HEAD
 				829632A71B344E4D0046BF99 /* not_selected_star.png in Resources */,
-=======
 				AED4376F1B343C3000F7EB55 /* login-background.jpg in Resources */,
->>>>>>> 7abc080b9d8ba526131331a780acc5992941e341
 				AE9DBC3E1B319E2B00F59AE1 /* map.png in Resources */,
 				FB1E06E41B22EB06001599C7 /* LaunchScreen.xib in Resources */,
 				829632A61B344E4D0046BF99 /* half_selected_star@2x.png in Resources */,
