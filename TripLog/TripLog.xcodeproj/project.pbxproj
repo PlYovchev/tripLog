@@ -61,6 +61,8 @@
 		FB1E07211B22ED5F001599C7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07201B22ED5F001599C7 /* SettingsViewController.m */; };
 		FB1E07241B22ED6A001599C7 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */; };
 		FBA563201B2DB60A0065A8D1 /* sunsetBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FBA5631F1B2DB60A0065A8D1 /* sunsetBackground.jpg */; };
+		FBC827DC1B345B6100282A55 /* username-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC827DB1B345B6100282A55 /* username-icon.png */; };
+		FBC827DE1B345E0900282A55 /* password-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC827DD1B345E0900282A55 /* password-icon.png */; };
 		FF07C8CB1B2BF4BA0064DF74 /* EASplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = FF07C8CA1B2BF4BA0064DF74 /* EASplashScreen.m */; };
 		FF07C8D11B2BF69D0064DF74 /* splashScreenImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF07C8D01B2BF69D0064DF74 /* splashScreenImage.jpg */; };
 		FF07C8D61B2BFA8A0064DF74 /* splashScreenImage2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF07C8D51B2BFA8A0064DF74 /* splashScreenImage2.jpg */; };
@@ -169,6 +171,8 @@
 		FB1E07221B22ED6A001599C7 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		FBA5631F1B2DB60A0065A8D1 /* sunsetBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sunsetBackground.jpg; sourceTree = "<group>"; };
+		FBC827DB1B345B6100282A55 /* username-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "username-icon.png"; sourceTree = "<group>"; };
+		FBC827DD1B345E0900282A55 /* password-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password-icon.png"; sourceTree = "<group>"; };
 		FF07C8C91B2BF4BA0064DF74 /* EASplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EASplashScreen.h; sourceTree = "<group>"; };
 		FF07C8CA1B2BF4BA0064DF74 /* EASplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EASplashScreen.m; sourceTree = "<group>"; };
 		FF07C8D01B2BF69D0064DF74 /* splashScreenImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = splashScreenImage.jpg; path = TripLog/Libraries/EASpashScreen/splashScreenImage.jpg; sourceTree = SOURCE_ROOT; };
@@ -205,6 +209,7 @@
 		8296329D1B344E4D0046BF99 /* stars */ = {
 			isa = PBXGroup;
 			children = (
+				FBC827DD1B345E0900282A55 /* password-icon.png */,
 				8296329E1B344E4D0046BF99 /* half_selected_star.png */,
 				8296329F1B344E4D0046BF99 /* half_selected_star@2x.png */,
 				829632A01B344E4D0046BF99 /* not_selected_star.png */,
@@ -402,6 +407,7 @@
 				AE5DF7CB1B2AEEF600C7D3A4 /* background.png */,
 				AE5DF7CC1B2AEEF600C7D3A4 /* page.png */,
 				AE5DF7CD1B2AEEF600C7D3A4 /* loading.png */,
+				FBC827DB1B345B6100282A55 /* username-icon.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -555,6 +561,7 @@
 				FB1E06DF1B22EB05001599C7 /* Main.storyboard in Resources */,
 				AE9DBC3C1B319E0B00F59AE1 /* mylog.png in Resources */,
 				829632A51B344E4D0046BF99 /* half_selected_star.png in Resources */,
+				FBC827DC1B345B6100282A55 /* username-icon.png in Resources */,
 				AE5DF7D01B2AEEF600C7D3A4 /* loading.png in Resources */,
 				AE5DF7CF1B2AEEF600C7D3A4 /* page.png in Resources */,
 				FBA563201B2DB60A0065A8D1 /* sunsetBackground.jpg in Resources */,
@@ -569,6 +576,7 @@
 				FB1E06E11B22EB06001599C7 /* Images.xcassets in Resources */,
 				829632AA1B344E4D0046BF99 /* selected_star@2x.png in Resources */,
 				AE6981601B316B7D0099D206 /* placeholder.png in Resources */,
+				FBC827DE1B345E0900282A55 /* password-icon.png in Resources */,
 				829632A91B344E4D0046BF99 /* selected_star.png in Resources */,
 				FF07C8D11B2BF69D0064DF74 /* splashScreenImage.jpg in Resources */,
 			);

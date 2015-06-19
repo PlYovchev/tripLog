@@ -7,11 +7,8 @@
 //
 
 #import "WelcomeViewController.h"
-#import "TripLogController.h"
 
 @interface WelcomeViewController ()<EASplashScreenDelegate>
-
-@property (nonatomic, strong) EASplashScreen* splashScreen;
 
 @end
 
@@ -19,20 +16,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.splashScreen = [[EASplashScreen alloc] initWithSplashScreenImage:[UIImage imageNamed:@"splashScreenImage2.jpg"] amountOfSlides:7];
-    self.splashScreen.view.frame = self.view.bounds;
-    [self.view addSubview:self.splashScreen.view];
-    self.splashScreen.delegate = self;
+    EASplashScreen *splashScreen = [[EASplashScreen alloc] initWithSplashScreenImage:[UIImage imageNamed:@"splashScreenImage2.jpg"] amountOfSlides:7];
+    splashScreen.delegate = self;
+    splashScreen.view.frame = self.view.bounds;
+    [self.view addSubview:splashScreen.view];
 }
 
 - (void)splashScreenDidFinishTransisioning:(EASplashScreen *)splashController {
     NSLog(@"Splash screen is off the screen!");
-    TripLogController* tripController = [TripLogController sharedInstance];
-    bool userIsLogged = [tripController tryLogWithSavedUserData];
-    if(!userIsLogged){
-        UIViewController* viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-        [self presentViewController:viewController animated:YES completion:nil];
-    }
 }
 
 - (void)didReceiveMemoryWarning {

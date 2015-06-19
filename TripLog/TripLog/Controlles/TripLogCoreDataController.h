@@ -33,6 +33,4 @@
 -(void)addTripsFromArray:(NSArray*)trips;
 -(void)addTrip:(NSDictionary*)tripProperties;
 
--(User*)userWithUserId:(NSString*)userId;
-
 @end
