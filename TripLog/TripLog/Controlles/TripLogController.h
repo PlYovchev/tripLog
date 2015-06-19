@@ -12,12 +12,15 @@
 
 @interface TripLogController : NSObject
 @property (nonatomic,strong) Trip *selectedTrip;
-@property (nonatomic,strong) User *user;
-
+@property (nonatomic,strong) User *loggedUser;
+@property (nonatomic, copy) NSString* currentSessionToken;
 
 +(id)sharedInstance;
 
 -(void)fetchTrips;
 -(void)saveTrip:(NSDictionary*)tripProperties;
+
+-(bool)tryLogWithSavedUserData;
+-(void)logTheUserwithUserId:(NSString *)userId andSessionToken:(NSString *)sessionToken andSaveUserData:(BOOL)shouldSave;
 
 @end

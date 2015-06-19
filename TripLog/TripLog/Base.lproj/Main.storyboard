@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="a10-Se-am5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -30,7 +30,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-291" y="1067"/>
+            <point key="canvasLocation" x="-287" y="925"/>
         </scene>
         <!--My log-->
         <scene sceneID="Z0G-fb-4Sn">
@@ -192,10 +192,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0j3-mx-UQ2">
-                                <rect key="frame" x="0.0" y="304" width="600" height="296"/>
+                                <rect key="frame" x="0.0" y="281" width="600" height="319"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4k-t8-3vl">
-                                        <rect key="frame" x="525" y="36" width="48" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4k-t8-3vl">
+                                        <rect key="frame" x="524" y="36" width="48" height="30"/>
                                         <state key="normal" title="Gallery">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -203,20 +203,20 @@
                                             <segue destination="0XG-x1-LtE" kind="show" identifier="gallerySegue" id="aO0-G5-Nvb"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUA-pw-YKL">
-                                        <rect key="frame" x="494" y="74" width="79" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUA-pw-YKL">
+                                        <rect key="frame" x="513" y="74" width="60" height="30"/>
                                         <state key="normal" title="ToDoList">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jy-YQ-WeD">
-                                        <rect key="frame" x="494" y="119" width="78" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jy-YQ-WeD">
+                                        <rect key="frame" x="502" y="119" width="70" height="30"/>
                                         <state key="normal" title="Notify me!">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RsP-Tk-0Mb">
-                                        <rect key="frame" x="0.0" y="0.0" width="473" height="277"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RsP-Tk-0Mb">
+                                        <rect key="frame" x="0.0" y="0.0" width="473" height="319"/>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -224,12 +224,24 @@
                                     </textView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="f4k-t8-3vl" firstAttribute="top" secondItem="0j3-mx-UQ2" secondAttribute="top" constant="36" id="6ws-9b-QBx"/>
+                                    <constraint firstItem="RsP-Tk-0Mb" firstAttribute="top" secondItem="0j3-mx-UQ2" secondAttribute="top" id="DvC-Cz-Y50"/>
+                                    <constraint firstItem="0jy-YQ-WeD" firstAttribute="leading" secondItem="RsP-Tk-0Mb" secondAttribute="trailing" constant="29" id="TH8-4z-aG4"/>
+                                    <constraint firstItem="bUA-pw-YKL" firstAttribute="trailing" secondItem="0jy-YQ-WeD" secondAttribute="trailing" constant="1" id="UeZ-DW-V0Z"/>
+                                    <constraint firstItem="bUA-pw-YKL" firstAttribute="top" secondItem="f4k-t8-3vl" secondAttribute="bottom" constant="8" id="XmY-D3-OmS"/>
+                                    <constraint firstAttribute="trailing" secondItem="f4k-t8-3vl" secondAttribute="trailing" constant="28" id="XoQ-sz-T4B"/>
+                                    <constraint firstItem="bUA-pw-YKL" firstAttribute="trailing" secondItem="f4k-t8-3vl" secondAttribute="trailing" constant="1" id="djT-kr-dT9"/>
+                                    <constraint firstAttribute="bottom" secondItem="RsP-Tk-0Mb" secondAttribute="bottom" id="hxU-lk-wnl"/>
+                                    <constraint firstItem="0jy-YQ-WeD" firstAttribute="top" secondItem="bUA-pw-YKL" secondAttribute="bottom" constant="15" id="jrB-9J-d2e"/>
+                                    <constraint firstItem="RsP-Tk-0Mb" firstAttribute="leading" secondItem="0j3-mx-UQ2" secondAttribute="leading" id="uKA-pO-Zum"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" secondItem="yH4-OW-bX2" secondAttribute="height" multiplier="2.5" id="Bwe-iL-Qhp"/>
-                            <constraint firstItem="0j3-mx-UQ2" firstAttribute="top" secondItem="rFx-RK-97V" secondAttribute="bottom" constant="25" id="CYP-0C-rvS"/>
+                            <constraint firstItem="0j3-mx-UQ2" firstAttribute="top" secondItem="rFx-RK-97V" secondAttribute="bottom" constant="2" id="CYP-0C-rvS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mBd-QN-fUc" secondAttribute="trailing" constant="-10" id="P3v-A7-cul"/>
                             <constraint firstItem="0j3-mx-UQ2" firstAttribute="leading" secondItem="01C-Tk-IOd" secondAttribute="leadingMargin" constant="-16" id="Rei-Mg-nOM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0j3-mx-UQ2" secondAttribute="trailing" constant="-16" id="RgH-qK-l0Y"/>
@@ -424,7 +436,7 @@
         <!--Login View Controller-->
         <scene sceneID="aze-Bw-csc">
             <objects>
-                <viewController id="a10-Se-am5" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="a10-Se-am5" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2ef-q3-5x8"/>
                         <viewControllerLayoutGuide type="bottom" id="Qcb-aA-pHq"/>
@@ -433,6 +445,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-background.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="SUd-7Z-HSx">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RXo-dK-N17">
                                 <rect key="frame" x="327" y="162" width="193" height="30"/>
                                 <constraints>
@@ -495,9 +510,6 @@
                                     <action selector="userDidTabOnButton:" destination="a10-Se-am5" eventType="touchUpInside" id="CdU-HK-wlI"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-background.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="SUd-7Z-HSx">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -906,7 +918,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="YzU-X6-lT8">
             <objects>
-                <tabBarController id="CBV-SQ-Wux" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TripTabViewController" id="CBV-SQ-Wux" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="LzN-Om-lfa"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="PTj-OH-T9G">

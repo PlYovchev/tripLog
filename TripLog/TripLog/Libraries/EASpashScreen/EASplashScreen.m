@@ -72,7 +72,7 @@
         [UIView animateWithDuration:0.4f delay:(i * 0.1f) options:UIViewAnimationOptionCurveEaseIn animations:^{
             imageView.transform = CGAffineTransformMakeTranslation(CGRectGetWidth(imageView.frame), 0);
         } completion:^(BOOL finished) {
-            if (i == _slideCount) {
+            if (i == _slideCount - 1) {
                 [self.delegate splashScreenDidFinishTransisioning:self];
             }
         }];

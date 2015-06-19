@@ -27,9 +27,6 @@
     
     [[TripLogController sharedInstance] fetchTrips];
     
-    TripLogController* controller = [TripLogController sharedInstance];
-    [controller fetchTrips];
-    
     [TripLogLocationController sharedInstance];
     
     UILocalNotification *localNotif =

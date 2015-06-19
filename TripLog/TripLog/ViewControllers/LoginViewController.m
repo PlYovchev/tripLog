@@ -7,8 +7,12 @@
 //
 
 #import "LoginViewController.h"
+#import "TripLogCoreDataController.h"
+#import "TripLogController.h"
+#import "User.h"
 
 @interface LoginViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *textFieldUsername;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldPassword;
 @property (weak, nonatomic) IBOutlet UIButton *buttonSignIn;
@@ -20,10 +24,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    
     [[TripLogWebServiceController sharedInstance] setDelegate:self];
     // Do any additional setup after loading the view.
+    
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,7 +50,8 @@
 */
 - (IBAction)userDidTabOnButton:(id)sender {
     if ([(UIButton*)sender isEqual: self.buttonSignIn]) {
-        [[TripLogWebServiceController sharedInstance] sendSignInRequestToParseWithUsername:self.textFieldUsername.text andPassword:self.textFieldPassword.text];
+        [[TripLogWebServiceController sharedInstance] sendSignInRequestToParseWithUsername:self.textFieldUsername.text
+                                                                               andPassword:self.textFieldPassword.text];
     }
     else{
         NSLog(@"b");
@@ -51,8 +60,11 @@
 
 #pragma mark TripLogWebServicesDelegate
 
--(void)userDidSignInSuccessfully:(BOOL)isSuccessful{
+-(void)userDidSignInSuccessfully:(BOOL)isSuccessful withUserId:(NSString *)userId andSessionToken:(NSString *)sessionToken{
     if (isSuccessful) {
+        TripLogController* tripController = [TripLogController sharedInstance];
+        [tripController logTheUserwithUserId:userId andSessionToken:sessionToken andSaveUserData:YES];
+        
         NSLog(@"Login successful!");
     }
     else{

@@ -78,6 +78,10 @@ static TripLogCoreDataController* coreDataController;
     return entries;
 }
 
+-(User*)userWithUserId:(NSString*)userId{
+    return [self userWithUserId:userId initInContenxt:self.workerManagedObjectContext];
+}
+
 -(User*)userWithUserId:(NSString*)userId initInContenxt:(NSManagedObjectContext*)context{
     NSArray* usersWithId = [self usersWithId:userId inContext:context];
     if([usersWithId count] != 0){
