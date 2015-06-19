@@ -9,17 +9,6 @@
 #import "Trip+DictionaryInitializator.h"
 #import "TripLogCoreDataController.h"
 
-#define ID_KEY @"objectId"
-#define NAME_KEY @"Name"
-#define CITY_KEY @"City"
-#define COUNTRY_KEY @"Country"
-#define DESCRIPTION_KEY @"Description"
-#define LOCATION_KEY @"Location"
-#define LATITUDE_KEY @"latitude"
-#define LONGITUDE_KEY @"longitude"
-#define RATING_KEY @"Raiting"
-#define CREATOR_KEY @"User"
-
 @implementation Trip (DictionaryInitializator)
 
 -(void)setValuesForKeysWithTripDictionary:(NSDictionary*)tripDictionary andCreator:(User*)creator{
@@ -28,7 +17,9 @@
     self.city = [tripDictionary objectForKey:CITY_KEY];
     self.country = [tripDictionary objectForKey:COUNTRY_KEY];
     self.rating = [tripDictionary objectForKey:RATING_KEY];
-    self.tripDescription = [tripDictionary objectForKeyedSubscript:DESCRIPTION_KEY];
+    self.tripDescription = [tripDictionary objectForKey:DESCRIPTION_KEY];
+    self.imageUrl = [tripDictionary objectForKey:IMAGE_URL_KEY];
+    self.isPrivate = [tripDictionary objectForKey:IS_PRIVATE_KEY];
     self.creator = creator;
     
     NSDictionary* location = [tripDictionary objectForKey:LOCATION_KEY];

@@ -7,6 +7,7 @@
 //
 
 #import "TripLogWebServiceController.h"
+#import "Trip+DictionaryInitializator.h"
 
 @interface TripLogWebServiceController () <NSURLSessionDelegate>
 
@@ -78,7 +79,6 @@ static TripLogWebServiceController* webController;
     }];
     
     [dataTask resume];
-    
 }
 
 -(void)sendSignUpRequestToParseWithUsername:(NSString *)username password:(NSString *)pass andPhone:(NSString *)number{
@@ -194,7 +194,20 @@ static TripLogWebServiceController* webController;
         NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
         
         if ([httpResponse statusCode] == 200) {
-            NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            NSMutableDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            NSArray* trips = [result objectForKey:@"results"];
+            for (NSMutableDictionary* tripProperties in trips) {
+                NSString* tripId = [tripProperties objectForKey:ID_KEY];
+                [self sendSyncGetRequestForSingleImageWithTripIdAndHighestRating:tripId andCompletitionHandler:^(NSDictionary *result) {
+                    NSArray* images = [result objectForKey:@"results"];
+                    if([images count] > 0){
+                        NSDictionary* entryInfo = [images firstObject];
+                        NSDictionary* imageInfo = [entryInfo objectForKey:@"Image"];
+                        [tripProperties setValue:[imageInfo objectForKey:@"url"] forKey:IMAGE_URL_KEY];
+                    }
+                }];
+            }
+            
             completion(result);
         }
         else{
@@ -317,4 +330,36 @@ static TripLogWebServiceController* webController;
     
     [dataTask resume];
 }
+
+-(void)sendSyncGetRequestForSingleImageWithTripIdAndHighestRating: (NSString*)tripId andCompletitionHandler: (void (^)(NSDictionary *result)) completition{
+    NSString *urlString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Images?where={\"Trip\": {\"__type\": \"Pointer\",\"className\": \"Trip\",\"objectId\": \"%@\"}}&order=-raiting&limit=1", tripId];
+    NSString* urlStringEncoded = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlStringEncoded]];
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    for (NSString* key in mainHeaders.allKeys) {
+        [request addValue:[mainHeaders objectForKey:key] forHTTPHeaderField:key];
+    }
+    
+    NSURLResponse* response;
+    NSError* error = nil;
+    
+    //Capturing server response
+    NSData* data = [NSURLConnection sendSynchronousRequest:request  returningResponse:&response error:&error];
+    
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+    NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
+        
+    if ([httpResponse statusCode] == 200) {
+        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        completition(result);
+    }
+    else {
+        NSLog(@"%@", error);
+    }
+}
+
+
 @end

@@ -126,27 +126,20 @@ static TripLogCoreDataController* coreDataController;
 -(void)addTripWithUniqueId:(NSDictionary*)tripProperties{
     NSString* tripId = [tripProperties objectForKey:ID_KEY];
     if([[self tripsWithId:tripId] count] == 0){
-        NSManagedObjectContext* context = self.workerManagedObjectContext;
-        Trip* trip = [NSEntityDescription insertNewObjectForEntityForName:@"Trip" inManagedObjectContext:context];
-        
-        NSDictionary* userInfo = [tripProperties objectForKey:@"User"];
-        User* creator = [coreDataController userWithUserId:[userInfo objectForKey:ID_KEY] initInContenxt:context];
-        
-        [trip setValuesForKeysWithTripDictionary:tripProperties andCreator:creator];
-        TripLogWebServiceController* webController = [TripLogWebServiceController sharedInstance];
-        [webController sendGetRequestForSingleImageWithTripIdAndHighestRating:trip.tripId andCompletitionHandler:^(NSDictionary *result) {
-            NSArray* images = [result objectForKey:@"results"];
-            if([images count] > 0){
-                NSDictionary* entryInfo = [images firstObject];
-                NSDictionary* imageInfo = [entryInfo objectForKey:@"Image"];
-                trip.imageUrl = [imageInfo objectForKey:@"url"];
-                
-                [context save:nil];
-            }
-        }];
-        
-        [context save:nil];
+        [self addTrip:tripProperties];
     }
+}
+
+-(void)addTrip:(NSDictionary*)tripProperties{
+    NSManagedObjectContext* context = self.workerManagedObjectContext;
+    Trip* trip = [NSEntityDescription insertNewObjectForEntityForName:@"Trip" inManagedObjectContext:context];
+    
+    NSDictionary* userInfo = [tripProperties objectForKey:@"User"];
+    User* creator = [coreDataController userWithUserId:[userInfo objectForKey:ID_KEY] initInContenxt:context];
+    
+    [trip setValuesForKeysWithTripDictionary:tripProperties andCreator:creator];
+    
+    [context save:nil];
 }
 
 -(void)addTripsFromArray:(NSArray*)trips{

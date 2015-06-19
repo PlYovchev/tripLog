@@ -18,5 +18,6 @@
 +(id)sharedInstance;
 
 -(void)fetchTrips;
+-(void)saveTrip:(NSDictionary*)tripProperties;
 
 @end

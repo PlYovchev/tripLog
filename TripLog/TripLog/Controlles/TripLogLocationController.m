@@ -101,7 +101,7 @@ static TripLogLocationController* locationController;
     localNotif.alertAction = @"View";
     
     localNotif.soundName = @"example.caf";
-    localNotif.applicationIconBadgeNumber = 1;
+ //   localNotif.applicationIconBadgeNumber = 1;
     
     // Specify custom data for the notification
     NSDictionary *infoDict = [NSDictionary dictionaryWithObject:@"someValue" forKey:@"someKey"];

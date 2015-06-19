@@ -31,5 +31,6 @@
 -(NSArray*)tripsWithId:(NSString*)tripId;
 -(void)addTripWithUniqueId:(NSDictionary*)tripProperties;
 -(void)addTripsFromArray:(NSArray*)trips;
+-(void)addTrip:(NSDictionary*)tripProperties;
 
 @end

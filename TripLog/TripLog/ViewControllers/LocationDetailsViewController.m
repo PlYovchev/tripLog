@@ -7,15 +7,23 @@
 //
 
 #import "LocationDetailsViewController.h"
+#import "ASStarRatingView.h"
 
 @interface LocationDetailsViewController ()
+
+@property (weak, nonatomic) IBOutlet ASStarRatingView *ratingView;
+
 @end
 
 @implementation LocationDetailsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.ratingView.canEdit = YES;
+    self.ratingView.maxRating = 8;
+    self.ratingView.minAllowedRating = 4;
+    self.ratingView.maxAllowedRating = 6;
+    self.ratingView.rating = 5;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,11 +32,9 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
     if ([[segue identifier] isEqualToString:@"gallerySegue"]) {
         NSLog(@"gallerySegue called!");
     }
-    
 }
 
 @end

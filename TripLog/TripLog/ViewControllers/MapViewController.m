@@ -66,6 +66,7 @@
     TripLogCoreDataController* dataController = [TripLogCoreDataController sharedInstance];
     NSArray* trips = [dataController trips];
     for (Trip* trip in trips) {
+        NSLog(@"%@", trip.name);
         CGFloat latitude = [trip.latitude doubleValue];
         CGFloat longitude = [trip.longitude doubleValue];
         
@@ -150,11 +151,30 @@
     CGPoint touchPoint = [gestureRecognizer locationInView:self.mapView];
     CLLocationCoordinate2D location = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
     
-    UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    AddLocationTableViewController* addLocationController = [mainStoryboard instantiateViewControllerWithIdentifier:@"AddLocationController"];
-    addLocationController.selectedLocationCoordinates = location;
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Add new location!"
+                                                                             message:@"Do you want to add new trip location here?"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action) {
+                                   UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                                   AddLocationTableViewController* addLocationController = [mainStoryboard instantiateViewControllerWithIdentifier:@"AddLocationController"];
+                                   addLocationController.selectedLocationCoordinates = location;
     
-    [self.navigationController pushViewController:addLocationController animated:YES];
+                                   [self.navigationController pushViewController:addLocationController animated:YES];
+                            }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
+                                   style:UIAlertActionStyleDefault
+                                   handler:nil];
+    
+    [alertController addAction:okAction];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+    
 }
 
 @end
