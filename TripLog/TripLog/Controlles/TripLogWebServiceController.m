@@ -67,14 +67,13 @@ static TripLogWebServiceController* webController;
         NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
         
         if ([httpResponse statusCode] == 200) {
-            NSDictionary *current = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-  //          self.loggedUser = current;
-            NSString* userId = [current objectForKey:@"objectId"];
-            NSString* sessionToken = [current objectForKey:@"sessionToken"];
-            [self.delegate userDidSignInSuccessfully:YES withUserId:userId andSessionToken:sessionToken];
+            UserModel *current = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            self.loggedUser = current;
+            
+            [self.delegate userDidSignInSuccessfully:YES];
         }
         else {
-            [self.delegate userDidSignInSuccessfully:NO withUserId:nil andSessionToken:nil];
+            [self.delegate userDidSignInSuccessfully:NO];
         }
         
     }];

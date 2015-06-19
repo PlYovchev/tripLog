@@ -10,9 +10,9 @@
 #import "Trip.h"
 #import "User.h"
 
-
-
 @interface LocationsTableViewCell : UITableViewCell
-@property (nonatomic, strong) Trip *trip;
-- (void)setLocationsCellForTrip:(Trip*)trip withURL:(NSString *)url;
+@property (nonatomic,strong) Trip *trip;
+
+-(void)setCellforTrip:(Trip*)trip;
+
 @end
