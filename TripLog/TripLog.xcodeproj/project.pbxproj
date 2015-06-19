@@ -69,8 +69,8 @@
 		FF11AD3F1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF11AD3C1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.m */; };
 		FF11AD431B2AF24D00C00C8A /* GalleryItemsLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FF11AD421B2AF24D00C00C8A /* GalleryItemsLayout.m */; };
 		FF9F8C771B30A4E6000F7891 /* AllTripsSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9F8C761B30A4E6000F7891 /* AllTripsSearchViewController.m */; };
-		FFDC0EC91B34AE0C00C70DA3 /* AllLocationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDC0EC81B34AE0C00C70DA3 /* AllLocationsTableViewController.m */; };
-		FFDC0ECC1B34AE2700C70DA3 /* LocationsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDC0ECB1B34AE2700C70DA3 /* LocationsTableViewCell.m */; };
+		FFDC0ECF1B34C41800C70DA3 /* AllLocationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDC0ECE1B34C41800C70DA3 /* AllLocationsTableViewController.m */; };
+		FFDC0ED21B34C43000C70DA3 /* LocationsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDC0ED11B34C43000C70DA3 /* LocationsTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,10 +184,10 @@
 		FF11AD421B2AF24D00C00C8A /* GalleryItemsLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryItemsLayout.m; sourceTree = "<group>"; };
 		FF9F8C751B30A4E6000F7891 /* AllTripsSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTripsSearchViewController.h; sourceTree = "<group>"; };
 		FF9F8C761B30A4E6000F7891 /* AllTripsSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTripsSearchViewController.m; sourceTree = "<group>"; };
-		FFDC0EC71B34AE0C00C70DA3 /* AllLocationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AllLocationsTableViewController.h; path = ../../../../Desktop/AllLocationsTableViewController.h; sourceTree = "<group>"; };
-		FFDC0EC81B34AE0C00C70DA3 /* AllLocationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AllLocationsTableViewController.m; path = ../../../../Desktop/AllLocationsTableViewController.m; sourceTree = "<group>"; };
-		FFDC0ECA1B34AE2700C70DA3 /* LocationsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationsTableViewCell.h; path = ../../../../Desktop/LocationsTableViewCell.h; sourceTree = "<group>"; };
-		FFDC0ECB1B34AE2700C70DA3 /* LocationsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationsTableViewCell.m; path = ../../../../Desktop/LocationsTableViewCell.m; sourceTree = "<group>"; };
+		FFDC0ECD1B34C41800C70DA3 /* AllLocationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllLocationsTableViewController.h; sourceTree = "<group>"; };
+		FFDC0ECE1B34C41800C70DA3 /* AllLocationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllLocationsTableViewController.m; sourceTree = "<group>"; };
+		FFDC0ED01B34C43000C70DA3 /* LocationsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationsTableViewCell.h; sourceTree = "<group>"; };
+		FFDC0ED11B34C43000C70DA3 /* LocationsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationsTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,8 +418,8 @@
 		FB1E06FD1B22EB97001599C7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FFDC0EC71B34AE0C00C70DA3 /* AllLocationsTableViewController.h */,
-				FFDC0EC81B34AE0C00C70DA3 /* AllLocationsTableViewController.m */,
+				FFDC0ECD1B34C41800C70DA3 /* AllLocationsTableViewController.h */,
+				FFDC0ECE1B34C41800C70DA3 /* AllLocationsTableViewController.m */,
 				FB1E070A1B22EC87001599C7 /* AddLocationTableViewController.h */,
 				FB1E070B1B22EC87001599C7 /* AddLocationTableViewController.m */,
 				FB1E070D1B22EC96001599C7 /* LocationDetailsViewController.h */,
@@ -449,8 +449,8 @@
 		FC6797131B28B22D009F6A65 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FFDC0ECA1B34AE2700C70DA3 /* LocationsTableViewCell.h */,
-				FFDC0ECB1B34AE2700C70DA3 /* LocationsTableViewCell.m */,
+				FFDC0ED01B34C43000C70DA3 /* LocationsTableViewCell.h */,
+				FFDC0ED11B34C43000C70DA3 /* LocationsTableViewCell.m */,
 				8296329B1B344E4D0046BF99 /* ASStarRatingView.h */,
 				8296329C1B344E4D0046BF99 /* ASStarRatingView.m */,
 				FF11AD411B2AF24D00C00C8A /* GalleryItemsLayout.h */,
@@ -611,19 +611,19 @@
 				82FA77681B2F178000FABB9C /* User+DictionaryInitializator.m in Sources */,
 				FB1E071B1B22ED3C001599C7 /* MapViewController.m in Sources */,
 				82FA776B1B2F1AAE00FABB9C /* Trip.m in Sources */,
-				FFDC0EC91B34AE0C00C70DA3 /* AllLocationsTableViewController.m in Sources */,
 				AE5DF7C31B2AED2900C7D3A4 /* AsyncImageView.m in Sources */,
 				AE5DF7C41B2AED2900C7D3A4 /* FXImageView.m in Sources */,
 				FB1E07061B22EBF2001599C7 /* TripLogController.m in Sources */,
 				AE20C5AF1B258E800035FEBD /* UserModel.m in Sources */,
 				82EE8A7B1B26FCC300D0CEA8 /* User.m in Sources */,
 				FF11AD3F1B2AF1BF00C00C8A /* AllTripsCollectionViewCell.m in Sources */,
+				FFDC0ECF1B34C41800C70DA3 /* AllLocationsTableViewController.m in Sources */,
 				FB1E07241B22ED6A001599C7 /* WelcomeViewController.m in Sources */,
 				82EE8A721B26FCC200D0CEA8 /* TripComment.m in Sources */,
 				AE5DF7B61B2AEC2900C7D3A4 /* ImageGalleryViewController.m in Sources */,
 				AEF843A61B25C099008F9359 /* RegisterViewController.m in Sources */,
 				FB1E070F1B22EC96001599C7 /* LocationDetailsViewController.m in Sources */,
-				FFDC0ECC1B34AE2700C70DA3 /* LocationsTableViewCell.m in Sources */,
+				FFDC0ED21B34C43000C70DA3 /* LocationsTableViewCell.m in Sources */,
 				FF11AD3A1B2AF17000C00C8A /* AllTripsCollectionViewController.m in Sources */,
 				82104D881B2BA20C008CC14D /* TripLogLocationController.m in Sources */,
 				FB1E07091B22EC56001599C7 /* TripLogWebServiceController.m in Sources */,
