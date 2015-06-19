@@ -20,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    
     [[TripLogWebServiceController sharedInstance] setDelegate:self];
     // Do any additional setup after loading the view.
 }
