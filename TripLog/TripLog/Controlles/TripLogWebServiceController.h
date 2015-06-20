@@ -12,7 +12,9 @@
 @protocol TripLogWebServiceControllerDelegate <NSObject>
 @optional
 // Sign In and Sign Up to Parse
--(void)userDidSignInSuccessfully:(BOOL)isSuccessful;
+-(void)userDidSignInSuccessfully:(BOOL)isSuccessful
+                      withUserId:(NSString*)userId
+                 andSessionToken:(NSString*)sessionToken;
 -(void)userDidSignUpSuccessfully:(BOOL)isSuccessful;
 
 // Fetching or sending objects to Parse

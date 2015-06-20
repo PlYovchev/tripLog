@@ -7,6 +7,7 @@
 //
 
 #import "WelcomeViewController.h"
+#import "TripLogController.h"
 
 @interface WelcomeViewController ()<EASplashScreenDelegate>
 
@@ -24,6 +25,12 @@
 
 - (void)splashScreenDidFinishTransisioning:(EASplashScreen *)splashController {
     NSLog(@"Splash screen is off the screen!");
+    TripLogController* tripController = [TripLogController sharedInstance];
+    bool userIsLogged = [tripController tryLogWithSavedUserData];
+    if(!userIsLogged){
+        UIViewController* viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        [self presentViewController:viewController animated:YES completion:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

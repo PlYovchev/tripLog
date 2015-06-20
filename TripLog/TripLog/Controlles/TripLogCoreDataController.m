@@ -63,7 +63,6 @@ static TripLogCoreDataController* coreDataController;
             [self saveContext];
         }];
     }];
-    
 }
 
 -(NSArray*)usersWithId:(NSString*)userId inContext:(NSManagedObjectContext*)context{
@@ -76,6 +75,10 @@ static TripLogCoreDataController* coreDataController;
     NSArray *entries = [context executeFetchRequest:request error:&error];
     
     return entries;
+}
+
+-(User*)userWithUserId:(NSString*)userId{
+    return [self userWithUserId:userId initInContenxt:self.workerManagedObjectContext];
 }
 
 -(User*)userWithUserId:(NSString*)userId initInContenxt:(NSManagedObjectContext*)context{

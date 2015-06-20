@@ -48,6 +48,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
     [self placePinsInRadius:0];
     [self setMapViewInitialZoomLevel];
 }

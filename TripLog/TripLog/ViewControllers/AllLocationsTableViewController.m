@@ -28,12 +28,13 @@ typedef NS_ENUM(NSInteger,TripLogSearchScope)
 @implementation AllLocationsTableViewController
 static NSString *CellIdentifier = @"locationCell";
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     tripCDManager = [TripLogCoreDataController sharedInstance];
     tripManager = [TripLogController sharedInstance];
+    
+    [self setCustomUIAppearanceStyles];
     
     NSError *error;
     if (![tripCDManager.fetchedResultsController performFetch:&error]) {
@@ -48,12 +49,27 @@ static NSString *CellIdentifier = @"locationCell";
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.definesPresentationContext = YES;
     [self.searchController.searchBar sizeToFit];
-    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark UI appearance methods
+-(void)setCustomUIAppearanceStyles{
+    
+    // Navigation bar appearance styles
+    self.navigationController.navigationBar.backIndicatorImage = [UIImage new];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0 green:255 blue:198 alpha:1];
+    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    
+    // View appearance styles
+    self.view.backgroundColor = [UIColor blackColor];
+    
+    // Tab bar appearance styles
+    self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:0 green:255 blue:198 alpha:1];
+    self.tabBarController.tabBar.barTintColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
 }
 
 #pragma mark - Table view data source

@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "TripLogController.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *textFieldUsername;
@@ -71,8 +72,11 @@
 
 #pragma mark TripLogWebServicesDelegate
 
--(void)userDidSignInSuccessfully:(BOOL)isSuccessful{
+-(void)userDidSignInSuccessfully:(BOOL)isSuccessful withUserId:(NSString *)userId andSessionToken:(NSString *)sessionToken{
     if (isSuccessful) {
+        TripLogController* tripController = [TripLogController sharedInstance];
+        [tripController logTheUserwithUserId:userId andSessionToken:sessionToken andSaveUserData:YES];
+        
         NSLog(@"Login successful!");
     }
     else{
