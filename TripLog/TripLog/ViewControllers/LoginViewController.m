@@ -24,9 +24,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Set status bar white color
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    // Set navigation bar hidden without animation for the first load of the view
+    [[self navigationController] setNavigationBarHidden:YES animated:NO];
+    
     // Set transparancy of the main containers
     self.loginView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6f];
+    self.loginView.layer.cornerRadius = 5;
     self.passwordView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6f];
+    self.passwordView.layer.cornerRadius = 5;
 
     
     // Set transparancy of the text fields
@@ -43,7 +51,6 @@
     
     
     [[TripLogWebServiceController sharedInstance] setDelegate:self];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,21 +58,37 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)viewDidAppear:(BOOL)animated{
+    // Set navigation bar hidden animation
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
-*/
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    // Keyboard becomes visible
+    self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x,
+                                  self.scrollView.frame.origin.y,
+                                  self.scrollView.frame.size.width, 50);   //resize
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    // Keyboard will hide
+    self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x,
+                                  self.scrollView.frame.origin.y,
+                                  self.scrollView.frame.size.width,
+                                  self.scrollView.frame.size.height + 215 - 50); //resize
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.textFieldUsername || textField == self.textFieldPassword) {
+        [textField resignFirstResponder];
+    }
+    
+    return NO;
+}
+
 - (IBAction)userDidTabOnButton:(id)sender {
     if ([(UIButton*)sender isEqual: self.buttonSignIn]) {
         [[TripLogWebServiceController sharedInstance] sendSignInRequestToParseWithUsername:self.textFieldUsername.text andPassword:self.textFieldPassword.text];
-    }
-    else{
-        NSLog(@"b");
     }
 }
 

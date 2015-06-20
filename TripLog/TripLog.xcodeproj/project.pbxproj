@@ -43,6 +43,7 @@
 		AE9DBC3E1B319E2B00F59AE1 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = AE9DBC3D1B319E2B00F59AE1 /* map.png */; };
 		AED4376F1B343C3000F7EB55 /* login-background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AED4376E1B343C3000F7EB55 /* login-background.jpg */; };
 		AEF843A61B25C099008F9359 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF843A51B25C099008F9359 /* RegisterViewController.m */; };
+		FB1B60321B35ADBE00DEC289 /* phone-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FB1B60311B35ADBE00DEC289 /* phone-icon.png */; };
 		FB1E06D31B22EB05001599C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E06D21B22EB05001599C7 /* main.m */; };
 		FB1E06D61B22EB05001599C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E06D51B22EB05001599C7 /* AppDelegate.m */; };
 		FB1E06D91B22EB05001599C7 /* TripLog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB1E06D71B22EB05001599C7 /* TripLog.xcdatamodeld */; };
@@ -138,6 +139,7 @@
 		AED4376E1B343C3000F7EB55 /* login-background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "login-background.jpg"; path = "TripLog/Images.xcassets/login-background.jpg"; sourceTree = SOURCE_ROOT; };
 		AEF843A41B25C099008F9359 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		AEF843A51B25C099008F9359 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		FB1B60311B35ADBE00DEC289 /* phone-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone-icon.png"; sourceTree = "<group>"; };
 		FB1E06CD1B22EB05001599C7 /* TripLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB1E06D11B22EB05001599C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB1E06D21B22EB05001599C7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				AE5DF7CC1B2AEEF600C7D3A4 /* page.png */,
 				AE5DF7CD1B2AEEF600C7D3A4 /* loading.png */,
 				FBC827DB1B345B6100282A55 /* username-icon.png */,
+				FB1B60311B35ADBE00DEC289 /* phone-icon.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				AED4376F1B343C3000F7EB55 /* login-background.jpg in Resources */,
 				AE9DBC3E1B319E2B00F59AE1 /* map.png in Resources */,
 				FB1E06E41B22EB06001599C7 /* LaunchScreen.xib in Resources */,
+				FB1B60321B35ADBE00DEC289 /* phone-icon.png in Resources */,
 				829632A61B344E4D0046BF99 /* half_selected_star@2x.png in Resources */,
 				829632A81B344E4D0046BF99 /* not_selected_star@2x.png in Resources */,
 				FF07C8D61B2BFA8A0064DF74 /* splashScreenImage2.jpg in Resources */,
