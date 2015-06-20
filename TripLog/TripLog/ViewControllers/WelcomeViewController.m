@@ -28,7 +28,7 @@
     TripLogController* tripController = [TripLogController sharedInstance];
     bool userIsLogged = [tripController tryLogWithSavedUserData];
     if(!userIsLogged){
-        UIViewController* viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        UIViewController* viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
         [self presentViewController:viewController animated:YES completion:nil];
     }
 }

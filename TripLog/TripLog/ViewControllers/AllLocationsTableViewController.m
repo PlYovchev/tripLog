@@ -112,6 +112,9 @@ static NSString *CellIdentifier = @"locationCell";
         cell = [[LocationsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    [cell.contentView.layer setBorderColor:[UIColor blackColor].CGColor];
+    [cell.contentView.layer setBorderWidth:2.0f];
+    
     return cell;
 }
 

@@ -17,6 +17,7 @@
         <attribute name="rating" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="tripDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tripId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tripImageData" optional="YES" transient="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TripComment" inverseName="trip" inverseEntity="TripComment" syncable="YES"/>
         <relationship name="creator" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="tripsCreated" inverseEntity="User" syncable="YES"/>
         <relationship name="toDoList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ToDoItem" inverseName="trip" inverseEntity="ToDoItem" syncable="YES"/>
@@ -40,7 +41,7 @@
     </entity>
     <elements>
         <element name="ToDoItem" positionX="-27" positionY="108" width="128" height="105"/>
-        <element name="Trip" positionX="-63" positionY="-18" width="128" height="255"/>
+        <element name="Trip" positionX="-63" positionY="-18" width="128" height="270"/>
         <element name="TripComment" positionX="-36" positionY="81" width="128" height="120"/>
         <element name="User" positionX="-54" positionY="54" width="128" height="150"/>
     </elements>

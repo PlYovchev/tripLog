@@ -72,6 +72,7 @@
         NSString * urlString = _trip.imageUrl;
         NSData * imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
         UIImage * image = [UIImage imageWithData:imageData];
+        _trip.tripImageData = imageData;
         dispatch_async(dispatch_get_main_queue(), ^{
             self.tripImageView.image=image;
             [indicator stopAnimating];

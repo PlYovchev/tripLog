@@ -8,10 +8,14 @@
 
 #import "LocationDetailsViewController.h"
 #import "ASStarRatingView.h"
+#import "TripLogController.h"
 
 @interface LocationDetailsViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *tripImageView;
 @property (weak, nonatomic) IBOutlet ASStarRatingView *ratingView;
+@property (weak, nonatomic) IBOutlet UITextView *tripInfoTextView;
+@property (weak, nonatomic) IBOutlet UILabel *tripAuthorLabel;
 
 @end
 
@@ -19,11 +23,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    TripLogController* tripController = [TripLogController sharedInstance];
+    Trip* trip = tripController.selectedTrip;
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
+    label.backgroundColor = [UIColor clearColor];
+    label.numberOfLines = 2;
+    label.font = [UIFont boldSystemFontOfSize: 17.0f];
+    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor whiteColor];
+    label.text = [NSString stringWithFormat:@"%@",trip.name];
+    
+    self.navigationItem.titleView = label;
+    
     self.ratingView.canEdit = YES;
-    self.ratingView.maxRating = 8;
-    self.ratingView.minAllowedRating = 4;
-    self.ratingView.maxAllowedRating = 6;
-    self.ratingView.rating = 5;
+    self.ratingView.maxRating = 10;
+    self.ratingView.minAllowedRating = 1;
+    self.ratingView.maxAllowedRating = 10;
+    self.ratingView.rating = [trip.rating integerValue];
+    [self.ratingView setUserInteractionEnabled:NO];
+    
+    self.tripAuthorLabel.text = [NSString stringWithFormat:@"Created by %@",trip.creator.username];
+    self.tripAuthorLabel.numberOfLines = 2;
+    self.tripInfoTextView.text = trip.tripDescription;
+    self.tripImageView.image = [UIImage imageWithData:trip.tripImageData];
 }
 
 - (void)didReceiveMemoryWarning {

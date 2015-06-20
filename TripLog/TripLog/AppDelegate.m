@@ -21,22 +21,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
-        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
-    }
-    
-    [[TripLogController sharedInstance] fetchTrips];
-    
-    TripLogController* controller = [TripLogController sharedInstance];
-    [controller fetchTrips];
-    
-    [TripLogLocationController sharedInstance];
-    
-    UILocalNotification *localNotif =
-    [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    if (localNotif) {
-        NSLog(@"Recieved Notification %@",localNotif);
-    }
+//    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
+//        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+//    }
+//    
+//    [[TripLogController sharedInstance] fetchTrips];
+//    
+//    TripLogController* controller = [TripLogController sharedInstance];
+//    [controller fetchTrips];
+//    
+//    [TripLogLocationController sharedInstance];
+//    
+//    UILocalNotification *localNotif =
+//    [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+//    if (localNotif) {
+//        NSLog(@"Recieved Notification %@",localNotif);
+//    }
     
     return YES;
 }

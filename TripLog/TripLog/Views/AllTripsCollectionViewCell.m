@@ -8,6 +8,7 @@
 
 #import "AllTripsCollectionViewCell.h"
 @interface AllTripsCollectionViewCell()
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *labelTripName;
 @property (weak, nonatomic) IBOutlet UILabel *labelTripLocation;
