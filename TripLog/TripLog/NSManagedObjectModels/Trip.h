@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSString * country;
 @property (nonatomic, retain) NSString * imageUrl;
 @property (nonatomic, retain) NSNumber * isPrivate;
+@property (nonatomic, retain) NSNumber * isSynchronized;
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSString * name;
@@ -24,7 +25,7 @@
 @property (nonatomic, retain) NSString * tripDescription;
 @property (nonatomic, retain) NSString * tripId;
 @property (nonatomic, retain) NSData * tripImageData;
-@property (nonatomic, retain) NSNumber * isSynchronized;
+@property (nonatomic, retain) NSNumber * isObserved;
 @property (nonatomic, retain) NSSet *comments;
 @property (nonatomic, retain) User *creator;
 @property (nonatomic, retain) NSSet *toDoList;

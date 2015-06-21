@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -188,15 +188,18 @@
                                     <constraint firstAttribute="width" constant="218" id="s8R-Xz-cCb"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by creator" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBd-QN-fUc">
+                                <rect key="frame" x="518" y="251" width="66" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0j3-mx-UQ2">
                                 <rect key="frame" x="0.0" y="281" width="600" height="319"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUA-pw-YKL">
-                                        <rect key="frame" x="520" y="43" width="65" height="30"/>
+                                        <rect key="frame" x="480" y="75" width="105" height="30"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="65" id="76x-C9-dQo"/>
-                                        </constraints>
                                         <color key="tintColor" red="0.56489514200000002" green="1" blue="0.98924280210000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="ToDoList">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -206,22 +209,29 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jy-YQ-WeD">
-                                        <rect key="frame" x="510" y="78" width="75" height="30"/>
+                                        <rect key="frame" x="480" y="120" width="105" height="30"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="75" id="Jvv-Vo-ezT"/>
+                                            <constraint firstAttribute="width" constant="105" id="Jvv-Vo-ezT"/>
                                         </constraints>
                                         <color key="tintColor" red="0.56489514200000002" green="1" blue="0.98924280210000004" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Notify me!">
+                                        <state key="normal" title="Dont observe!">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="notificationButton_tapped:" destination="fOM-Vz-8na" eventType="touchUpInside" id="efS-Fe-jMr"/>
+                                        </connections>
                                     </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RsP-Tk-0Mb">
+                                        <rect key="frame" x="0.0" y="0.0" width="477" height="319"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4k-t8-3vl">
-                                        <rect key="frame" x="531" y="8" width="54" height="30"/>
+                                        <rect key="frame" x="480" y="30" width="105" height="30"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="54" id="UfE-cd-eO9"/>
-                                        </constraints>
                                         <color key="tintColor" red="0.56489514200000002" green="1" blue="0.98924280210000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Gallery">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -230,34 +240,23 @@
                                             <segue destination="0XG-x1-LtE" kind="show" identifier="gallerySegue" id="aO0-G5-Nvb"/>
                                         </connections>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RsP-Tk-0Mb">
-                                        <rect key="frame" x="0.0" y="0.0" width="504" height="319"/>
-                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="RsP-Tk-0Mb" firstAttribute="top" secondItem="0j3-mx-UQ2" secondAttribute="top" id="1ZG-Cs-iZq"/>
                                     <constraint firstItem="bUA-pw-YKL" firstAttribute="trailing" secondItem="f4k-t8-3vl" secondAttribute="trailing" id="1jh-ry-Rr5"/>
                                     <constraint firstItem="0jy-YQ-WeD" firstAttribute="trailing" secondItem="bUA-pw-YKL" secondAttribute="trailing" id="35Y-65-ZZm"/>
-                                    <constraint firstItem="bUA-pw-YKL" firstAttribute="top" secondItem="f4k-t8-3vl" secondAttribute="bottom" constant="5" id="Gc0-as-DJY"/>
-                                    <constraint firstItem="0jy-YQ-WeD" firstAttribute="leading" secondItem="RsP-Tk-0Mb" secondAttribute="trailing" constant="6" id="Ie4-wI-RTq"/>
+                                    <constraint firstItem="0jy-YQ-WeD" firstAttribute="width" secondItem="bUA-pw-YKL" secondAttribute="width" id="Dsy-YU-68s"/>
+                                    <constraint firstItem="bUA-pw-YKL" firstAttribute="top" secondItem="f4k-t8-3vl" secondAttribute="bottom" constant="15" id="Gc0-as-DJY"/>
+                                    <constraint firstItem="0jy-YQ-WeD" firstAttribute="leading" secondItem="RsP-Tk-0Mb" secondAttribute="trailing" constant="3" id="Ie4-wI-RTq"/>
                                     <constraint firstAttribute="bottom" secondItem="RsP-Tk-0Mb" secondAttribute="bottom" id="PA0-41-qZY"/>
+                                    <constraint firstItem="0jy-YQ-WeD" firstAttribute="width" secondItem="f4k-t8-3vl" secondAttribute="width" id="VKu-jE-HNY"/>
                                     <constraint firstAttribute="trailing" secondItem="f4k-t8-3vl" secondAttribute="trailing" constant="15" id="YIw-xi-Apd"/>
-                                    <constraint firstItem="0jy-YQ-WeD" firstAttribute="top" secondItem="bUA-pw-YKL" secondAttribute="bottom" constant="5" id="fVQ-Fb-x2f"/>
-                                    <constraint firstItem="f4k-t8-3vl" firstAttribute="top" secondItem="0j3-mx-UQ2" secondAttribute="top" constant="8" id="vdp-5s-a8Q"/>
+                                    <constraint firstItem="0jy-YQ-WeD" firstAttribute="top" secondItem="bUA-pw-YKL" secondAttribute="bottom" constant="15" id="fVQ-Fb-x2f"/>
+                                    <constraint firstItem="f4k-t8-3vl" firstAttribute="top" secondItem="0j3-mx-UQ2" secondAttribute="top" constant="30" id="vdp-5s-a8Q"/>
                                     <constraint firstItem="RsP-Tk-0Mb" firstAttribute="leading" secondItem="0j3-mx-UQ2" secondAttribute="leading" id="vie-ii-2cj"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by creator" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBd-QN-fUc">
-                                <rect key="frame" x="518" y="251" width="66" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.90070628159999999" green="0.90070628159999999" blue="0.90070628159999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -277,6 +276,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="notificationButton" destination="0jy-YQ-WeD" id="pHw-fc-qHE"/>
                         <outlet property="ratingView" destination="rFx-RK-97V" id="KH5-Eg-b8v"/>
                         <outlet property="tripAuthorLabel" destination="mBd-QN-fUc" id="EGi-hj-eJP"/>
                         <outlet property="tripImageView" destination="yH4-OW-bX2" id="RA2-Ox-ODL"/>

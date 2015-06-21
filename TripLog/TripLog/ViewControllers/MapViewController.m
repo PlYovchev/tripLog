@@ -13,6 +13,7 @@
 #import "Trip.h"
 #import "TripAnnotation.h"
 #import "TripLogLocationController.h"
+#import "TripLogController.h"
 #import "AddLocationTableViewController.h"
 
 #define SPAN_LATITUDE_DELTA 0.0395
@@ -45,6 +46,9 @@
     lpgr.minimumPressDuration = .5; //seconds
     lpgr.delegate = self;
     [self.mapView addGestureRecognizer:lpgr];
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(placePinsInRadius:) name:NSManagedObjectContextDidSaveNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -52,6 +56,19 @@
     
     [self placePinsInRadius:0];
     [self setMapViewInitialZoomLevel];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [self removeManagedObjectContextSaveNotificationObserver];
+}
+
+-(void)dealloc{
+    [self removeManagedObjectContextSaveNotificationObserver];
+}
+
+-(void)removeManagedObjectContextSaveNotificationObserver{
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
 }
 
 -(void)setMapViewInitialZoomLevel{
@@ -65,6 +82,8 @@
 }
 
 -(void)placePinsInRadius:(CGFloat)radius{
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    
     TripLogCoreDataController* dataController = [TripLogCoreDataController sharedInstance];
     NSArray* trips = [dataController trips];
     for (Trip* trip in trips) {
@@ -101,17 +120,22 @@
         TripAnnotation* tripAnnotation = (TripAnnotation*)annotation;
         
         TripLogCoreDataController* dataController = [TripLogCoreDataController sharedInstance];
-        NSArray* tripsWithId = [dataController tripsWithId:tripAnnotation.tripId];
+        NSArray* tripsWithId = [dataController tripsWithId:tripAnnotation.tripId inContext:dataController.mainManagedObjectContext];
         if([tripsWithId count] == 0){
             return;
         }
         
         Trip* trip = [tripsWithId objectAtIndex:0];
-        TripLogLocationController* locationController = [TripLogLocationController sharedInstance];
-        [locationController stopMonitorTripLocation:trip];
+        TripLogController* tripManager = [TripLogController sharedInstance];
+        tripManager.selectedTrip = trip;
+        UIViewController *detailsController = [self.storyboard instantiateViewControllerWithIdentifier:@"locationDetailsVC"];
+        [self.navigationController pushViewController:detailsController animated:YES];
         
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Observe!" message:@"Notification started!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: nil];
-        [alertView show];
+//        TripLogLocationController* locationController = [TripLogLocationController sharedInstance];
+//        [locationController stopMonitorTripLocation:trip];
+//        
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Observe!" message:@"Notification started!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: nil];
+//        [alertView show];
     }
 }
 
@@ -175,8 +199,6 @@
     [alertController addAction:okAction];
     [alertController addAction:cancelAction];
     [self presentViewController:alertController animated:YES completion:nil];
-    
-    
 }
 
 @end

@@ -18,6 +18,7 @@
 @dynamic country;
 @dynamic imageUrl;
 @dynamic isPrivate;
+@dynamic isSynchronized;
 @dynamic latitude;
 @dynamic longitude;
 @dynamic name;
@@ -25,7 +26,7 @@
 @dynamic tripDescription;
 @dynamic tripId;
 @dynamic tripImageData;
-@dynamic isSynchronized;
+@dynamic isObserved;
 @dynamic comments;
 @dynamic creator;
 @dynamic toDoList;

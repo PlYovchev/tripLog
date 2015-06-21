@@ -9,6 +9,7 @@
 #import "ToDoTableViewCell.h"
 #import "TripLogCoreDataController.h"
 #import "ToDoItem+DictionaryInitializator.h"
+#import "TripLogController.h"
 
 @interface ToDoTableViewCell ()
 
@@ -28,14 +29,15 @@
 
     // Configure the view for the selected state
 }
+
 - (IBAction)stateButtonTapped:(id)sender {
     NSDictionary* toDoItemProp = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  self.toDoItem.task, TO_DO_TASK_KEY,
+                                  [NSString stringWithString:self.toDoItem.task], TO_DO_TASK_KEY,
                                   [NSNumber numberWithBool:![self.toDoItem.isDone boolValue]], TO_DO_IS_DONE_KEY,
-                                  self.toDoItem.user.userId, TO_DO_USER_ID_KEY,
-                                  self.toDoItem.trip.tripId, TO_DO_TRIP_ID_KEY,
-                                  self.toDoItem.toDoItemId, TO_DO_ITEM_ID_KEY,
-                                  self.toDoItem.isSynchronized, TO_DO_IS_SYNCHRONIZED_KEY,
+                                  [NSString stringWithString:self.toDoItem.user.userId], TO_DO_USER_ID_KEY,
+                                  [NSString stringWithString:self.toDoItem.trip.tripId], TO_DO_TRIP_ID_KEY,
+                                  [NSString stringWithString:self.toDoItem.toDoItemId], TO_DO_ITEM_ID_KEY,
+                                  [NSNumber numberWithBool:[self.toDoItem.isSynchronized boolValue]], TO_DO_IS_SYNCHRONIZED_KEY,
                                   nil];
     
     TripLogCoreDataController* dataController = [TripLogCoreDataController sharedInstance];

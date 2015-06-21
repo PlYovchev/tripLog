@@ -105,7 +105,6 @@ static NSString *CellIdentifier = @"locationCell";
         Trip *currentTrip = [tripCDManager.fetchedResultsController objectAtIndexPath:indexPath];
         if([cell isMemberOfClass:[LocationsTableViewCell class]]){
             [cell setCellforTrip:currentTrip];
-            
         }
     }
     
@@ -127,22 +126,22 @@ static NSString *CellIdentifier = @"locationCell";
     UITableView *tableView = self.tableView;
     switch(type) {
         case NSFetchedResultsChangeInsert:
-            //            [collectionView reloadData];
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:NO];
+            [tableView reloadData];
             break;
+            
         case NSFetchedResultsChangeDelete:
-            //           [collectionView reloadData];
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:NO];
+            [tableView reloadData];
             break;
+            
         case NSFetchedResultsChangeUpdate:
             [tableView cellForRowAtIndexPath:indexPath];
             break;
+            
         case NSFetchedResultsChangeMove:
-            //            [collectionView reloadData];
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:NO];
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:NO];
+            [tableView reloadData];
             break;
     }
+
 }
 
 

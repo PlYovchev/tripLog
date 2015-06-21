@@ -43,7 +43,7 @@ static TripLogCoreDataController* coreDataController;
         if(self){
             coreDataController = self;
             NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-            [notificationCenter addObserver:self selector:@selector(handleSaveNotification) name:NSManagedObjectContextDidSaveNotification object:nil];
+            [notificationCenter addObserver:self selector:@selector(handleSaveNotification:) name:NSManagedObjectContextDidSaveNotification object:nil];
             _searchCriteria = [NSMutableDictionary dictionary];
         }
     }
@@ -57,25 +57,27 @@ static TripLogCoreDataController* coreDataController;
     [notificationCenter removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
 }
 
--(void)handleSaveNotification{
-    [self.mainManagedObjectContext performBlock:^{
-        [self.mainManagedObjectContext save:nil];
-        
-        [self.parentManagedObjectContext performBlock:^{
-            [self saveContext];
+-(void)handleSaveNotification:(NSNotification *)notification{
+    NSManagedObjectContext* context = [notification object];
+    if(context.parentContext){
+        [context.parentContext performBlock:^{
+            [context.parentContext save:nil];
         }];
-    }];
+    }
 }
 
 -(NSArray*)usersWithId:(NSString*)userId inContext:(NSManagedObjectContext*)context{
-    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
-    request.predicate = [NSPredicate predicateWithFormat:@"userId = %@",userId];
-    NSSortDescriptor* sortByQuantity = [NSSortDescriptor
+    NSMutableArray *entries = [NSMutableArray array];
+    [context performBlockAndWait:^{
+        NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
+        request.predicate = [NSPredicate predicateWithFormat:@"userId = %@",userId];
+        NSSortDescriptor* sortByQuantity = [NSSortDescriptor
                                         sortDescriptorWithKey:@"userId" ascending:YES];
-    request.sortDescriptors = [NSArray arrayWithObject:sortByQuantity];
-    NSError *error;
-    NSArray *entries = [context executeFetchRequest:request error:&error];
-    
+        request.sortDescriptors = [NSArray arrayWithObject:sortByQuantity];
+        NSError *error;
+        [entries addObjectsFromArray:[context executeFetchRequest:request error:&error]];
+    }];
+     
     return entries;
 }
 
@@ -120,13 +122,16 @@ static TripLogCoreDataController* coreDataController;
 }
 
 -(NSArray*)tripsWithId:(NSString*)tripId inContext:(NSManagedObjectContext*)context{
-    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Trip"];
-    request.predicate = [NSPredicate predicateWithFormat:@"tripId = %@",tripId];
-    NSSortDescriptor* sortByQuantity = [NSSortDescriptor
-                                        sortDescriptorWithKey:@"rating" ascending:NO];
-    request.sortDescriptors = [NSArray arrayWithObject:sortByQuantity];
-    NSError *error;
-    NSArray *entries = [context executeFetchRequest:request error:&error];
+    NSMutableArray *entries = [NSMutableArray array];
+    [context performBlockAndWait:^{
+        NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Trip"];
+        request.predicate = [NSPredicate predicateWithFormat:@"tripId = %@",tripId];
+        NSSortDescriptor* sortByQuantity = [NSSortDescriptor
+                                            sortDescriptorWithKey:@"rating" ascending:NO];
+        request.sortDescriptors = [NSArray arrayWithObject:sortByQuantity];
+        NSError *error;
+        [entries addObjectsFromArray:[context executeFetchRequest:request error:&error]];
+    }];
     
     return entries;
 }
@@ -140,14 +145,16 @@ static TripLogCoreDataController* coreDataController;
 
 -(void)addTrip:(NSDictionary*)tripProperties{
     NSManagedObjectContext* context = self.workerManagedObjectContext;
-    Trip* trip = [NSEntityDescription insertNewObjectForEntityForName:@"Trip" inManagedObjectContext:context];
-    
-    NSDictionary* userInfo = [tripProperties objectForKey:@"User"];
-    User* creator = [coreDataController userWithUserId:[userInfo objectForKey:ID_KEY] initInContenxt:context];
-    
-    [trip setValuesForKeysWithTripDictionary:tripProperties andCreator:creator];
-    
-    [context save:nil];
+    [context performBlock:^{
+        Trip* trip = [NSEntityDescription insertNewObjectForEntityForName:@"Trip" inManagedObjectContext:context];
+        
+        NSDictionary* userInfo = [tripProperties objectForKey:@"User"];
+        User* creator = [coreDataController userWithUserId:[userInfo objectForKey:ID_KEY] initInContenxt:context];
+        
+        [trip setValuesForKeysWithTripDictionary:tripProperties andCreator:creator];
+        
+        [context save:nil];
+    }];
 }
 
 -(void)addTripsFromArray:(NSArray*)trips{
@@ -160,17 +167,25 @@ static TripLogCoreDataController* coreDataController;
 
 -(void)addToDoItem:(NSDictionary*)toDoItemProperties{
     NSManagedObjectContext* context = self.workerManagedObjectContext;
-    ToDoItem* toDoItem = [NSEntityDescription insertNewObjectForEntityForName:@"ToDoItem" inManagedObjectContext:context];
+    [context performBlock:^{
+        ToDoItem* toDoItem = [NSEntityDescription insertNewObjectForEntityForName:@"ToDoItem" inManagedObjectContext:context];
+        
+        NSString* userId = [toDoItemProperties objectForKey:TO_DO_USER_ID_KEY];
+        NSString* tripId = [toDoItemProperties objectForKey:TO_DO_TRIP_ID_KEY];
     
-    NSString* userId = [toDoItemProperties objectForKey:TO_DO_USER_ID_KEY];
-    NSString* tripId = [toDoItemProperties objectForKey:TO_DO_TRIP_ID_KEY];
+        User* user = [self userWithUserId:userId initInContenxt:context];
+        Trip* trip = [[self tripsWithId:tripId inContext:context] firstObject];
     
-    User* user = [self userWithUserId:userId initInContenxt:context];
-    Trip* trip = [[self tripsWithId:tripId inContext:context] firstObject];
+        [toDoItem setValuesForKeysWithToDoItemDictionary:toDoItemProperties andUser:user andTrip:trip];
     
-    [toDoItem setValuesForKeysWithToDoItemDictionary:toDoItemProperties andUser:user andTrip:trip];
-    
-    [context save:nil];
+        NSError *error = nil;
+        if (![context save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }];
 }
 
 #pragma mark - Core Data stack
@@ -332,6 +347,5 @@ static TripLogCoreDataController* coreDataController;
     
     return _toDoListFetchedResultsController;
 }
-
 
 @end

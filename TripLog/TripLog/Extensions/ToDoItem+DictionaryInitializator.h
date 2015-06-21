@@ -7,6 +7,8 @@
 //
 
 #import "ToDoItem.h"
+#import "Trip.h"
+#import "User.h"
 
 #define TO_DO_TASK_KEY @"toDoTask"
 #define TO_DO_IS_DONE_KEY @"toDoIsDone"

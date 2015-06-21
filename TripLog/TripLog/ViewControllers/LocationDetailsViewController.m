@@ -9,6 +9,8 @@
 #import "LocationDetailsViewController.h"
 #import "ASStarRatingView.h"
 #import "TripLogController.h"
+#import "TripLogCoreDataController.h"
+#import "TripLogLocationController.h"
 
 @interface LocationDetailsViewController ()
 
@@ -16,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet ASStarRatingView *ratingView;
 @property (weak, nonatomic) IBOutlet UITextView *tripInfoTextView;
 @property (weak, nonatomic) IBOutlet UILabel *tripAuthorLabel;
+@property (weak, nonatomic) IBOutlet UIButton *notificationButton;
 
 @end
 
@@ -49,11 +52,42 @@
     self.tripAuthorLabel.numberOfLines = 2;
     self.tripInfoTextView.text = trip.tripDescription;
     self.tripImageView.image = [UIImage imageWithData:trip.tripImageData];
+    
+    [self setNotificationButtonTitleByObserveState];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)setNotificationButtonTitleByObserveState{
+    TripLogController* tripController = [TripLogController sharedInstance];
+    Trip* trip = tripController.selectedTrip;
+    
+    if(![trip.isObserved boolValue]){
+        [self.notificationButton setTitle:@"Notify me!" forState:UIControlStateNormal];
+    }
+    else{
+        [self.notificationButton setTitle:@"Dont observe!" forState:UIControlStateNormal];
+    }
+}
+
+- (IBAction)notificationButton_tapped:(id)sender {
+    TripLogLocationController* locationController = [TripLogLocationController sharedInstance];
+    TripLogController* tripController = [TripLogController sharedInstance];
+    Trip* trip = tripController.selectedTrip;
+    
+    if(![trip.isObserved boolValue]){
+        [locationController startMonitorTripLocation:trip];
+        trip.isObserved = @(YES);
+    }
+    else{
+        [locationController stopMonitorTripLocation:trip];
+        trip.isObserved = @(NO);
+    }
+    
+    [self setNotificationButtonTitleByObserveState];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

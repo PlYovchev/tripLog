@@ -67,6 +67,7 @@ static NSOperationQueue *sharedQueue;
 -(void)saveTrip:(NSDictionary*)tripProperties{
     TripLogCoreDataController* dataController = [TripLogCoreDataController sharedInstance];
     [dataController addTrip:tripProperties];
+    
 }
 
 -(bool)tryLogWithSavedUserData{
