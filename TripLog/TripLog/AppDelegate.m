@@ -29,6 +29,8 @@
     }
     
     [TripLogLocationController sharedInstance];
+    [[TripLogController sharedInstance] fetchTrips];
+    
     
     UILocalNotification *localNotif =
     [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];

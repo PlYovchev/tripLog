@@ -100,6 +100,8 @@
         TripLogController* tripController = [TripLogController sharedInstance];
         [tripController logTheUserwithUserId:userId andSessionToken:sessionToken andSaveUserData:YES];
         
+        [self performSegueWithIdentifier:@"loginSuccessfulSegue" sender:self];
+        
         NSLog(@"Login successful!");
     }
     else{

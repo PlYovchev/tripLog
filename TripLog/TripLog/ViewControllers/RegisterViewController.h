@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "TripLogWebServiceController.h"
 
-@interface RegisterViewController : UIViewController
+@interface RegisterViewController : UIViewController <TripLogWebServiceControllerSignUpDelegate>
 
 @end

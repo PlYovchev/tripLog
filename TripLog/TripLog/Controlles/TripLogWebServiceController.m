@@ -103,7 +103,7 @@ static TripLogWebServiceController* webController;
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
          if (!data) {
-             [self.delegate userDidSignUpSuccessfully:NO];
+             [self.signUpDelegate userDidSignUpSuccessfully:NO];
              return;
          }
          
@@ -112,11 +112,11 @@ static TripLogWebServiceController* webController;
          
          if ([httpResponse statusCode] == 201) {
              NSLog(@"Registration successful!");
-             [self.delegate userDidSignUpSuccessfully:YES];
+             [self.signUpDelegate userDidSignUpSuccessfully:YES];
          }
          else{
              NSLog(@"Registration failed!");
-             [self.delegate userDidSignUpSuccessfully:NO];
+             [self.signUpDelegate userDidSignUpSuccessfully:NO];
          }
      }];
 }
