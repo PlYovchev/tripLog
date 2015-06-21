@@ -8,6 +8,7 @@
 
 #import "TripLogCoreDataController.h"
 #import "Trip+DictionaryInitializator.h"
+#import "ToDoItem+DictionaryInitializator.h"
 #import "User+DictionaryInitializator.h"
 #import "TripLogWebServiceController.h"
 #import "TripLogController.h"
@@ -161,18 +162,13 @@ static TripLogCoreDataController* coreDataController;
     NSManagedObjectContext* context = self.workerManagedObjectContext;
     ToDoItem* toDoItem = [NSEntityDescription insertNewObjectForEntityForName:@"ToDoItem" inManagedObjectContext:context];
     
-    NSString* task = [toDoItemProperties objectForKey:TO_DO_TASK_KEY];
-    NSNumber* isDone = [toDoItemProperties objectForKey:TO_DO_IS_DONE_KEY];
     NSString* userId = [toDoItemProperties objectForKey:TO_DO_USER_ID_KEY];
     NSString* tripId = [toDoItemProperties objectForKey:TO_DO_TRIP_ID_KEY];
     
     User* user = [self userWithUserId:userId initInContenxt:context];
     Trip* trip = [[self tripsWithId:tripId inContext:context] firstObject];
     
-    toDoItem.task = task;
-    toDoItem.isDone = isDone;
-    toDoItem.user = user;
-    toDoItem.trip = trip;
+    [toDoItem setValuesForKeysWithToDoItemDictionary:toDoItemProperties andUser:user andTrip:trip];
     
     [context save:nil];
 }

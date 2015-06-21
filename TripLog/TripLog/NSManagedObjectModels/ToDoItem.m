@@ -13,9 +13,10 @@
 
 @implementation ToDoItem
 
+@dynamic isDone;
 @dynamic task;
 @dynamic toDoItemId;
-@dynamic isDone;
+@dynamic isSynchronized;
 @dynamic trip;
 @dynamic user;
 

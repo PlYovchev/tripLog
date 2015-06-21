@@ -12,10 +12,7 @@
 #import "Trip.h"
 #import "ToDoItem.h"
 
-#define TO_DO_TASK_KEY @"toDoTask"
-#define TO_DO_IS_DONE_KEY @"toDoIsDone"
-#define TO_DO_USER_ID_KEY @"userId"
-#define TO_DO_TRIP_ID_KEY @"tripId"
+
 
 @interface TripLogCoreDataController : NSObject
 

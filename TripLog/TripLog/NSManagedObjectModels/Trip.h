@@ -2,7 +2,7 @@
 //  Trip.h
 //  TripLog
 //
-//  Created by plt3ch on 6/20/15.
+//  Created by plt3ch on 6/21/15.
 //  Copyright (c) 2015 triOS. All rights reserved.
 //
 
@@ -24,6 +24,7 @@
 @property (nonatomic, retain) NSString * tripDescription;
 @property (nonatomic, retain) NSString * tripId;
 @property (nonatomic, retain) NSData * tripImageData;
+@property (nonatomic, retain) NSNumber * isSynchronized;
 @property (nonatomic, retain) NSSet *comments;
 @property (nonatomic, retain) User *creator;
 @property (nonatomic, retain) NSSet *toDoList;

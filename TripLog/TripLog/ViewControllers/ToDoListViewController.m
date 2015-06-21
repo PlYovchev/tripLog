@@ -12,6 +12,7 @@
 #import "TripLogController.h"
 #import "ToDoTableViewCell.h"
 #import "NSString+Validation.h"
+#import "ToDoItem+DictionaryInitializator.h"
 
 #define TO_DO_ITEM_CELL @"ToDoTableViewCell"
 
@@ -80,17 +81,22 @@
         
         return;
     }
+    
     TripLogController* tripController = [TripLogController sharedInstance];
     
     NSString* task = self.toDoTextView.text;
     NSNumber* isDone = [NSNumber numberWithBool:NO];
     User* user = tripController.loggedUser;
     Trip* trip = tripController.selectedTrip;
+    NSString* toDoItemId = [[NSUUID UUID] UUIDString];
     
-    NSDictionary* toDoItemProp = [NSDictionary dictionaryWithObjectsAndKeys:task, TO_DO_TASK_KEY,
+    NSDictionary* toDoItemProp = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  task, TO_DO_TASK_KEY,
                                   isDone, TO_DO_IS_DONE_KEY,
                                   user.userId, TO_DO_USER_ID_KEY,
                                   trip.tripId, TO_DO_TRIP_ID_KEY,
+                                  toDoItemId, TO_DO_ITEM_ID_KEY,
+                                  @(NO), TO_DO_IS_SYNCHRONIZED_KEY,
                                   nil];
     
     TripLogCoreDataController* dataController = [TripLogCoreDataController sharedInstance];

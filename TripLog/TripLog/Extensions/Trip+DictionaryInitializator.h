@@ -21,6 +21,7 @@
 #define CREATOR_KEY @"User"
 #define IMAGE_URL_KEY @"imageUrl"
 #define IS_PRIVATE_KEY @"IsPrivate"
+#define IS_SYNCHRONIZED_KEY @"isSynchronized"
 
 @interface Trip (DictionaryInitializator)
 

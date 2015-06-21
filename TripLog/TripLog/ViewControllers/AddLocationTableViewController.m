@@ -57,6 +57,7 @@
         return;
     }
     
+    NSString* tripId = [[NSUUID UUID] UUIDString];
     NSString* tripName = self.nameTextField.text;
     NSString* tripCity = self.cityTextField.text;
     NSString* tripCountry = self.countryTextField.text;
@@ -66,11 +67,13 @@
     NSNumber* tripLongitude = [NSNumber numberWithDouble:self.selectedLocationCoordinates.longitude];
     
     NSMutableDictionary* tripProperties = [NSMutableDictionary dictionary];
+    [tripProperties setObject:tripId forKey:ID_KEY];
     [tripProperties setObject:tripName forKey:NAME_KEY];
     [tripProperties setObject:tripCity forKey:CITY_KEY];
     [tripProperties setObject:tripCountry forKey:COUNTRY_KEY];
     [tripProperties setObject:isPrivate forKey:IS_PRIVATE_KEY];
     [tripProperties setObject:tripDescription forKey:DESCRIPTION_KEY];
+    [tripProperties setObject:@(NO) forKey:IS_SYNCHRONIZED_KEY];
     
     NSMutableDictionary* tripLocation = [NSMutableDictionary dictionary];
     [tripLocation setObject:tripLatitude forKey:LATITUDE_KEY];

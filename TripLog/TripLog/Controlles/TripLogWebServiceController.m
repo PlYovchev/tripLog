@@ -198,6 +198,8 @@ static TripLogWebServiceController* webController;
             NSMutableDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             NSArray* trips = [result objectForKey:@"results"];
             for (NSMutableDictionary* tripProperties in trips) {
+                [tripProperties setObject:@(YES) forKey:IS_SYNCHRONIZED_KEY];
+                
                 NSString* tripId = [tripProperties objectForKey:ID_KEY];
                 [self sendSyncGetRequestForSingleImageWithTripIdAndHighestRating:tripId andCompletitionHandler:^(NSDictionary *result) {
                     NSArray* images = [result objectForKey:@"results"];
