@@ -64,9 +64,9 @@
 		FB1E07181B22ED28001599C7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07171B22ED28001599C7 /* LoginViewController.m */; };
 		FB1E071B1B22ED3C001599C7 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E071A1B22ED3C001599C7 /* MapViewController.m */; };
 		FB1E071E1B22ED4F001599C7 /* MyTripLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E071D1B22ED4F001599C7 /* MyTripLogViewController.m */; };
-		FB1E07211B22ED5F001599C7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07201B22ED5F001599C7 /* SettingsViewController.m */; };
 		FB1E07241B22ED6A001599C7 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */; };
 		FBA563201B2DB60A0065A8D1 /* sunsetBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FBA5631F1B2DB60A0065A8D1 /* sunsetBackground.jpg */; };
+		FBC000DE1B37029B00108788 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC000DD1B37029B00108788 /* SettingsTableViewController.m */; };
 		FBC827DC1B345B6100282A55 /* username-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC827DB1B345B6100282A55 /* username-icon.png */; };
 		FBC827DE1B345E0900282A55 /* password-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FBC827DD1B345E0900282A55 /* password-icon.png */; };
 		FF07C8CB1B2BF4BA0064DF74 /* EASplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = FF07C8CA1B2BF4BA0064DF74 /* EASplashScreen.m */; };
@@ -182,11 +182,11 @@
 		FB1E071A1B22ED3C001599C7 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		FB1E071C1B22ED4F001599C7 /* MyTripLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTripLogViewController.h; sourceTree = "<group>"; };
 		FB1E071D1B22ED4F001599C7 /* MyTripLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTripLogViewController.m; sourceTree = "<group>"; };
-		FB1E071F1B22ED5F001599C7 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		FB1E07201B22ED5F001599C7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FB1E07221B22ED6A001599C7 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		FBA5631F1B2DB60A0065A8D1 /* sunsetBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sunsetBackground.jpg; sourceTree = "<group>"; };
+		FBC000DC1B37029B00108788 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
+		FBC000DD1B37029B00108788 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		FBC827DB1B345B6100282A55 /* username-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "username-icon.png"; sourceTree = "<group>"; };
 		FBC827DD1B345E0900282A55 /* password-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password-icon.png"; sourceTree = "<group>"; };
 		FF07C8C91B2BF4BA0064DF74 /* EASplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EASplashScreen.h; sourceTree = "<group>"; };
@@ -453,8 +453,6 @@
 				FB1E071A1B22ED3C001599C7 /* MapViewController.m */,
 				FB1E071C1B22ED4F001599C7 /* MyTripLogViewController.h */,
 				FB1E071D1B22ED4F001599C7 /* MyTripLogViewController.m */,
-				FB1E071F1B22ED5F001599C7 /* SettingsViewController.h */,
-				FB1E07201B22ED5F001599C7 /* SettingsViewController.m */,
 				FB1E07221B22ED6A001599C7 /* WelcomeViewController.h */,
 				FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */,
 				AEF843A41B25C099008F9359 /* RegisterViewController.h */,
@@ -467,6 +465,8 @@
 				FF9F8C761B30A4E6000F7891 /* AllTripsSearchViewController.m */,
 				82EE2FEA1B3645AB00DE3443 /* ToDoListViewController.h */,
 				82EE2FEB1B3645AB00DE3443 /* ToDoListViewController.m */,
+				FBC000DC1B37029B00108788 /* SettingsTableViewController.h */,
+				FBC000DD1B37029B00108788 /* SettingsTableViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -632,6 +632,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBC000DE1B37029B00108788 /* SettingsTableViewController.m in Sources */,
 				8202974B1B36E19300086530 /* Trip.m in Sources */,
 				FF9F8C771B30A4E6000F7891 /* AllTripsSearchViewController.m in Sources */,
 				82EE8A7F1B27163F00D0CEA8 /* Trip+DictionaryInitializator.m in Sources */,
@@ -672,7 +673,6 @@
 				FF07C8CB1B2BF4BA0064DF74 /* EASplashScreen.m in Sources */,
 				82EE2FEC1B3645AB00DE3443 /* ToDoListViewController.m in Sources */,
 				FB1E070C1B22EC87001599C7 /* AddLocationTableViewController.m in Sources */,
-				FB1E07211B22ED5F001599C7 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

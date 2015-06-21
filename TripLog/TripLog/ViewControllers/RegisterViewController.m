@@ -154,6 +154,13 @@
     if (isSuccessful) {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
+    else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *registerFailedAlert = [[UIAlertView alloc] initWithTitle:@"Register failed!" message:@"Please make sure that username, password or phone are correct!" delegate:self cancelButtonTitle:@"Try again" otherButtonTitles: nil];
+            
+            [registerFailedAlert show];
+        });
+    }
 }
 
 @end

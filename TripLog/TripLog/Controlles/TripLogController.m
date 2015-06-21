@@ -67,10 +67,20 @@ static NSOperationQueue *sharedQueue;
 -(void)saveTrip:(NSDictionary*)tripProperties{
     TripLogCoreDataController* dataController = [TripLogCoreDataController sharedInstance];
     [dataController addTrip:tripProperties];
+    
+    if ([[TripLogController sharedInstance] autoSubmitTripToServer]) {
+#warning set push request to Parse
+        // TODO:
+    }
 }
 
 -(bool)tryLogWithSavedUserData{
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if (![userDefaults boolForKey:IS_AUTO_LOGIN_ENABLED_KEY]) {
+        return NO;
+    }
+    
     BOOL hasSavedUserData = [userDefaults boolForKey:HAS_SAVED_USER_DATA_KEY];
     if(!hasSavedUserData){
         return NO;
