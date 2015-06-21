@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-   tripCDManager = [TripLogCoreDataController sharedInstance];
+    tripCDManager = [TripLogCoreDataController sharedInstance];
     self.tripNameTextField.text = [tripCDManager.searchCriteria objectForKey:@"name"];
     self.countryTextField.text = [tripCDManager.searchCriteria objectForKey:@"country"];
     self.cityTextField.text = [tripCDManager.searchCriteria objectForKey:@"city"];

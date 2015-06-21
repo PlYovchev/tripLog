@@ -27,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [[TripLogWebServiceController sharedInstance] setSignUpDelegate:self];
     [self setUILayoutStyles];
     
     // Add Register View Controller as observer to the default notification center to listen  for showing and hiding notifications of the keyboard
@@ -148,6 +148,12 @@
 
 - (IBAction)userDidTapSignUpButton:(id)sender {
     [[TripLogWebServiceController sharedInstance] sendSignUpRequestToParseWithUsername:self.textFieldUsername.text password:self.textFieldPassword.text andPhone:self.textFieldPhone.text];
+}
+
+-(void)userDidSignUpSuccessfully:(BOOL)isSuccessful{
+    if (isSuccessful) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 @end

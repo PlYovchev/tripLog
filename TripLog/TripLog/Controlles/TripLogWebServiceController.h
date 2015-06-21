@@ -11,11 +11,10 @@
 
 @protocol TripLogWebServiceControllerDelegate <NSObject>
 @optional
-// Sign In and Sign Up to Parse
+// Sign In
 -(void)userDidSignInSuccessfully:(BOOL)isSuccessful
                       withUserId:(NSString*)userId
                  andSessionToken:(NSString*)sessionToken;
--(void)userDidSignUpSuccessfully:(BOOL)isSuccessful;
 
 // Fetching or sending objects to Parse
 -(void)didRecieveDataSuccessfully: (NSData*)data;
@@ -25,10 +24,17 @@
 -(void)didNotPostTripSuccessfully;
 @end
 
+@protocol TripLogWebServiceControllerSignUpDelegate <NSObject>
+@optional
+// Sign Up
+-(void)userDidSignUpSuccessfully:(BOOL)isSuccessful;
+@end
+
 @interface TripLogWebServiceController : NSObject
 
 @property (nonatomic, strong) UserModel* loggedUser;
 @property id <TripLogWebServiceControllerDelegate> delegate;
+@property id <TripLogWebServiceControllerSignUpDelegate> signUpDelegate;
 @property (nonatomic, strong) NSMutableDictionary *imageURL;
 @property (nonatomic, strong) NSString *test;
 
