@@ -86,7 +86,7 @@ static NSOperationQueue *sharedQueue;
 
 -(void)logTheUserwithUserId:(NSString *)userId andSessionToken:(NSString *)sessionToken andSaveUserData:(BOOL)shouldSave{
     TripLogCoreDataController* dataController = [TripLogCoreDataController sharedInstance];
-    User* loggedUser = [dataController userWithUserId:userId];
+    User* loggedUser = [dataController userWithUserId:userId initInContenxt:dataController.mainManagedObjectContext];
     TripLogController* tripController = [TripLogController sharedInstance];
     tripController.loggedUser = loggedUser;
     tripController.currentSessionToken = sessionToken;
@@ -109,6 +109,8 @@ static NSOperationQueue *sharedQueue;
 
 -(void)presentTripTabBarViewController{
     if ([NSThread isMainThread]) {
+        [self fetchTrips];
+        
         UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UITabBarController* controller = [storyboard instantiateViewControllerWithIdentifier:@"TripTabViewController"];
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];

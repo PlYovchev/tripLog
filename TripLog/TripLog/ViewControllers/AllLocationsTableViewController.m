@@ -8,7 +8,7 @@
 
 #import "AllLocationsTableViewController.h"
 
-@interface AllLocationsTableViewController (){
+@interface AllLocationsTableViewController () <NSFetchedResultsControllerDelegate>{
     TripLogController *tripManager;
     TripLogCoreDataController *tripCDManager;
 }
@@ -37,6 +37,7 @@ static NSString *CellIdentifier = @"locationCell";
     [self setCustomUIAppearanceStyles];
     
     NSError *error;
+    tripCDManager.fetchedResultsController.delegate = self;
     if (![tripCDManager.fetchedResultsController performFetch:&error]) {
         NSLog(@"Fetching data failed. Error %@, %@", error, [error userInfo]);
     }
@@ -63,6 +64,7 @@ static NSString *CellIdentifier = @"locationCell";
     self.navigationController.navigationBar.backIndicatorImage = [UIImage new];
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0 green:255 blue:198 alpha:1];
     self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor colorWithRed:0 green:255 blue:198 alpha:1] forKey:NSForegroundColorAttributeName];
     
     // View appearance styles
     self.view.backgroundColor = [UIColor blackColor];
@@ -107,13 +109,9 @@ static NSString *CellIdentifier = @"locationCell";
         }
     }
     
-    
     if (cell == nil) {
         cell = [[LocationsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-    [cell.contentView.layer setBorderColor:[UIColor blackColor].CGColor];
-    [cell.contentView.layer setBorderWidth:2.0f];
     
     return cell;
 }
@@ -122,6 +120,29 @@ static NSString *CellIdentifier = @"locationCell";
     tripManager.selectedTrip = [tripCDManager.fetchedResultsController objectAtIndexPath:indexPath];
     UIViewController *detailsController = [self.storyboard instantiateViewControllerWithIdentifier:@"locationDetailsVC"];
     [self.navigationController pushViewController:detailsController animated:YES];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath
+                                                                                                      *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    UITableView *tableView = self.tableView;
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            //            [collectionView reloadData];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:NO];
+            break;
+        case NSFetchedResultsChangeDelete:
+            //           [collectionView reloadData];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:NO];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            [tableView cellForRowAtIndexPath:indexPath];
+            break;
+        case NSFetchedResultsChangeMove:
+            //            [collectionView reloadData];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:NO];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:NO];
+            break;
+    }
 }
 
 

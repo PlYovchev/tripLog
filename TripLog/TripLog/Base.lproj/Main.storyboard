@@ -198,6 +198,9 @@
                                         <state key="normal" title="ToDoList">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="a0Y-WY-TuN" kind="show" id="FDh-CN-K6a"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jy-YQ-WeD">
                                         <rect key="frame" x="510" y="78" width="75" height="30"/>
@@ -210,13 +213,6 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RsP-Tk-0Mb">
-                                        <rect key="frame" x="0.0" y="0.0" width="504" height="319"/>
-                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4k-t8-3vl">
                                         <rect key="frame" x="531" y="8" width="54" height="30"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -231,6 +227,13 @@
                                             <segue destination="0XG-x1-LtE" kind="show" identifier="gallerySegue" id="aO0-G5-Nvb"/>
                                         </connections>
                                     </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RsP-Tk-0Mb">
+                                        <rect key="frame" x="0.0" y="0.0" width="504" height="319"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -834,7 +837,7 @@
             </objects>
             <point key="canvasLocation" x="389" y="1817"/>
         </scene>
-        <!--All Locations Table View Controller-->
+        <!--Trips-->
         <scene sceneID="5in-Qm-2gB">
             <objects>
                 <tableViewController id="Z7T-ds-vep" customClass="AllLocationsTableViewController" sceneMemberID="viewController">
@@ -1017,7 +1020,7 @@
                             <outlet property="delegate" destination="Z7T-ds-vep" id="33n-rs-Wsb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="hYD-q2-zIw"/>
+                    <navigationItem key="navigationItem" title="Trips" id="hYD-q2-zIw"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="xHs-I3-fS4" id="tyR-dn-WHM"/>
                     </connections>
@@ -1444,11 +1447,117 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KlQ-xQ-NvT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3899" y="198"/>
+            <point key="canvasLocation" x="3942" y="-106"/>
+        </scene>
+        <!--To Do List View Controller-->
+        <scene sceneID="7Uw-ci-GI3">
+            <objects>
+                <viewController id="a0Y-WY-TuN" customClass="ToDoListViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ewp-jp-pI4"/>
+                        <viewControllerLayoutGuide type="bottom" id="GKo-7B-4YK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7OR-e4-bqf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="58" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3tk-6o-V1k">
+                                <rect key="frame" x="0.0" y="102" width="584" height="498"/>
+                                <color key="backgroundColor" red="0.84725511389999997" green="0.81420681100000003" blue="0.85992739900000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ToDoTableViewCell" rowHeight="58" id="cof-Cq-RT3" customClass="ToDoTableViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cof-Cq-RT3" id="gJC-la-Hww">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u08-Rv-pid">
+                                                    <rect key="frame" x="536" y="16" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="iM6-cR-FPs"/>
+                                                        <constraint firstAttribute="height" constant="25" id="q5w-x2-9Dg"/>
+                                                    </constraints>
+                                                    <state key="normal" backgroundImage="checkbox.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="stateButtonTapped:" destination="cof-Cq-RT3" eventType="touchUpInside" id="IR0-2A-qzH"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWJ-gw-cK8">
+                                                    <rect key="frame" x="37" y="18" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="FWJ-gw-cK8" secondAttribute="centerY" id="Hyy-rv-MXA"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="u08-Rv-pid" secondAttribute="trailing" constant="15" id="MGI-ZF-bZw"/>
+                                                <constraint firstAttribute="centerY" secondItem="u08-Rv-pid" secondAttribute="centerY" id="WCP-VQ-RXw"/>
+                                                <constraint firstItem="FWJ-gw-cK8" firstAttribute="leading" secondItem="gJC-la-Hww" secondAttribute="leadingMargin" constant="29" id="ZwX-lt-U85"/>
+                                                <constraint firstItem="u08-Rv-pid" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FWJ-gw-cK8" secondAttribute="trailing" constant="5" id="f5d-hO-0ce"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.90070628159999999" green="0.90070628159999999" blue="0.90070628159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="stateButton" destination="u08-Rv-pid" id="rvR-CA-WnX"/>
+                                            <outlet property="toDoLabel" destination="FWJ-gw-cK8" id="MZF-nu-1cj"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eKq-hZ-Bf6">
+                                <rect key="frame" x="549" y="41" width="30" height="30"/>
+                                <state key="normal" title="Add">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="a0Y-WY-TuN" eventType="touchUpInside" id="4Sq-g9-4cV"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZD-Ut-GXh">
+                                <rect key="frame" x="21" y="25" width="513" height="62"/>
+                                <color key="backgroundColor" red="0.90070628159999999" green="0.90070628159999999" blue="0.90070628159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="ouG-mY-Arh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="a0Y-WY-TuN" id="muB-42-qb6"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.84725511389999997" green="0.81420681100000003" blue="0.85992739900000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="GKo-7B-4YK" firstAttribute="top" secondItem="3tk-6o-V1k" secondAttribute="bottom" id="1rk-vr-tMc"/>
+                            <constraint firstItem="eZD-Ut-GXh" firstAttribute="top" secondItem="ewp-jp-pI4" secondAttribute="bottom" constant="5" id="58D-Bb-pRN"/>
+                            <constraint firstItem="3tk-6o-V1k" firstAttribute="top" secondItem="eZD-Ut-GXh" secondAttribute="bottom" constant="15" id="6kM-id-gHi"/>
+                            <constraint firstItem="eZD-Ut-GXh" firstAttribute="leading" secondItem="7OR-e4-bqf" secondAttribute="leadingMargin" constant="5" id="ADZ-Z1-ScD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eKq-hZ-Bf6" secondAttribute="trailing" constant="5" id="H6f-mS-dOG"/>
+                            <constraint firstItem="3tk-6o-V1k" firstAttribute="leading" secondItem="7OR-e4-bqf" secondAttribute="leadingMargin" constant="-16" id="Ktc-uQ-guW"/>
+                            <constraint firstItem="eKq-hZ-Bf6" firstAttribute="leading" secondItem="eZD-Ut-GXh" secondAttribute="trailing" constant="15" id="eta-IL-H1A"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3tk-6o-V1k" secondAttribute="trailing" id="ie0-qh-LRQ"/>
+                            <constraint firstItem="eKq-hZ-Bf6" firstAttribute="centerY" secondItem="eZD-Ut-GXh" secondAttribute="centerY" id="vHp-NH-nR8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="toDoTableView" destination="3tk-6o-V1k" id="dpe-ds-Vpb"/>
+                        <outlet property="toDoTextView" destination="eZD-Ut-GXh" id="vW2-l3-Esj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gJN-gz-WHa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3942" y="562"/>
         </scene>
     </scenes>
     <resources>
         <image name="alltrips.png" width="25" height="25"/>
+        <image name="checkbox.png" width="16" height="16"/>
         <image name="login-background.jpg" width="421" height="637"/>
         <image name="map.png" width="25" height="25"/>
         <image name="mylog.png" width="25" height="25"/>

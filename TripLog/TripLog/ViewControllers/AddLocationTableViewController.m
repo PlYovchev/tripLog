@@ -26,6 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
     CLLocation* location = [[CLLocation alloc] initWithLatitude:self.selectedLocationCoordinates.latitude
                                                       longitude:self.selectedLocationCoordinates.longitude];
     [self findCityAndCountry:location];
@@ -51,6 +53,8 @@
         
         [alertController addAction:okAction];
         [self presentViewController:alertController animated:YES completion:nil];
+        
+        return;
     }
     
     NSString* tripName = self.nameTextField.text;

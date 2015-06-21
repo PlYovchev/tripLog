@@ -10,6 +10,7 @@
 #import "Trip+DictionaryInitializator.h"
 #import "User+DictionaryInitializator.h"
 #import "TripLogWebServiceController.h"
+#import "TripLogController.h"
 
 #define ID_KEY @"objectId"
 
@@ -114,14 +115,17 @@ static TripLogCoreDataController* coreDataController;
 }
 
 -(NSArray*)tripsWithId:(NSString*)tripId{
+    return [self tripsWithId:tripId inContext:self.workerManagedObjectContext];
+}
+
+-(NSArray*)tripsWithId:(NSString*)tripId inContext:(NSManagedObjectContext*)context{
     NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Trip"];
     request.predicate = [NSPredicate predicateWithFormat:@"tripId = %@",tripId];
     NSSortDescriptor* sortByQuantity = [NSSortDescriptor
                                         sortDescriptorWithKey:@"rating" ascending:NO];
     request.sortDescriptors = [NSArray arrayWithObject:sortByQuantity];
     NSError *error;
-    NSArray *entries = [self.workerManagedObjectContext executeFetchRequest:request
-                                                                    error:&error];
+    NSArray *entries = [context executeFetchRequest:request error:&error];
     
     return entries;
 }
@@ -152,6 +156,27 @@ static TripLogCoreDataController* coreDataController;
         }
     }];
 }
+
+-(void)addToDoItem:(NSDictionary*)toDoItemProperties{
+    NSManagedObjectContext* context = self.workerManagedObjectContext;
+    ToDoItem* toDoItem = [NSEntityDescription insertNewObjectForEntityForName:@"ToDoItem" inManagedObjectContext:context];
+    
+    NSString* task = [toDoItemProperties objectForKey:TO_DO_TASK_KEY];
+    NSNumber* isDone = [toDoItemProperties objectForKey:TO_DO_IS_DONE_KEY];
+    NSString* userId = [toDoItemProperties objectForKey:TO_DO_USER_ID_KEY];
+    NSString* tripId = [toDoItemProperties objectForKey:TO_DO_TRIP_ID_KEY];
+    
+    User* user = [self userWithUserId:userId initInContenxt:context];
+    Trip* trip = [[self tripsWithId:tripId inContext:context] firstObject];
+    
+    toDoItem.task = task;
+    toDoItem.isDone = isDone;
+    toDoItem.user = user;
+    toDoItem.trip = trip;
+    
+    [context save:nil];
+}
+
 #pragma mark - Core Data stack
 
 @synthesize parentManagedObjectContext = _parentManagedObjectContext;
@@ -280,6 +305,36 @@ static TripLogCoreDataController* coreDataController;
                                                                                cacheName:nil];
     
     return _fetchedResultsController;
+}
+
+-(NSFetchedResultsController *)toDoListFetchedResultsController{
+    if (_toDoListFetchedResultsController != nil) {
+        return _toDoListFetchedResultsController;
+    }
+    
+    TripLogController* tripController = [TripLogController sharedInstance];
+    Trip* trip = [tripController selectedTrip];
+    User* user = [tripController loggedUser];
+    
+    NSManagedObjectContext *context = self.mainManagedObjectContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ToDoItem"
+                                              inManagedObjectContext:context];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"trip = %@ AND user = %@", trip, user];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"isDone" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    [fetchRequest setEntity:entity];
+    
+    [fetchRequest setFetchBatchSize:20];
+    
+    _toDoListFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context
+                                                                              sectionNameKeyPath:nil
+                                                                                       cacheName:nil];
+    
+    return _toDoListFetchedResultsController;
 }
 
 

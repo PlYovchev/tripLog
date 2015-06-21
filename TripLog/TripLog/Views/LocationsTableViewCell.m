@@ -15,16 +15,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelCreator;
 @property (weak, nonatomic) IBOutlet UILabel *labelRaiting;
 
-
-
-
-
 @end
 
 @implementation LocationsTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
+    [self.contentView.layer setBorderColor:[UIColor blackColor].CGColor];
+    [self.contentView.layer setBorderWidth:2.0f];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

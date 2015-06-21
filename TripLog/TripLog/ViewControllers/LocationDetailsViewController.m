@@ -33,7 +33,7 @@
     label.font = [UIFont boldSystemFontOfSize: 17.0f];
     label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = [UIColor whiteColor];
+    label.textColor = [UIColor colorWithRed:0 green:255 blue:198 alpha:1];
     label.text = [NSString stringWithFormat:@"%@",trip.name];
     
     self.navigationItem.titleView = label;
