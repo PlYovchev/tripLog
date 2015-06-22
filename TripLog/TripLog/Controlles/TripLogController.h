@@ -11,9 +11,11 @@
 #import "User.h"
 
 @interface TripLogController : NSObject
+
 @property (nonatomic,strong) Trip *selectedTrip;
 @property (nonatomic,strong) User *loggedUser;
 @property (nonatomic, copy) NSString* currentSessionToken;
+@property (nonatomic, strong) Trip* enteredTripLocation;
 
 +(id)sharedInstance;
 
@@ -22,5 +24,7 @@
 
 -(bool)tryLogWithSavedUserData;
 -(void)logTheUserwithUserId:(NSString *)userId andSessionToken:(NSString *)sessionToken andSaveUserData:(BOOL)shouldSave;
+
+-(void)onEnterRegion;
 
 @end

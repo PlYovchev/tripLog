@@ -83,7 +83,6 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    NSLog(@"%f, %f, %f, %d", self.frame.size.width, _leftMargin, _midMargin, _starViews.count);
     float desiredImageWidth = (self.frame.size.width - (_leftMargin*2) - (_midMargin*_starViews.count)) / _starViews.count;
     float imageWidth = MAX(_minStarSize.width, desiredImageWidth);
     float imageHeight = MAX(_minStarSize.height, self.frame.size.height);
@@ -93,9 +92,7 @@
         UIImageView *imageView = [_starViews objectAtIndex:i];
         CGRect imageFrame = CGRectMake(_leftMargin + i*(_midMargin+imageWidth), 0, imageWidth, imageHeight);
         imageView.frame = imageFrame;
-        
-    }    
-    
+    }
 }
 
 - (void)setMaxRating:(int)maxRating {

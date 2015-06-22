@@ -29,4 +29,22 @@
     NSLog(@"%@ %@ %@ %@ %@ %@", self.tripId, self.name, self.rating, self.latitude, self.longitude, self.creator.userId);
 }
 
+-(void)requestImageDataWithCompletionHandler:(void (^)(UIImage* image))completionHandler{
+    if(self.tripImageData){
+        UIImage* image = [UIImage imageWithData:self.tripImageData];
+        completionHandler(image);
+    }
+    else{
+        dispatch_queue_t imageLoadingQueue = dispatch_queue_create("queueForTrip", NULL);
+        dispatch_async(imageLoadingQueue, ^{
+            NSString * urlString = self.imageUrl;
+            NSData * imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
+            self.tripImageData = imageData;
+            UIImage* image = [UIImage imageWithData:imageData];
+
+            completionHandler(image);
+        });
+    }
+}
+
 @end

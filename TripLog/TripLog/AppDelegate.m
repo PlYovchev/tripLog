@@ -33,14 +33,23 @@
     UILocalNotification *localNotif =
     [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (localNotif) {
-        NSLog(@"Recieved Notification %@",localNotif);
+        [self application:nil didReceiveLocalNotification:localNotif];
     }
     
     return YES;
 }
 
 -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
-    NSLog(@"Recieved Notification %@",notification);
+    //NSLog(@"Recieved Notification %@",notification);
+    NSString* tripId = [[notification userInfo] objectForKey:TRIP_ENTER_REGION_KEY];
+    if(tripId){
+        TripLogCoreDataController* dataController = [TripLogCoreDataController sharedInstance];
+        Trip* enteredTripLocation = [[dataController tripsWithId:tripId inContext:dataController.mainManagedObjectContext] firstObject];
+        TripLogController* tripController = [TripLogController sharedInstance];
+        tripController.enteredTripLocation = enteredTripLocation;
+        [tripController onEnterRegion];
+        NSLog(@"%@", tripId);
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

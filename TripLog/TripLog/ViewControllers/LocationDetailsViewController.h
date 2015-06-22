@@ -10,4 +10,6 @@
 
 @interface LocationDetailsViewController : UIViewController
 
+@property (nonatomic, getter=isAtTripLocation) BOOL atTripLocation;
+
 @end

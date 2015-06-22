@@ -11,14 +11,16 @@
 #import "TripLogController.h"
 #import "TripLogCoreDataController.h"
 #import "TripLogLocationController.h"
+#import "Trip+DictionaryInitializator.h"
 
-@interface LocationDetailsViewController ()
+@interface LocationDetailsViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *tripImageView;
 @property (weak, nonatomic) IBOutlet ASStarRatingView *ratingView;
 @property (weak, nonatomic) IBOutlet UITextView *tripInfoTextView;
 @property (weak, nonatomic) IBOutlet UILabel *tripAuthorLabel;
 @property (weak, nonatomic) IBOutlet UIButton *notificationButton;
+@property (weak, nonatomic) IBOutlet UIButton *takePictureButton;
 
 @end
 
@@ -27,8 +29,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setCustomUIAppearanceStyles];
+    
     TripLogController* tripController = [TripLogController sharedInstance];
-    Trip* trip = tripController.selectedTrip;
+    if([tripController.selectedTrip.tripId isEqualToString:tripController.enteredTripLocation.tripId]){
+        self.atTripLocation = YES;
+    }
+    
+    Trip* trip;
+    if(!self.atTripLocation){
+        trip = tripController.selectedTrip;
+    }
+    else{
+        trip = tripController.enteredTripLocation;
+        self.takePictureButton.hidden = NO;
+    }
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
     label.backgroundColor = [UIColor clearColor];
@@ -51,9 +66,31 @@
     self.tripAuthorLabel.text = [NSString stringWithFormat:@"Created by %@",trip.creator.username];
     self.tripAuthorLabel.numberOfLines = 2;
     self.tripInfoTextView.text = trip.tripDescription;
-    self.tripImageView.image = [UIImage imageWithData:trip.tripImageData];
+
+    [trip requestImageDataWithCompletionHandler:^(UIImage *image) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.tripImageView.image = image;
+        });
+    }];
     
     [self setNotificationButtonTitleByObserveState];
+}
+
+#pragma mark UI appearance methods
+-(void)setCustomUIAppearanceStyles{
+    
+    // Navigation bar appearance styles
+    self.navigationController.navigationBar.backIndicatorImage = [UIImage new];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0 green:255 blue:198 alpha:1];
+    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor colorWithRed:0 green:255 blue:198 alpha:1] forKey:NSForegroundColorAttributeName];
+    
+    // View appearance styles
+    self.view.backgroundColor = [UIColor blackColor];
+    
+    // Tab bar appearance styles
+    self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:0 green:255 blue:198 alpha:1];
+    self.tabBarController.tabBar.barTintColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,9 +110,11 @@
     }
 }
 
-- (IBAction)notificationButton_tapped:(id)sender {
+- (IBAction)notificationButtonTapped:(id)sender {
     TripLogLocationController* locationController = [TripLogLocationController sharedInstance];
     TripLogController* tripController = [TripLogController sharedInstance];
+    TripLogCoreDataController* dataController = [TripLogCoreDataController sharedInstance];
+    
     Trip* trip = tripController.selectedTrip;
     
     if(![trip.isObserved boolValue]){
@@ -87,13 +126,30 @@
         trip.isObserved = @(NO);
     }
     
+    [dataController.mainManagedObjectContext save:nil];
+    
     [self setNotificationButtonTitleByObserveState];
+}
+
+- (IBAction)takePictureTapped:(id)sender {
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    
+    picker.delegate = self;
+    picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+//    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    [self presentViewController:picker animated:YES completion:nil];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([[segue identifier] isEqualToString:@"gallerySegue"]) {
         NSLog(@"gallerySegue called!");
     }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *image = info[UIImagePickerControllerEditedImage];
+    [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

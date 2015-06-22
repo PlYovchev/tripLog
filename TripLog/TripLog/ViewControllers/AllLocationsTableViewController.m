@@ -57,6 +57,10 @@ static NSString *CellIdentifier = @"locationCell";
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewDidDisappear:(BOOL)animated{
+    tripCDManager.fetchedResultsController.delegate = nil;
+}
+
 #pragma mark UI appearance methods
 -(void)setCustomUIAppearanceStyles{
     
@@ -141,7 +145,6 @@ static NSString *CellIdentifier = @"locationCell";
             [tableView reloadData];
             break;
     }
-
 }
 
 

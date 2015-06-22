@@ -9,6 +9,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
 #import "TripLogLocationController.h"
+#import "TripLogController.h"
 
 @interface TripLogLocationController () <CLLocationManagerDelegate>
 
@@ -46,6 +47,7 @@ static TripLogLocationController* locationController;
             locationController = self;
             self.locationManager = [[CLLocationManager alloc] init];
             self.locationManager.delegate = self;
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
             
             [CLLocationManager authorizationStatus];
             
@@ -69,8 +71,14 @@ static TripLogLocationController* locationController;
 
 -(void)startMonitorTripLocation:(Trip*) trip{
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([trip.latitude doubleValue], [trip.longitude doubleValue]);
-    CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:coord radius:200.f identifier:trip.tripId];
+    CLLocationDistance radius = 1000;
+    CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:coord
+                                                                 radius:radius
+                                                             identifier:trip.tripId];
+    region.notifyOnEntry = YES;
+    region.notifyOnExit = YES;
     
+//    [self.locationManager requestStateForRegion:region];
     [self.locationManager startMonitoringForRegion:region];
 }
 
@@ -87,28 +95,30 @@ static TripLogLocationController* locationController;
          didEnterRegion:(CLRegion *)region{
     CLCircularRegion* circularRegion = (CLCircularRegion*)region;    
     NSLog(@"enter region %f %f", circularRegion.center.latitude, circularRegion.center.longitude);
-//    [manager stopMonitoringForRegion:circularRegion];
-    
     UILocalNotification *localNotif = [[UILocalNotification alloc] init];
     if (localNotif == nil)
         return;
     localNotif.fireDate = [NSDate dateWithTimeIntervalSinceNow:1];
     localNotif.timeZone = [NSTimeZone defaultTimeZone];
-    
-    // Notification details
     localNotif.alertBody = @"Location has been reached!";
-    // Set the action button
     localNotif.alertAction = @"View";
-    
-    localNotif.soundName = @"example.caf";
- //   localNotif.applicationIconBadgeNumber = 1;
-    
-    // Specify custom data for the notification
-    NSDictionary *infoDict = [NSDictionary dictionaryWithObject:@"someValue" forKey:@"someKey"];
+    NSDictionary *infoDict = [NSDictionary dictionaryWithObject:region.identifier forKey:TRIP_ENTER_REGION_KEY];
     localNotif.userInfo = infoDict;
     
-    // Schedule the notification
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
+}
+
+-(void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error{
+    CLCircularRegion* circularRegion = (CLCircularRegion*)region;
+    NSLog(@"failed for region %f %f", circularRegion.center.latitude, circularRegion.center.longitude);
+}
+
+-(void)locationManager:(CLLocationManager *)manager
+         didExitRegion:(CLRegion *)region {
+    CLCircularRegion* circularRegion = (CLCircularRegion*)region;
+ //   [manager stopMonitoringForRegion:circularRegion];
+    TripLogController* tripController = [TripLogController sharedInstance];
+    tripController.enteredTripLocation = nil;
 }
 
 

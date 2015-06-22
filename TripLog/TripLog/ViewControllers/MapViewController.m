@@ -87,7 +87,6 @@
     TripLogCoreDataController* dataController = [TripLogCoreDataController sharedInstance];
     NSArray* trips = [dataController trips];
     for (Trip* trip in trips) {
-        NSLog(@"%@", trip.name);
         CGFloat latitude = [trip.latitude doubleValue];
         CGFloat longitude = [trip.longitude doubleValue];
         

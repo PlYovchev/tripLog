@@ -11,6 +11,7 @@
 #import "TripLogWebServiceController.h"
 #import "TripLogCoreDataController.h"
 #import "AppDelegate.h"
+#import "LocationDetailsViewController.h"
 
 #define HAS_SAVED_USER_DATA_KEY @"hasUserDataKey"
 #define USER_ID_KEY @"userId"
@@ -123,6 +124,27 @@ static NSOperationQueue *sharedQueue;
         [self performSelectorOnMainThread:@selector(presentTripTabBarViewController)
                                withObject:nil waitUntilDone:NO];
     }
+}
+
+-(void)onEnterRegion{
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UITabBarController* tabController = [storyboard instantiateViewControllerWithIdentifier:@"TripTabViewController"];
+    LocationDetailsViewController* locationDetailsViewController = [storyboard instantiateViewControllerWithIdentifier:@"locationDetailsVC"];
+    UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:locationDetailsViewController];
+    locationDetailsViewController.atTripLocation = YES;
+    NSMutableArray* viewControllers = [NSMutableArray arrayWithObject:navController];
+    [viewControllers addObjectsFromArray:[tabController viewControllers]];
+    tabController.viewControllers = viewControllers;
+    
+    navController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"At trip location!"
+                                                                           image:[UIImage imageNamed:@"alltrips.png"]
+                                                                             tag:5];
+    [navController.tabBarItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor redColor]} forState:UIControlStateNormal];
+    [navController.tabBarItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor redColor]} forState:UIControlStateSelected];
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    appDelegate.window.rootViewController = tabController;
+    [appDelegate.window makeKeyAndVisible];
 }
 
 @end

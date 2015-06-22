@@ -219,7 +219,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="notificationButton_tapped:" destination="fOM-Vz-8na" eventType="touchUpInside" id="efS-Fe-jMr"/>
+                                            <action selector="notificationButtonTapped:" destination="fOM-Vz-8na" eventType="touchUpInside" id="za9-Eu-OuV"/>
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RsP-Tk-0Mb">
@@ -240,6 +240,20 @@
                                             <segue destination="0XG-x1-LtE" kind="show" identifier="gallerySegue" id="aO0-G5-Nvb"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAw-1Y-2Qy">
+                                        <rect key="frame" x="480" y="165" width="105" height="30"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="105" id="Xy9-Nh-dLd"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.56489514200000002" green="1" blue="0.98924280210000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Take picture!">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="takePictureTapped:" destination="fOM-Vz-8na" eventType="touchUpInside" id="EyE-li-r9p"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -249,7 +263,9 @@
                                     <constraint firstItem="0jy-YQ-WeD" firstAttribute="width" secondItem="bUA-pw-YKL" secondAttribute="width" id="Dsy-YU-68s"/>
                                     <constraint firstItem="bUA-pw-YKL" firstAttribute="top" secondItem="f4k-t8-3vl" secondAttribute="bottom" constant="15" id="Gc0-as-DJY"/>
                                     <constraint firstItem="0jy-YQ-WeD" firstAttribute="leading" secondItem="RsP-Tk-0Mb" secondAttribute="trailing" constant="3" id="Ie4-wI-RTq"/>
+                                    <constraint firstItem="gAw-1Y-2Qy" firstAttribute="trailing" secondItem="0jy-YQ-WeD" secondAttribute="trailing" id="Kdb-SD-r3h"/>
                                     <constraint firstAttribute="bottom" secondItem="RsP-Tk-0Mb" secondAttribute="bottom" id="PA0-41-qZY"/>
+                                    <constraint firstItem="gAw-1Y-2Qy" firstAttribute="top" secondItem="0jy-YQ-WeD" secondAttribute="bottom" constant="15" id="TYe-QY-Jl8"/>
                                     <constraint firstItem="0jy-YQ-WeD" firstAttribute="width" secondItem="f4k-t8-3vl" secondAttribute="width" id="VKu-jE-HNY"/>
                                     <constraint firstAttribute="trailing" secondItem="f4k-t8-3vl" secondAttribute="trailing" constant="15" id="YIw-xi-Apd"/>
                                     <constraint firstItem="0jy-YQ-WeD" firstAttribute="top" secondItem="bUA-pw-YKL" secondAttribute="bottom" constant="15" id="fVQ-Fb-x2f"/>
@@ -278,6 +294,7 @@
                     <connections>
                         <outlet property="notificationButton" destination="0jy-YQ-WeD" id="pHw-fc-qHE"/>
                         <outlet property="ratingView" destination="rFx-RK-97V" id="KH5-Eg-b8v"/>
+                        <outlet property="takePictureButton" destination="gAw-1Y-2Qy" id="PM9-WQ-1Ss"/>
                         <outlet property="tripAuthorLabel" destination="mBd-QN-fUc" id="EGi-hj-eJP"/>
                         <outlet property="tripImageView" destination="yH4-OW-bX2" id="RA2-Ox-ODL"/>
                         <outlet property="tripInfoTextView" destination="RsP-Tk-0Mb" id="1ye-oI-kQZ"/>

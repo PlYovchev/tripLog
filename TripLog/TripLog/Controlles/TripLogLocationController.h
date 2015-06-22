@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "Trip.h"
 
+#define TRIP_ENTER_REGION_KEY @"tripEnterRegion"
+
 @interface TripLogLocationController : NSObject
 
 +(id)sharedInstance;
