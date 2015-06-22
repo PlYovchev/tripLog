@@ -17,6 +17,8 @@
 
 @property (nonatomic,strong) Trip *selectedTrip;
 @property (nonatomic,strong) User *loggedUser;
+@property (nonatomic, strong) NSString *loggedUserName;
+@property (nonatomic, strong) NSString *loggedUserId;
 @property (nonatomic, copy) NSString* currentSessionToken;
 @property (nonatomic, strong) Trip* enteredTripLocation;
 @property (nonatomic) BOOL autoSubmitTripToServer;

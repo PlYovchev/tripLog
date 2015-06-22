@@ -68,15 +68,17 @@
     // Keyboard becomes visible
     self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x,
                                   self.scrollView.frame.origin.y,
-                                  self.scrollView.frame.size.width, 50);   //resize
+                                  self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.scrollView.frame.size.height + 215);
+
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField {
     // Keyboard will hide
     self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x,
-                                  self.scrollView.frame.origin.y,
-                                  self.scrollView.frame.size.width,
-                                  self.scrollView.frame.size.height + 215 - 50); //resize
+                                       self.scrollView.frame.origin.y,
+                                       self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.scrollView.frame.size.height - 415);
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

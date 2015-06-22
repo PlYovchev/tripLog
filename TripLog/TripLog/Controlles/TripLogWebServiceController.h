@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "UserModel.h"
+#import "TripLogController.h"
 
 @protocol TripLogWebServiceControllerDelegate <NSObject>
 @optional

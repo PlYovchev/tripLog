@@ -71,6 +71,9 @@ static TripLogWebServiceController* webController;
             NSString* userId = [current objectForKey:@"objectId"];
             NSString* sessionToken = [current objectForKey:@"sessionToken"];
             
+            [[TripLogController sharedInstance] setLoggedUserId:userId];
+            [[TripLogController sharedInstance] setLoggedUserName:[current objectForKey:@"username"]];
+            
             [self.delegate userDidSignInSuccessfully:YES withUserId:userId andSessionToken:sessionToken];
         }
         else {
