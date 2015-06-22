@@ -150,14 +150,16 @@
         // Set default user settings
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setBool:YES forKey:@"autoLoginKey"];
-        [self performSegueWithIdentifier:@"loginSuccessfulSegue" sender:self];
         
         // Hide keyboard when login is successful
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.textFieldPassword endEditing:YES];
             [self.textFieldUsername endEditing:YES];
             [self.logginActivityIndocator stopAnimating];
-
+            
+            UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UITabBarController* controller = [storyboard instantiateViewControllerWithIdentifier:@"TripTabViewController"];
+            [self presentViewController:controller animated:YES completion:nil];
         });
         
         NSLog(@"Login successful!");
