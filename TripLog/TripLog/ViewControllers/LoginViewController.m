@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIView *passwordView;
 @property (weak, nonatomic) IBOutlet UIView *buttonView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic) UIActivityIndicatorView *logginActivityIndocator;
 
 @end
 
@@ -79,14 +80,19 @@
     if ([(UIButton*)sender isEqual: self.buttonSignIn]) {
         // Perform validation of all text fields for empty string or string containing only white spaces
         if ([self validateFields]) {
+            self.logginActivityIndocator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+            [self.view addSubview:self.logginActivityIndocator];
+            self.logginActivityIndocator.color = [UIColor colorWithRed:0 green:255 blue:255 alpha:1];
+            self.logginActivityIndocator.frame = CGRectMake(round((self.view.frame.size.width - 25) / 2), round((self.view.frame.size.height - 80) / 2), 25, 25);
+            [self.logginActivityIndocator startAnimating];
+            
             [[TripLogWebServiceController sharedInstance] sendSignInRequestToParseWithUsername:self.textFieldUsername.text andPassword:self.textFieldPassword.text];
         }
         // If the validation fails, show alert message
         else{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Invalid username or password!" message:@"" delegate:self cancelButtonTitle:@"Retry" otherButtonTitles:nil];
-                [alertView show];
-            });
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Invalid username or password!" message:@"" delegate:self cancelButtonTitle:@"Retry" otherButtonTitles:nil];
+            
+            [alertView show];
         }
     }
 }
@@ -150,12 +156,15 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.textFieldPassword endEditing:YES];
             [self.textFieldUsername endEditing:YES];
+            [self.logginActivityIndocator stopAnimating];
+
         });
         
         NSLog(@"Login successful!");
     }
     else{
         dispatch_async(dispatch_get_main_queue(), ^{
+            [self.logginActivityIndocator stopAnimating];
             UIAlertView *loginFailedAlert = [[UIAlertView alloc] initWithTitle:@"Login failed!" message:@"Please make sure that username or password are correct!" delegate:self cancelButtonTitle:@"Try again" otherButtonTitles: nil];
             
             [loginFailedAlert show];
