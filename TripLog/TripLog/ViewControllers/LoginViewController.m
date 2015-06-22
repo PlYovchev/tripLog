@@ -73,6 +73,50 @@
 
 }
 
+#pragma mark User input
+
+- (IBAction)userDidTabOnButton:(id)sender {
+    if ([(UIButton*)sender isEqual: self.buttonSignIn]) {
+        // Perform validation of all text fields for empty string or string containing only white spaces
+        if ([self validateFields]) {
+            [[TripLogWebServiceController sharedInstance] sendSignInRequestToParseWithUsername:self.textFieldUsername.text andPassword:self.textFieldPassword.text];
+        }
+        // If the validation fails, show alert message
+        else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Invalid username or password!" message:@"" delegate:self cancelButtonTitle:@"Retry" otherButtonTitles:nil];
+                [alertView show];
+            });
+        }
+    }
+}
+
+// Validate all text fields
+-(BOOL)validateFields{
+    if(![self validateFieldWithString:self.textFieldUsername.text] ||
+       ![self validateFieldWithString:self.textFieldPassword.text]){
+        return false;
+    }
+    
+    return true;
+}
+
+// Validate field for empty string or for string containing only empty spaces
+-(BOOL)validateFieldWithString: (NSString*)str{
+    if([str isEqual:@""]){
+        return false;
+    }
+    
+    NSCharacterSet *set = [NSCharacterSet whitespaceCharacterSet];
+    if ([[str stringByTrimmingCharactersInSet: set] length] == 0)
+    {
+        return false;
+    }
+    
+    return true;
+}
+
+// Detect when user focus is changed from the text field and hide the keyboard
 -(void)textFieldDidEndEditing:(UITextField *)textField {
     // Keyboard will hide
     self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x,
@@ -81,18 +125,13 @@
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.scrollView.frame.size.height - 415);
 }
 
+// Hide keyboard when the user presses the return key
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == self.textFieldUsername || textField == self.textFieldPassword) {
         [textField resignFirstResponder];
     }
     
     return NO;
-}
-
-- (IBAction)userDidTabOnButton:(id)sender {
-    if ([(UIButton*)sender isEqual: self.buttonSignIn]) {
-        [[TripLogWebServiceController sharedInstance] sendSignInRequestToParseWithUsername:self.textFieldUsername.text andPassword:self.textFieldPassword.text];
-    }
 }
 
 #pragma mark TripLogWebServicesDelegate

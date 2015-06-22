@@ -127,7 +127,7 @@
     if (!_canEdit) return;
     
     _rating = 0;
-    for(int i = _starViews.count - 1; i >= 0; i--) {
+    for(long i = _starViews.count - 1; i >= 0; i--) {
         UIImageView *imageView = [_starViews objectAtIndex:i];        
         if (touchLocation.x > imageView.frame.origin.x) {
             _rating = i+1;

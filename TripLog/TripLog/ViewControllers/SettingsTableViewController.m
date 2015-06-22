@@ -63,8 +63,8 @@
 
 - (IBAction)buttonActionTapped:(id)sender {
     if (sender == self.logoutButton) {
+        // Sets user defaults
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        
         [userDefaults setBool:NO forKey:@"hasUserDataKey"];
         [userDefaults setBool:YES forKey:@"autoLoginKey"];
         [userDefaults synchronize];

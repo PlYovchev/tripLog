@@ -59,50 +59,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) keyboardDidShow:(NSNotification *)notification
-{
-    NSDictionary* info = [notification userInfo];
-    CGRect kbRect = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    kbRect = [self.view convertRect:kbRect fromView:nil];
-    
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbRect.size.height, 0.0);
-    self.scrollView.contentInset = contentInsets;
-    self.scrollView.scrollIndicatorInsets = contentInsets;
-    
-    CGRect aRect = self.view.frame;
-    aRect.size.height -= kbRect.size.height;
-    
-    if (!CGRectContainsPoint(aRect, self.activeField.frame.origin) ) {
-        [self.scrollView scrollRectToVisible:self.activeField.frame animated:YES];
-    }
-}
-
-- (void) keyboardWillBeHidden:(NSNotification *)notification
-{
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    self.scrollView.contentInset = contentInsets;
-    self.scrollView.scrollIndicatorInsets = contentInsets;
-}
-
-
-- (IBAction)textFieldDidBeginEditing:(UITextField *)sender
-{
-    self.activeField = sender;
-}
-
-- (IBAction)textFieldDidEndEditing:(UITextField *)sender
-{
-    self.activeField = nil;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if (textField == self.textFieldUsername || textField == self.textFieldPassword || textField == self.textFieldPhone) {
-        [textField resignFirstResponder];
-    }
-    
-    return NO;
-}
-
 #pragma mark UI Layout styles
 -(void)setUILayoutStyles{
     // Initialize ContentView left constraint
@@ -146,10 +102,116 @@
 
 }
 
+#pragma mark User input
+
 - (IBAction)userDidTapSignUpButton:(id)sender {
-    [[TripLogWebServiceController sharedInstance] sendSignUpRequestToParseWithUsername:self.textFieldUsername.text password:self.textFieldPassword.text andPhone:self.textFieldPhone.text];
+    if ([self validateFields]) {
+        
+    }
+    // Perform validation of all text fields for empty string or string containing only white spaces
+    if ([self validateFields]) {
+        [[TripLogWebServiceController sharedInstance] sendSignUpRequestToParseWithUsername:self.textFieldUsername.text password:self.textFieldPassword.text andPhone:self.textFieldPhone.text];
+    }
+    // If the validation fails, show alert message
+    else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Invalid username, password or phone!" message:@"" delegate:self cancelButtonTitle:@"Retry" otherButtonTitles:nil];
+            [alertView show];
+        });
+    }
 }
 
+
+// Validate all text fields
+-(BOOL)validateFields{
+    if(![self validateFieldWithString:self.textFieldUsername.text] ||
+       ![self validateFieldWithString:self.textFieldPassword.text] ||
+       ![self validateFieldWithString:self.textFieldPhone.text] ||
+       ![self validatePhoneFieldWithStrng:self.textFieldPhone.text]){
+        return false;
+    }
+    
+    return true;
+}
+
+// Validate field for empty string or for string containing only empty spaces
+-(BOOL)validateFieldWithString: (NSString*)str{
+    if([str isEqual:@""]){
+        return false;
+    }
+    
+    NSCharacterSet *set = [NSCharacterSet whitespaceCharacterSet];
+    if ([[str stringByTrimmingCharactersInSet: set] length] == 0)
+    {
+        return false;
+    }
+    
+    return true;
+}
+
+// Validate phone field for non-numeric input
+-(BOOL)validatePhoneFieldWithStrng: (NSString*)str{
+    BOOL valid;
+    NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
+    NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:str];
+    valid = [alphaNums isSupersetOfSet:inStringSet];
+    
+    if (valid){
+        return YES;
+    }
+    
+    return NO;
+}
+
+// Set scrollview content when the keyboard is shown
+- (void) keyboardDidShow:(NSNotification *)notification
+{
+    NSDictionary* info = [notification userInfo];
+    CGRect kbRect = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    kbRect = [self.view convertRect:kbRect fromView:nil];
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbRect.size.height, 0.0);
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= kbRect.size.height;
+    
+    if (!CGRectContainsPoint(aRect, self.activeField.frame.origin) ) {
+        [self.scrollView scrollRectToVisible:self.activeField.frame animated:YES];
+    }
+}
+
+// Set scrollview content when keyboard is hidden
+- (void) keyboardWillBeHidden:(NSNotification *)notification
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+}
+
+// Select the active field
+- (IBAction)textFieldDidBeginEditing:(UITextField *)sender
+{
+    self.activeField = sender;
+}
+
+// Unselect the active field
+- (IBAction)textFieldDidEndEditing:(UITextField *)sender
+{
+    self.activeField = nil;
+}
+
+// Hide keyboard when return button is tapped
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.textFieldUsername || textField == self.textFieldPassword || textField == self.textFieldPhone) {
+        [textField resignFirstResponder];
+    }
+    
+    return NO;
+}
+
+#pragma mark TripLogWebServicesSignUpDelegate
 -(void)userDidSignUpSuccessfully:(BOOL)isSuccessful{
     if (isSuccessful) {
         [self.navigationController popToRootViewControllerAnimated:YES];

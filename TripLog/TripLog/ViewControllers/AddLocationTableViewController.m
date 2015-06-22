@@ -28,10 +28,10 @@
     // Do any additional setup after loading the view.
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    CLLocation* location = [[CLLocation alloc] initWithLatitude:self.selectedLocationCoordinates.latitude
-                                                      longitude:self.selectedLocationCoordinates.longitude];
+    CLLocation* location = [[CLLocation alloc] initWithLatitude:self.selectedLocationCoordinates.latitude longitude:self.selectedLocationCoordinates.longitude];
     [self findCityAndCountry:location];
     
+    // Initialize save button
     UIBarButtonItem* saveBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveTheTrip)];
     self.navigationItem.rightBarButtonItem = saveBarButton;
 }
@@ -57,6 +57,7 @@
         return;
     }
     
+    // Initialize properties
     NSString* tripId = [[NSUUID UUID] UUIDString];
     NSString* tripName = self.nameTextField.text;
     NSString* tripCity = self.cityTextField.text;
@@ -66,6 +67,7 @@
     NSNumber* tripLatitude = [NSNumber numberWithDouble:self.selectedLocationCoordinates.latitude];
     NSNumber* tripLongitude = [NSNumber numberWithDouble:self.selectedLocationCoordinates.longitude];
     
+    // Set trip properties
     NSMutableDictionary* tripProperties = [NSMutableDictionary dictionary];
     [tripProperties setObject:tripId forKey:ID_KEY];
     [tripProperties setObject:tripName forKey:NAME_KEY];
@@ -75,19 +77,28 @@
     [tripProperties setObject:tripDescription forKey:DESCRIPTION_KEY];
     [tripProperties setObject:@(NO) forKey:IS_SYNCHRONIZED_KEY];
     
+    // Set trip location
     NSMutableDictionary* tripLocation = [NSMutableDictionary dictionary];
     [tripLocation setObject:tripLatitude forKey:LATITUDE_KEY];
     [tripLocation setObject:tripLongitude forKey:LONGITUDE_KEY];
     [tripProperties setObject:tripLocation forKey:LOCATION_KEY];
     
+    // Set trip
     TripLogController* tripController = [TripLogController sharedInstance];
     [tripController saveTrip:tripProperties];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+// Validate fields for empty string or only white spaces containing string
 -(BOOL)validateFields{
     if([self.nameTextField.text isEmpty]){
+        return false;
+    }
+    
+    NSCharacterSet *set = [NSCharacterSet whitespaceCharacterSet];
+    if ([[self.nameTextField.text stringByTrimmingCharactersInSet: set] length] == 0)
+    {
         return false;
     }
     
@@ -97,9 +108,12 @@
 - (void)findCityAndCountry:(CLLocation *)location {
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
-        if (error) {
+        // If some error occures on the console is printed error message with description
+        if (!error) {
             NSLog(@"Error %@", error.description);
-        } else {
+        }
+        // Set text field values if no errors are recieved
+        else {
             CLPlacemark *placemark = [placemarks lastObject];
             self.cityTextField.text= placemark.locality;
             self.countryTextField.text = placemark.country;
@@ -108,15 +122,5 @@
         }
     }];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
