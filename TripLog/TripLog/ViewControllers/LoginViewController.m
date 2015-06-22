@@ -100,12 +100,25 @@
         TripLogController* tripController = [TripLogController sharedInstance];
         [tripController logTheUserwithUserId:userId andSessionToken:sessionToken andSaveUserData:YES];
         
+        // Set default user settings
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setBool:YES forKey:@"autoLoginKey"];
         [self performSegueWithIdentifier:@"loginSuccessfulSegue" sender:self];
+        
+        // Hide keyboard when login is successful
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.textFieldPassword endEditing:YES];
+            [self.textFieldUsername endEditing:YES];
+        });
         
         NSLog(@"Login successful!");
     }
     else{
-        NSLog(@"Login failed!");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *loginFailedAlert = [[UIAlertView alloc] initWithTitle:@"Login failed!" message:@"Please make sure that username or password are correct!" delegate:self cancelButtonTitle:@"Try again" otherButtonTitles: nil];
+            
+            [loginFailedAlert show];
+        });
     }
 }
 

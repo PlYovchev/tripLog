@@ -27,10 +27,8 @@
     NSLog(@"Splash screen is off the screen!");
     TripLogController* tripController = [TripLogController sharedInstance];
     bool userIsLogged = [tripController tryLogWithSavedUserData];
+    
     if(!userIsLogged){
-//        UIViewController* viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
-//        [self presentViewController:viewController animated:YES completion:nil];
-        
         [self performSegueWithIdentifier:@"showLoginSegue" sender:self];
     }
 }
