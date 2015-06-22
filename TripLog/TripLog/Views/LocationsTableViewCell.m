@@ -83,7 +83,12 @@
         UIImage * image = [UIImage imageWithData:imageData];
         _trip.tripImageData = imageData;
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.tripImageView.image=image;
+            if(image==nil){
+                self.tripImageView.image = [UIImage imageNamed:@"placeholder.png"];
+            }else{
+                self.tripImageView.image=image;
+                
+            }
             [indicator stopAnimating];
         });
     });

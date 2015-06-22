@@ -128,11 +128,11 @@ static NSString *CellIdentifier = @"locationCell";
     UITableView *tableView = self.tableView;
     switch(type) {
         case NSFetchedResultsChangeInsert:
-            [tableView reloadData];
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationRight];
             break;
             
         case NSFetchedResultsChangeDelete:
-            [tableView reloadData];
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
             break;
             
         case NSFetchedResultsChangeUpdate:
@@ -140,9 +140,18 @@ static NSString *CellIdentifier = @"locationCell";
             break;
             
         case NSFetchedResultsChangeMove:
-            [tableView reloadData];
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
+}
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView beginUpdates];
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];
 }
 
 
@@ -192,8 +201,7 @@ static NSString *CellIdentifier = @"locationCell";
             
             searchAttribute = @"name";
         }else if(scopeOption == searchScopeCreator){
-#warning //Dont use it, we dont have direct acces to user's username.
-            searchAttribute = @"username";
+            searchAttribute = @"creator.username";
         }else if(scopeOption == searchScopeCountry){
             searchAttribute = @"country";
         }else if(scopeOption == searchScopeCity){
