@@ -165,7 +165,7 @@
 }
 
 #pragma mark iCarousel delegate
-
+// Set additional options for the carousel
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value{
     switch (option) {
         case iCarouselOptionWrap:

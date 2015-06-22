@@ -16,11 +16,11 @@
 @interface LocationDetailsViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *tripImageView;
-@property (weak, nonatomic) IBOutlet ASStarRatingView *ratingView;
 @property (weak, nonatomic) IBOutlet UITextView *tripInfoTextView;
 @property (weak, nonatomic) IBOutlet UILabel *tripAuthorLabel;
 @property (weak, nonatomic) IBOutlet UIButton *notificationButton;
 @property (weak, nonatomic) IBOutlet UIButton *takePictureButton;
+@property (weak, nonatomic) IBOutlet ASStarRatingView *ratingView;
 
 @end
 
@@ -45,6 +45,7 @@
         self.takePictureButton.hidden = NO;
     }
     
+    // Set navigation title label custom layout styles
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
     label.backgroundColor = [UIColor clearColor];
     label.numberOfLines = 2;
@@ -56,6 +57,7 @@
     
     self.navigationItem.titleView = label;
     
+    // Set raiting view custom layout styles
     self.ratingView.canEdit = NO;
     self.ratingView.maxRating = 10;
     self.ratingView.minAllowedRating = 1;
@@ -63,10 +65,12 @@
     self.ratingView.rating = [trip.rating integerValue];
     [self.ratingView setUserInteractionEnabled:NO];
     
+    // Set trip author
     self.tripAuthorLabel.text = [NSString stringWithFormat:@"Created by %@",trip.creator.username];
     self.tripAuthorLabel.numberOfLines = 2;
     self.tripInfoTextView.text = trip.tripDescription;
 
+    // Download image from server and set trip image
     [trip requestImageDataWithCompletionHandler:^(UIImage *image) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.tripImageView.image = image;

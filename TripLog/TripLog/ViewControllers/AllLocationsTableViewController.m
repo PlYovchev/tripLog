@@ -12,6 +12,7 @@
     TripLogController *tripManager;
     TripLogCoreDataController *tripCDManager;
 }
+
 @property (nonatomic, strong) UISearchController *searchController;
 @property (strong, nonatomic) NSArray *filteredList;
 
@@ -30,23 +31,24 @@ static NSString *CellIdentifier = @"locationCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setCustomUIAppearanceStyles];
     
     tripCDManager = [TripLogCoreDataController sharedInstance];
     tripManager = [TripLogController sharedInstance];
     
-    [self setCustomUIAppearanceStyles];
+    tripCDManager.fetchedResultsController.delegate = self;
     
     NSError *error;
-    tripCDManager.fetchedResultsController.delegate = self;
     if (![tripCDManager.fetchedResultsController performFetch:&error]) {
         NSLog(@"Fetching data failed. Error %@, %@", error, [error userInfo]);
     }
-    //Posledno go slojih ru4no, za6toto poradi nqkakva pri4ina ne mi hva6ta6e indexa na scope butonite.
+    
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
     self.searchController.dimsBackgroundDuringPresentation = NO;
     self.searchController.searchBar.scopeButtonTitles = @[NSLocalizedString(@"Trip Name",@"ScopeButtonTripName"),NSLocalizedString(@"Creator",@"ScopeButtonCreator"),NSLocalizedString(@"Country",@"ScopeButtonCountry"),NSLocalizedString(@"City",@"ScopeButtonCity")];
     self.searchController.searchBar.delegate = self;
+    
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.definesPresentationContext = YES;
     [self.searchController.searchBar sizeToFit];
@@ -161,41 +163,6 @@ static NSString *CellIdentifier = @"locationCell";
     }
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark Search
 - (void)searchForText:(NSString *)searchText scope:(TripLogSearchScope)scopeOption
 {
@@ -215,6 +182,7 @@ static NSString *CellIdentifier = @"locationCell";
             searchAttribute = @"city";
         }
         
+        // Initialize fetch request for trip
         NSFetchRequest* request = [[NSFetchRequest alloc] initWithEntityName:@"Trip"];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateFormat, searchAttribute, searchText];
         request.predicate=predicate;
@@ -222,6 +190,7 @@ static NSString *CellIdentifier = @"locationCell";
         
         NSError *error = nil;
         
+        // Perform fetch
         self.filteredList = [tripCDManager.mainManagedObjectContext executeFetchRequest:request error:&error];
         if (error)
         {
@@ -229,13 +198,15 @@ static NSString *CellIdentifier = @"locationCell";
         }
     }
 }
-#pragma mark === UISearchBarDelegate ===
+
+#pragma mark UISearchBarDelegate
+
 - (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope
 {
     [self updateSearchResultsForSearchController:self.searchController];
 }
 
-#pragma mark === UISearchResultsUpdating ===
+#pragma mark UISearchResultsUpdating
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController{
     NSString *searchString = searchController.searchBar.text;
     [self searchForText:searchString scope:searchController.searchBar.selectedScopeButtonIndex];
