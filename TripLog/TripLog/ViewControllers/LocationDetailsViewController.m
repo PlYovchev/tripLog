@@ -56,7 +56,7 @@
     
     self.navigationItem.titleView = label;
     
-    self.ratingView.canEdit = YES;
+    self.ratingView.canEdit = NO;
     self.ratingView.maxRating = 10;
     self.ratingView.minAllowedRating = 1;
     self.ratingView.maxAllowedRating = 10;

@@ -7,13 +7,15 @@
 //
 
 #import "LocationsTableViewCell.h"
+#import "ASStarRatingView.h"
+
 @interface LocationsTableViewCell()
 
 @property (weak, nonatomic) IBOutlet UIImageView *tripImageView;
 @property (weak, nonatomic) IBOutlet UILabel *labelTripName;
 @property (weak, nonatomic) IBOutlet UILabel *labelTripLocation;
 @property (weak, nonatomic) IBOutlet UILabel *labelCreator;
-@property (weak, nonatomic) IBOutlet UILabel *labelRaiting;
+@property (weak, nonatomic) IBOutlet ASStarRatingView *starRatingView;
 
 @end
 
@@ -37,7 +39,7 @@
     self.labelTripLocation.text = @"";
     self.labelCreator.text = @"";
     self.labelTripName.text = @"";
-    self.labelRaiting.text = @"";
+    self.starRatingView.rating = 0;
 }
 
 
@@ -48,7 +50,16 @@
     self.labelTripName.text=_trip.name;
     self.labelTripLocation.text=[NSString stringWithFormat:@"%@,%@",_trip.country, _trip.city];
     self.labelCreator.text=[NSString stringWithFormat:@"%@",user.username];
-    self.labelRaiting.text=[NSString stringWithFormat:@"%@",_trip.rating];
+    self.starRatingView.canEdit = NO;
+    self.starRatingView.maxRating = 10;
+    self.starRatingView.minAllowedRating = 1;
+    self.starRatingView.maxAllowedRating = 10;
+    if(!trip.rating){
+        self.starRatingView.rating = 0;
+    }
+    else{
+        self.starRatingView.rating = [trip.rating integerValue];
+    }
     
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [indicator startAnimating];

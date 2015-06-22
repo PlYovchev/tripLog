@@ -41,14 +41,21 @@
 
 -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
     //NSLog(@"Recieved Notification %@",notification);
-    NSString* tripId = [[notification userInfo] objectForKey:TRIP_ENTER_REGION_KEY];
-    if(tripId){
-        TripLogCoreDataController* dataController = [TripLogCoreDataController sharedInstance];
-        Trip* enteredTripLocation = [[dataController tripsWithId:tripId inContext:dataController.mainManagedObjectContext] firstObject];
-        TripLogController* tripController = [TripLogController sharedInstance];
-        tripController.enteredTripLocation = enteredTripLocation;
-        [tripController onEnterRegion];
-        NSLog(@"%@", tripId);
+    NSString* identifier = [[notification userInfo] objectForKey:TRIP_ENTER_REGION_KEY];
+    if(identifier){
+        NSArray* ids = [identifier componentsSeparatedByString:@" "];
+        if([ids count] == 2){
+            NSString* tripId = ids[0];
+            NSString* userId = ids[1];
+            TripLogCoreDataController* dataController = [TripLogCoreDataController sharedInstance];
+            Trip* enteredTripLocation = [[dataController tripsWithId:tripId inContext:dataController.mainManagedObjectContext] firstObject];
+            User* user = [dataController userWithUserId:userId initInContenxt:dataController.mainManagedObjectContext];
+            TripLogController* tripController = [TripLogController sharedInstance];
+            tripController.enteredTripLocation = enteredTripLocation;
+            tripController.loggedUser = user;
+            [tripController onEnterRegion];
+            NSLog(@"%@", tripId);
+        }
     }
 }
 

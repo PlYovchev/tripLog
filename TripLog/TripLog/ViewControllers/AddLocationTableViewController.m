@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     CLLocation* location = [[CLLocation alloc] initWithLatitude:self.selectedLocationCoordinates.latitude
                                                       longitude:self.selectedLocationCoordinates.longitude];

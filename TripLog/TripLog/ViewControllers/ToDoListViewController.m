@@ -35,6 +35,8 @@
     
     self.toDoTableView.delegate = self;
     self.toDoTableView.dataSource = self;
+    self.toDoTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.toDoTableView.bounds.size.width, 0.01f)];
+    //self.toDoTableView.contentInset = UIEdgeInsetsMake(-20, 0, -20, 0);
     
     TripLogCoreDataController* dataController = [TripLogCoreDataController sharedInstance];
     [dataController setToDoListFetchedResultsController:nil];

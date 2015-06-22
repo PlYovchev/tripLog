@@ -70,11 +70,13 @@ static TripLogLocationController* locationController;
 }
 
 -(void)startMonitorTripLocation:(Trip*) trip{
+    TripLogController* tripController = [TripLogController sharedInstance];
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([trip.latitude doubleValue], [trip.longitude doubleValue]);
     CLLocationDistance radius = 1000;
+    NSString* regionIdentifier = [NSString stringWithFormat:@"%@ %@", trip.tripId, tripController.loggedUser.userId];
     CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:coord
                                                                  radius:radius
-                                                             identifier:trip.tripId];
+                                                             identifier:regionIdentifier];
     region.notifyOnEntry = YES;
     region.notifyOnExit = YES;
     
