@@ -103,12 +103,12 @@
 
 - (NSString *)layoutKeyForIndexPath:(NSIndexPath *)indexPath
 {
-    return [NSString stringWithFormat:@"%d_%d", indexPath.section, indexPath.row];
+    return [NSString stringWithFormat:@"%ld_%ld", (long)indexPath.section, (long)indexPath.row];
 }
 
 - (NSString *)layoutKeyForHeaderAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [NSString stringWithFormat:@"s_%d_%d", indexPath.section, indexPath.row];
+    return [NSString stringWithFormat:@"s_%ld_%ld", (long)indexPath.section, (long)indexPath.row];
 }
 
 #pragma mark -

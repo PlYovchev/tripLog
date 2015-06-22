@@ -60,6 +60,9 @@ static NSString *CellIdentifier = @"locationCell";
 -(void)viewDidDisappear:(BOOL)animated{
     tripCDManager.fetchedResultsController.delegate = nil;
 }
+-(void)viewDidAppear:(BOOL)animated{
+    tripCDManager.fetchedResultsController.delegate = self;
+}
 
 #pragma mark UI appearance methods
 -(void)setCustomUIAppearanceStyles{
@@ -147,11 +150,15 @@ static NSString *CellIdentifier = @"locationCell";
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView beginUpdates];
+    if(!controller || !controller.delegate){
+        [self.tableView beginUpdates];
+    }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView endUpdates];
+    if(!controller || !controller.delegate){
+        [self.tableView endUpdates];
+    }
 }
 
 

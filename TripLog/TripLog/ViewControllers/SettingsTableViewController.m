@@ -7,6 +7,7 @@
 //
 
 #import "SettingsTableViewController.h"
+#import "AppDelegate.h"
 
 @interface SettingsTableViewController ()
 
@@ -69,7 +70,11 @@
         [userDefaults setBool:YES forKey:@"autoLoginKey"];
         [userDefaults synchronize];
         
-        [self performSegueWithIdentifier:@"logoutSegue" sender:self];
+        
+//        [self performSegueWithIdentifier:@"logoutSegue" sender:self];
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UINavigationController* controller = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
+        [self presentViewController:controller animated:YES completion:nil];
     }
 }
 

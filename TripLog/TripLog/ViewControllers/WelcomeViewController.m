@@ -29,7 +29,9 @@
     bool userIsLogged = [tripController tryLogWithSavedUserData];
     
     if(!userIsLogged){
-        [self performSegueWithIdentifier:@"showLoginSegue" sender:self];
+       UIViewController* viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
+       [self presentViewController:viewController animated:YES completion:nil];
+//        [self performSegueWithIdentifier:@"showLoginSegue" sender:self];
     }
 }
 

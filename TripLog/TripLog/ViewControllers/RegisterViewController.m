@@ -106,24 +106,24 @@
 #pragma mark UI Layout styles
 -(void)setUILayoutStyles{
     // Initialize ContentView left constraint
-    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:self.contentView
-                                                                      attribute:NSLayoutAttributeLeading
-                                                                      relatedBy:NSLayoutRelationEqual
-                                                                         toItem:self.view
-                                                                      attribute:NSLayoutAttributeLeft
-                                                                     multiplier:1.0
-                                                                       constant:0];
-    [self.view addConstraint:leftConstraint];
-    
-    // Initialize ContentView right constraint
-    NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:self.contentView
-                                                                       attribute:NSLayoutAttributeTrailing
-                                                                       relatedBy:0
-                                                                          toItem:self.view
-                                                                       attribute:NSLayoutAttributeRight
-                                                                      multiplier:1.0
-                                                                        constant:0];
-    [self.view addConstraint:rightConstraint];
+//    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:self.contentView
+//                                                                      attribute:NSLayoutAttributeLeading
+//                                                                      relatedBy:NSLayoutRelationEqual
+//                                                                         toItem:self.view
+//                                                                      attribute:NSLayoutAttributeLeft
+//                                                                     multiplier:1.0
+//                                                                       constant:0];
+//    [self.view addConstraint:leftConstraint];
+//    
+//    // Initialize ContentView right constraint
+//    NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:self.contentView
+//                                                                       attribute:NSLayoutAttributeTrailing
+//                                                                       relatedBy:0
+//                                                                          toItem:self.view
+//                                                                       attribute:NSLayoutAttributeRight
+//                                                                      multiplier:1.0
+//                                                                        constant:0];
+//    [self.view addConstraint:rightConstraint];
     
     // Set text field holder views transparent background
     self.usernameView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -148,6 +148,11 @@
 
 - (IBAction)userDidTapSignUpButton:(id)sender {
     [[TripLogWebServiceController sharedInstance] sendSignUpRequestToParseWithUsername:self.textFieldUsername.text password:self.textFieldPassword.text andPhone:self.textFieldPhone.text];
+    
+    self.signUpView.backgroundColor = [UIColor colorWithRed:0 green:255 blue:255 alpha:1];
+}
+- (IBAction)signUpButtonTouchDown:(id)sender {
+    self.signUpView.backgroundColor = [UIColor colorWithRed:10 green:200 blue:180 alpha:1];
 }
 
 -(void)userDidSignUpSuccessfully:(BOOL)isSuccessful{

@@ -117,7 +117,6 @@ static TripLogLocationController* locationController;
 
 -(void)locationManager:(CLLocationManager *)manager
          didExitRegion:(CLRegion *)region {
-    CLCircularRegion* circularRegion = (CLCircularRegion*)region;
  //   [manager stopMonitoringForRegion:circularRegion];
     TripLogController* tripController = [TripLogController sharedInstance];
     tripController.enteredTripLocation = nil;

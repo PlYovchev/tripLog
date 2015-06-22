@@ -49,7 +49,7 @@
     
     self.labelTripName.text=_trip.name;
     self.labelTripLocation.text=[NSString stringWithFormat:@"%@,%@",_trip.country, _trip.city];
-    self.labelCreator.text=[NSString stringWithFormat:@"%@",user.username];
+    self.labelCreator.text=[NSString stringWithFormat:@"by %@",user.username];
     self.starRatingView.canEdit = NO;
     self.starRatingView.maxRating = 10;
     self.starRatingView.minAllowedRating = 1;
