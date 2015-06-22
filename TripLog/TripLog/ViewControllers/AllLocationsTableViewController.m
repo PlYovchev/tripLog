@@ -93,9 +93,7 @@ static NSString *CellIdentifier = @"locationCell";
     }
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     LocationsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(self.searchController.active){
         Trip *searchedTrip = [self.filteredList objectAtIndex:indexPath.row];
@@ -202,18 +200,18 @@ static NSString *CellIdentifier = @"locationCell";
             searchAttribute = @"city";
         }
         
-        
+        NSFetchRequest* request = [[NSFetchRequest alloc] initWithEntityName:@"Trip"];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateFormat, searchAttribute, searchText];
-        tripCDManager.fetchedResultsController.fetchRequest.predicate=predicate;
+        request.predicate=predicate;
+        request.sortDescriptors = tripCDManager.fetchedResultsController.fetchRequest.sortDescriptors;
         
         NSError *error = nil;
         
-        self.filteredList = [tripCDManager.mainManagedObjectContext executeFetchRequest:tripCDManager.fetchedResultsController.fetchRequest error:&error];
+        self.filteredList = [tripCDManager.mainManagedObjectContext executeFetchRequest:request error:&error];
         if (error)
         {
             NSLog(@"searchFetchRequest failed: %@",[error localizedDescription]);
         }
-        
     }
 }
 #pragma mark === UISearchBarDelegate ===
@@ -221,6 +219,7 @@ static NSString *CellIdentifier = @"locationCell";
 {
     [self updateSearchResultsForSearchController:self.searchController];
 }
+
 #pragma mark === UISearchResultsUpdating ===
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController{
     NSString *searchString = searchController.searchBar.text;
