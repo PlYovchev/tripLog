@@ -119,6 +119,8 @@
             [alertView show];
         });
     }
+    
+    self.signUpView.backgroundColor = [UIColor colorWithRed:0 green:255 blue:255 alpha:1];
 }
 - (IBAction)signUpButtonTouchDown:(id)sender {
     self.signUpView.backgroundColor = [UIColor colorWithRed:10 green:200 blue:180 alpha:1];

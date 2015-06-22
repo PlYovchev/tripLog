@@ -60,10 +60,15 @@ static NSString *CellIdentifier = @"locationCell";
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
+    self.tableView.delegate = nil;
+    self.tableView.dataSource = nil;
     tripCDManager.fetchedResultsController.delegate = nil;
 }
--(void)viewDidAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated{
     tripCDManager.fetchedResultsController.delegate = self;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+//    [self.tableView reloadData];
 }
 
 #pragma mark UI appearance methods
