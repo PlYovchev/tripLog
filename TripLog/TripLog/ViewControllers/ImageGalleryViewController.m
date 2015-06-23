@@ -26,6 +26,7 @@
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     [spinner setCenter:CGPointMake(screenRect.size.width / 2, screenRect.size.width /2)];
+    spinner.color = [UIColor colorWithRed:0 green:255 blue:198 alpha:1];
     
     // Add the activity indicator to the view
     [self.view addSubview:spinner];
@@ -140,7 +141,7 @@
     //create new view if no view is available for recycling
     if (view == nil)
     {
-        FXImageView *imageView = [[FXImageView alloc] initWithFrame:CGRectMake(0, 0, 250.0f, 250.0f)];
+        FXImageView *imageView = [[FXImageView alloc] initWithFrame:CGRectMake(0, 0, 325.0f, 325.0f)];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.asynchronous = NO;
         imageView.reflectionScale = 0.5f;
