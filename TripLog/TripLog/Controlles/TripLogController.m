@@ -162,7 +162,7 @@ static NSOperationQueue *sharedQueue;
 -(void)presentTripTabBarViewController{
     if ([NSThread isMainThread]) {
         [self fetchTrips];
-        self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(fetchTrips) userInfo:nil repeats:YES];
+        self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(fetchTrips) userInfo:nil repeats:YES];
 
         UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UITabBarController* controller = [storyboard instantiateViewControllerWithIdentifier:@"TripTabViewController"];

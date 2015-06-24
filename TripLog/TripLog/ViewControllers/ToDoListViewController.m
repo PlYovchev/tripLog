@@ -160,16 +160,4 @@
     }
 }
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    if(!controller || !controller.delegate){
-        [self.toDoTableView beginUpdates];
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    if(!controller || !controller.delegate){
-        [self.toDoTableView endUpdates];
-    }
-}
-
 @end

@@ -99,6 +99,11 @@ static TripLogCoreDataController* coreDataController;
         if([users count] > 0){
             [newUser setValuesForKeysWithUserInfoDictionary:[users firstObject]];
             [context save:nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                TripLogController* tripController = [TripLogController sharedInstance];
+                tripController.loggedUser = newUser;
+                
+            });
         }
     }];
     
