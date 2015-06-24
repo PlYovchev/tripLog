@@ -71,7 +71,6 @@
     self.tabBarController.tabBar.barTintColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
 }
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     id sectionInfo = [[self.fetchResultController sections]objectAtIndex:section];
     return [sectionInfo numberOfObjects];

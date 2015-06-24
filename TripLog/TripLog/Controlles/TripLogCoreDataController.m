@@ -352,8 +352,8 @@ static TripLogCoreDataController* coreDataController;
 }
 
 -(NSFetchedResultsController *)visitedTripsFetchedResultsController{
-    if (_toDoListFetchedResultsController != nil) {
-        return _toDoListFetchedResultsController;
+    if (_visitedTripsFetchedResultsController != nil) {
+        return _visitedTripsFetchedResultsController;
     }
     
     TripLogController* tripController = [TripLogController sharedInstance];
@@ -373,11 +373,11 @@ static TripLogCoreDataController* coreDataController;
     
     [fetchRequest setFetchBatchSize:20];
     
-    _toDoListFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context
+    _visitedTripsFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context
                                                                               sectionNameKeyPath:nil
                                                                                        cacheName:nil];
     
-    return _toDoListFetchedResultsController;
+    return _visitedTripsFetchedResultsController;
 }
 
 @end

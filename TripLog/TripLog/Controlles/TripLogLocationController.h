@@ -17,5 +17,6 @@
 
 -(void)startMonitorTripLocation:(Trip*) trip;
 -(void)stopMonitorTripLocation:(Trip*) trip;
+-(void)stopMonitorAllTripLocations;
 
 @end

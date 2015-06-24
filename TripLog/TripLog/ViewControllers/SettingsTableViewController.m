@@ -9,6 +9,7 @@
 #import "SettingsTableViewController.h"
 #import "AppDelegate.h"
 #import "TripLogController.h"
+#import "TripLogLocationController.h"
 
 @interface SettingsTableViewController ()
 
@@ -75,6 +76,9 @@
         
         TripLogController* tripController = [TripLogController sharedInstance];
         [tripController stopRefreshTimer];
+        
+        TripLogLocationController* locationController = [TripLogLocationController sharedInstance];
+        [locationController stopMonitorAllTripLocations];
         
         UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UINavigationController* controller = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];

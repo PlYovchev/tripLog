@@ -49,10 +49,17 @@
     }
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    
+-(void)viewDidDisappear:(BOOL)animated{
+    self.fetchResultController.delegate = nil;
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    self.fetchResultController.delegate = self;
+    
+    NSError *error;
+    if (![self.fetchResultController performFetch:&error]) {
+        NSLog(@"Fetching data failed. Error %@, %@", error, [error userInfo]);
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -150,6 +157,18 @@
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                              withRowAnimation:UITableViewRowAnimationFade];
             break;
+    }
+}
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    if(!controller || !controller.delegate){
+        [self.toDoTableView beginUpdates];
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    if(!controller || !controller.delegate){
+        [self.toDoTableView endUpdates];
     }
 }
 

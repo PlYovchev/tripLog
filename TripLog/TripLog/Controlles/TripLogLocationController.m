@@ -115,11 +115,20 @@ static TripLogLocationController* locationController;
 }
 
 -(void)stopMonitorTripLocation:(Trip*)trip{
+    TripLogController* tripController = [TripLogController sharedInstance];
+    NSString* regionIdentifier = [NSString stringWithFormat:@"%@ %@", trip.tripId, tripController.loggedUser.userId];
     NSSet* monitoredRegions = [self.locationManager monitoredRegions];
     for (CLRegion* region in monitoredRegions) {
-        if([region.identifier isEqual:trip.tripId]){
+        if([region.identifier isEqual:regionIdentifier]){
              [self.locationManager stopMonitoringForRegion:region];
         }
+    }
+}
+
+-(void)stopMonitorAllTripLocations{
+    NSSet* monitoredRegions = [self.locationManager monitoredRegions];
+    for (CLRegion* region in monitoredRegions) {
+        [self.locationManager stopMonitoringForRegion:region];
     }
 }
 
