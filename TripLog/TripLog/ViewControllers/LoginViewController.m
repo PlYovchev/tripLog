@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "TripLogController.h"
+#import "TripLogCoreDataController.h"
 
 @interface LoginViewController ()
 

@@ -305,7 +305,7 @@ static TripLogCoreDataController* coreDataController;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Trip"
                                               inManagedObjectContext:context];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"isPrivate = NO || creator = %@", tripController.loggedUser];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"isPrivate = NO || creator.userId == %@", tripController.loggedUser.userId];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"rating" ascending:NO];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     [fetchRequest setSortDescriptors:sortDescriptors];

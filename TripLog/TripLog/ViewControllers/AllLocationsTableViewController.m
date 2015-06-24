@@ -61,9 +61,10 @@ static NSString *CellIdentifier = @"locationCell";
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
-    tripCDManager.fetchedResultsController.delegate = nil;
+    //tripCDManager.fetchedResultsController.delegate = nil;
 }
 -(void)viewWillAppear:(BOOL)animated{
+    tripCDManager.fetchedResultsController = nil;
     tripCDManager.fetchedResultsController.delegate = self;
     
     NSError *error;
@@ -151,23 +152,22 @@ static NSString *CellIdentifier = @"locationCell";
             break;
             
         case NSFetchedResultsChangeMove:
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView reloadData];
             break;
     }
 }
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    if(!controller || !controller.delegate){
-        [self.tableView beginUpdates];
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    if(!controller || !controller.delegate){
-        [self.tableView endUpdates];
-    }
-}
+//- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+//    if(controller && controller.delegate){
+//        [self.tableView beginUpdates];
+//    }
+//}
+//
+//- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+//    if(controller && controller.delegate){
+//        [self.tableView endUpdates];
+//    }
+//}
 
 #pragma mark Search
 - (void)searchForText:(NSString *)searchText scope:(TripLogSearchScope)scopeOption

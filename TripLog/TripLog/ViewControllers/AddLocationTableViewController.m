@@ -56,6 +56,7 @@
         
         return;
     }
+    TripLogController* tripController = [TripLogController sharedInstance];
     
     // Initialize properties
     NSString* tripId = [[NSUUID UUID] UUIDString];
@@ -77,6 +78,9 @@
     [tripProperties setObject:tripDescription forKey:DESCRIPTION_KEY];
     [tripProperties setObject:@(NO) forKey:IS_SYNCHRONIZED_KEY];
     
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:tripController.loggedUser forKey:ID_KEY];
+    [tripProperties setObject:userInfo forKey:@"User"];
+    
     // Set trip location
     NSMutableDictionary* tripLocation = [NSMutableDictionary dictionary];
     [tripLocation setObject:tripLatitude forKey:LATITUDE_KEY];
@@ -84,7 +88,7 @@
     [tripProperties setObject:tripLocation forKey:LOCATION_KEY];
     
     // Set trip
-    TripLogController* tripController = [TripLogController sharedInstance];
+    
     [tripController saveTrip:tripProperties];
     
     [self.navigationController popViewControllerAnimated:YES];

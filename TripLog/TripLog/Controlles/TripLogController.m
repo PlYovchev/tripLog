@@ -129,10 +129,15 @@ static NSOperationQueue *sharedQueue;
 
 -(void)logTheUserwithUserId:(NSString *)userId andSessionToken:(NSString *)sessionToken andSaveUserData:(BOOL)shouldSave{
     TripLogCoreDataController* dataController = [TripLogCoreDataController sharedInstance];
-    User* loggedUser = [dataController userWithUserId:userId initInContenxt:dataController.mainManagedObjectContext];
-    TripLogController* tripController = [TripLogController sharedInstance];
-    tripController.loggedUser = loggedUser;
-    tripController.currentSessionToken = sessionToken;
+    [dataController.mainManagedObjectContext performBlockAndWait:^{
+        User* loggedUser = [dataController userWithUserId:userId initInContenxt:dataController.mainManagedObjectContext];
+        
+        TripLogController* tripController = [TripLogController sharedInstance];
+        tripController.loggedUser = loggedUser;
+        tripController.currentSessionToken = sessionToken;
+        
+        [dataController.mainManagedObjectContext save:nil];
+    }];
 
     if(shouldSave){
         [self saveUserDataInUserDefaultsWithUserId:userId andSessionToken:sessionToken];
