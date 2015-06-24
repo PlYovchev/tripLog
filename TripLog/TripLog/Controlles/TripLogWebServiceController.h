@@ -48,10 +48,13 @@
 #pragma mark Parse interaction methods
 
 -(void)sendGetRequestForAllTripsWithCompletitionHandler: (void (^)(NSDictionary *result)) completition;
--(void)sendPostRequestForTripToParseWithName:(NSString*)name country:(NSString*)country city:(NSString*)city description:(NSString*)description raiting:(int)raiting isPrivate:(BOOL)isPrivate userId:(NSString*)userId withCompletitionHandler: (void (^)(NSDictionary* response)) completition;
+-(void)sendPostRequestForTripToParseWithName:(NSString*)name country:(NSString*)country city:(NSString*)city description:(NSString*)description raiting:(int)raiting isPrivate:(BOOL)isPrivate latitude:(NSNumber*)latitude longitude:(NSNumber*)longitude userId:(NSString*)userId withCompletitionHandler: (void (^)(NSDictionary* response)) completition;
 
 -(void)sendGetRequestForTripsWithCompletionHandler:(void (^)(NSDictionary* result)) completion;
 -(void)sendGetRequestForUserWithId: (NSString*)userId andCompletitionHandler: (void (^)(NSDictionary *result)) completition;
 -(void)sendGetRequestForImagesWithTripId: (NSString*)tripId andCompletitionHandler: (void (^)(NSDictionary *result)) completition;
+-(void)sendGetRequestForImagesWithTripId: (NSString*)tripId userId:(NSString*)userId andCompletitionHandler: (void (^)(NSDictionary *result)) completition;
 -(void)sendGetRequestForSingleImageWithTripIdAndHighestRating: (NSString*)tripId andCompletitionHandler: (void (^)(NSDictionary *result)) completition;
+-(void)sendPutRequestForShareImageWithImageId: (NSString*)imageId andCompletitionHandler: (void (^)(NSDictionary *result, NSInteger status)) completition;
+-(void)sendPostRequestForImageWithData:(NSData*)imageData usedId:(NSString*)userId tripId:(NSString*)tripId isPublic:(NSNumber*)isPublic andCompletitionHandler: (void (^)(NSDictionary *result, NSInteger status)) completition;
 @end

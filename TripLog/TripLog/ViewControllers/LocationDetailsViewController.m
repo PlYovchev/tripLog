@@ -12,6 +12,8 @@
 #import "TripLogCoreDataController.h"
 #import "TripLogLocationController.h"
 #import "Trip+DictionaryInitializator.h"
+#import "AddImageViewController.h"
+#import "ImageGalleryViewController.h"
 
 @interface LocationDetailsViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -20,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *tripAuthorLabel;
 @property (weak, nonatomic) IBOutlet UIButton *notificationButton;
 @property (weak, nonatomic) IBOutlet UIButton *takePictureButton;
+@property (weak, nonatomic) IBOutlet UIButton *yourGalleryButton;
 @property (weak, nonatomic) IBOutlet ASStarRatingView *ratingView;
 
 @end
@@ -37,12 +40,18 @@
     }
     
     Trip* trip;
-    if(!self.atTripLocation){
+    if(!self.isAtTripLocation && self.isLocationVisited){
+        trip = tripController.selectedTrip;
+        self.yourGalleryButton.hidden = NO;
+    }
+    else if(!self.atTripLocation){
         trip = tripController.selectedTrip;
     }
-    else{
+    else {
         trip = tripController.enteredTripLocation;
+        tripController.selectedTrip = tripController.enteredTripLocation;
         self.takePictureButton.hidden = NO;
+        self.yourGalleryButton.hidden = NO;
     }
     
     // Set navigation title label custom layout styles
@@ -135,6 +144,12 @@
     [self setNotificationButtonTitleByObserveState];
 }
 
+- (IBAction)yourGalleryButtonTapped:(id)sender {
+    ImageGalleryViewController* imageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ImageGalleryViewController"];
+    imageViewController.personalGallery = YES;
+    [self.navigationController pushViewController:imageViewController animated:YES];
+}
+
 - (IBAction)takePictureTapped:(id)sender {
     UIImagePickerController * picker = [[UIImagePickerController alloc] init];
     
@@ -152,8 +167,11 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
- //   UIImage *image = info[UIImagePickerControllerEditedImage];
-    [picker dismissViewControllerAnimated:YES completion:NULL];
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    AddImageViewController* imageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AddImageViewController"];
+    imageViewController.currentImage = image;
+    
+    [picker presentViewController:imageViewController animated:YES completion:nil];
 }
 
 @end

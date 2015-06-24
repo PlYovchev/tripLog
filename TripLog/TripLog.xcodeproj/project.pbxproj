@@ -20,6 +20,7 @@
 		829632A81B344E4D0046BF99 /* not_selected_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 829632A11B344E4D0046BF99 /* not_selected_star@2x.png */; };
 		829632A91B344E4D0046BF99 /* selected_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 829632A21B344E4D0046BF99 /* selected_star.png */; };
 		829632AA1B344E4D0046BF99 /* selected_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 829632A31B344E4D0046BF99 /* selected_star@2x.png */; };
+		82ECB9571B3A579300483B39 /* AddImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82ECB9561B3A579300483B39 /* AddImageViewController.m */; };
 		82EE2FEC1B3645AB00DE3443 /* ToDoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE2FEB1B3645AB00DE3443 /* ToDoListViewController.m */; };
 		82EE2FEF1B3647AC00DE3443 /* checkbox-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 82EE2FED1B3647AC00DE3443 /* checkbox-checked.png */; };
 		82EE2FF01B3647AC00DE3443 /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 82EE2FEE1B3647AC00DE3443 /* checkbox.png */; };
@@ -29,6 +30,7 @@
 		82EE8A7F1B27163F00D0CEA8 /* Trip+DictionaryInitializator.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EE8A7E1B27163F00D0CEA8 /* Trip+DictionaryInitializator.m */; };
 		82EEEF311B2E69AE0002F717 /* example.caf in Resources */ = {isa = PBXBuildFile; fileRef = 82FBEC761B2DB80900A37248 /* example.caf */; };
 		82F1CFDC1B35FA16008AC17C /* Pictures-Day.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F1CFDB1B35FA16008AC17C /* Pictures-Day.png */; };
+		82F2574B1B3AB96200CD3201 /* ShareImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F2574A1B3AB96200CD3201 /* ShareImageViewController.m */; };
 		82FA1D941B3702CB00E1F33D /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 82FA1D931B3702CB00E1F33D /* Trip.m */; };
 		82FA77681B2F178000FABB9C /* User+DictionaryInitializator.m in Sources */ = {isa = PBXBuildFile; fileRef = 82FA77671B2F178000FABB9C /* User+DictionaryInitializator.m */; };
 		AE20C5AF1B258E800035FEBD /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE20C5AE1B258E800035FEBD /* UserModel.m */; };
@@ -63,7 +65,7 @@
 		FB1E070F1B22EC96001599C7 /* LocationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E070E1B22EC96001599C7 /* LocationDetailsViewController.m */; };
 		FB1E07181B22ED28001599C7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07171B22ED28001599C7 /* LoginViewController.m */; };
 		FB1E071B1B22ED3C001599C7 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E071A1B22ED3C001599C7 /* MapViewController.m */; };
-		FB1E071E1B22ED4F001599C7 /* MyTripLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E071D1B22ED4F001599C7 /* MyTripLogViewController.m */; };
+		FB1E071E1B22ED4F001599C7 /* MyTripLogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E071D1B22ED4F001599C7 /* MyTripLogTableViewController.m */; };
 		FB1E07241B22ED6A001599C7 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */; };
 		FBA563201B2DB60A0065A8D1 /* sunsetBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FBA5631F1B2DB60A0065A8D1 /* sunsetBackground.jpg */; };
 		FBC000DE1B37029B00108788 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC000DD1B37029B00108788 /* SettingsTableViewController.m */; };
@@ -107,6 +109,8 @@
 		829632A11B344E4D0046BF99 /* not_selected_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "not_selected_star@2x.png"; sourceTree = "<group>"; };
 		829632A21B344E4D0046BF99 /* selected_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected_star.png; sourceTree = "<group>"; };
 		829632A31B344E4D0046BF99 /* selected_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selected_star@2x.png"; sourceTree = "<group>"; };
+		82ECB9551B3A579300483B39 /* AddImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddImageViewController.h; sourceTree = "<group>"; };
+		82ECB9561B3A579300483B39 /* AddImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddImageViewController.m; sourceTree = "<group>"; };
 		82EE2FEA1B3645AB00DE3443 /* ToDoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoListViewController.h; sourceTree = "<group>"; };
 		82EE2FEB1B3645AB00DE3443 /* ToDoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoListViewController.m; sourceTree = "<group>"; };
 		82EE2FED1B3647AC00DE3443 /* checkbox-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-checked.png"; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 		82EE8A7D1B27163F00D0CEA8 /* Trip+DictionaryInitializator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Trip+DictionaryInitializator.h"; sourceTree = "<group>"; };
 		82EE8A7E1B27163F00D0CEA8 /* Trip+DictionaryInitializator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Trip+DictionaryInitializator.m"; sourceTree = "<group>"; };
 		82F1CFDB1B35FA16008AC17C /* Pictures-Day.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pictures-Day.png"; sourceTree = "<group>"; };
+		82F257491B3AB96200CD3201 /* ShareImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareImageViewController.h; sourceTree = "<group>"; };
+		82F2574A1B3AB96200CD3201 /* ShareImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareImageViewController.m; sourceTree = "<group>"; };
 		82FA1D921B3702CB00E1F33D /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
 		82FA1D931B3702CB00E1F33D /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
 		82FA77661B2F178000FABB9C /* User+DictionaryInitializator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+DictionaryInitializator.h"; sourceTree = "<group>"; };
@@ -177,8 +183,8 @@
 		FB1E07171B22ED28001599C7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		FB1E07191B22ED3C001599C7 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		FB1E071A1B22ED3C001599C7 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		FB1E071C1B22ED4F001599C7 /* MyTripLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTripLogViewController.h; sourceTree = "<group>"; };
-		FB1E071D1B22ED4F001599C7 /* MyTripLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTripLogViewController.m; sourceTree = "<group>"; };
+		FB1E071C1B22ED4F001599C7 /* MyTripLogTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTripLogTableViewController.h; sourceTree = "<group>"; };
+		FB1E071D1B22ED4F001599C7 /* MyTripLogTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTripLogTableViewController.m; sourceTree = "<group>"; };
 		FB1E07221B22ED6A001599C7 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		FBA5631F1B2DB60A0065A8D1 /* sunsetBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sunsetBackground.jpg; sourceTree = "<group>"; };
@@ -442,8 +448,8 @@
 				FB1E07171B22ED28001599C7 /* LoginViewController.m */,
 				FB1E07191B22ED3C001599C7 /* MapViewController.h */,
 				FB1E071A1B22ED3C001599C7 /* MapViewController.m */,
-				FB1E071C1B22ED4F001599C7 /* MyTripLogViewController.h */,
-				FB1E071D1B22ED4F001599C7 /* MyTripLogViewController.m */,
+				FB1E071C1B22ED4F001599C7 /* MyTripLogTableViewController.h */,
+				FB1E071D1B22ED4F001599C7 /* MyTripLogTableViewController.m */,
 				FB1E07221B22ED6A001599C7 /* WelcomeViewController.h */,
 				FB1E07231B22ED6A001599C7 /* WelcomeViewController.m */,
 				AEF843A41B25C099008F9359 /* RegisterViewController.h */,
@@ -454,6 +460,10 @@
 				82EE2FEB1B3645AB00DE3443 /* ToDoListViewController.m */,
 				FBC000DC1B37029B00108788 /* SettingsTableViewController.h */,
 				FBC000DD1B37029B00108788 /* SettingsTableViewController.m */,
+				82ECB9551B3A579300483B39 /* AddImageViewController.h */,
+				82ECB9561B3A579300483B39 /* AddImageViewController.m */,
+				82F257491B3AB96200CD3201 /* ShareImageViewController.h */,
+				82F2574A1B3AB96200CD3201 /* ShareImageViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -627,10 +637,12 @@
 				82FA77681B2F178000FABB9C /* User+DictionaryInitializator.m in Sources */,
 				8202974E1B36E39300086530 /* ToDoItem+DictionaryInitializator.m in Sources */,
 				FB1E071B1B22ED3C001599C7 /* MapViewController.m in Sources */,
+				82F2574B1B3AB96200CD3201 /* ShareImageViewController.m in Sources */,
 				820297481B36E19200086530 /* ToDoItem.m in Sources */,
 				AE5DF7C31B2AED2900C7D3A4 /* AsyncImageView.m in Sources */,
 				AE5DF7C41B2AED2900C7D3A4 /* FXImageView.m in Sources */,
 				FB1E07061B22EBF2001599C7 /* TripLogController.m in Sources */,
+				82ECB9571B3A579300483B39 /* AddImageViewController.m in Sources */,
 				AE20C5AF1B258E800035FEBD /* UserModel.m in Sources */,
 				82EE8A7B1B26FCC300D0CEA8 /* User.m in Sources */,
 				82EE2FF31B364A4400DE3443 /* ToDoTableViewCell.m in Sources */,
@@ -648,7 +660,7 @@
 				FB1E06D31B22EB05001599C7 /* main.m in Sources */,
 				829632A41B344E4D0046BF99 /* ASStarRatingView.m in Sources */,
 				FF11AD431B2AF24D00C00C8A /* GalleryItemsLayout.m in Sources */,
-				FB1E071E1B22ED4F001599C7 /* MyTripLogViewController.m in Sources */,
+				FB1E071E1B22ED4F001599C7 /* MyTripLogTableViewController.m in Sources */,
 				8204DFAF1B335CF100EDAF03 /* NSString+Validation.m in Sources */,
 				FB1E07181B22ED28001599C7 /* LoginViewController.m in Sources */,
 				FF07C8CB1B2BF4BA0064DF74 /* EASplashScreen.m in Sources */,

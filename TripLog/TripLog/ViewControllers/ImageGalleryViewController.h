@@ -15,5 +15,6 @@
 @interface ImageGalleryViewController : UIViewController <iCarouselDataSource, iCarouselDelegate>
 
 @property (strong, nonatomic) IBOutlet iCarousel *carousel;
+@property (nonatomic, getter=isPersonalGallery) BOOL personalGallery;
 
 @end

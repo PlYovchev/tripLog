@@ -1,6 +1,7 @@
 #import "ImageGalleryViewController.h"
 #import "FXImageView.h"
-
+#import "TripLogController.h"
+#import "ShareImageViewController.h"
 
 @interface ImageGalleryViewController ()
 
@@ -10,6 +11,8 @@
 @property (nonatomic) BOOL directionIsLeft;
 @property (nonatomic) NSInteger *previousIndex;
 @property (nonatomic, strong) NSURL *url;
+@property (nonatomic) NSUInteger currentSelectedIndex;
+@property (nonatomic) BOOL firstClickDone;
 
 @end
 
@@ -18,8 +21,27 @@
 
 @synthesize carousel;
 
-- (void)awakeFromNib
+- (void)dealloc
 {
+    carousel.delegate = nil;
+    carousel.dataSource = nil;
+}
+
+#pragma mark View lifecycle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    
+    // Set carousel configurations
+    self.directionIsLeft = YES;
+    carousel.type = iCarouselTypeCoverFlow2;
+    carousel.scrollSpeed = 0.5;
+    carousel.autoscroll = -0.1;
+    
+    [self.carousel reloadData];
+    
     self.selectedTrip = [[TripLogController sharedInstance] selectedTrip];
     
     // Set up the activity indicator
@@ -36,14 +58,14 @@
     [spinner startAnimating];
     
     /*!
-     * Perform download of all images in background thread. 
+     * Perform download of all images in background thread.
      * Every image is downloaded synchronously so when every
      * image is downloaded the activity indicator will be hidden
      * and the carousel view will be shown.
      */
     dispatch_queue_t queue = dispatch_queue_create("downloadQueue", NULL);
     dispatch_async(queue, ^{
-        [[TripLogWebServiceController sharedInstance] sendGetRequestForImagesWithTripId:self.selectedTrip.tripId andCompletitionHandler:^(NSDictionary *result) {
+        void (^onImageDownload)(NSDictionary *result) = ^(NSDictionary *result) {
             
             self.imageURLs = [result objectForKey:@"results"];
             
@@ -69,9 +91,11 @@
                     [self.images addObject:img];
                 }
                 
-                [spinner stopAnimating];
-                [spinner setHidden:YES];
-                [carousel setHidden:NO];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [spinner stopAnimating];
+                    [spinner setHidden:YES];
+                    [carousel setHidden:NO];
+                });
             }
             
             // Get back to the main thread and reload carousel data
@@ -81,30 +105,16 @@
                 [carousel setHidden:NO];
                 [self.carousel reloadData];
             });
-        }];
+        };
+        
+        if(!self.isPersonalGallery){
+            [[TripLogWebServiceController sharedInstance] sendGetRequestForImagesWithTripId:self.selectedTrip.tripId andCompletitionHandler:onImageDownload];
+        }
+        else{
+            TripLogController* tripController = [TripLogController sharedInstance];
+            [[TripLogWebServiceController sharedInstance] sendGetRequestForImagesWithTripId:self.selectedTrip.tripId userId:tripController.loggedUser.userId andCompletitionHandler:onImageDownload];
+        }
     });
-}
-
-- (void)dealloc
-{
-    carousel.delegate = nil;
-    carousel.dataSource = nil;
-}
-
-#pragma mark View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    
-    // Set carousel configurations
-    self.directionIsLeft = YES;
-    carousel.type = iCarouselTypeCoverFlow2;
-    carousel.scrollSpeed = 0.5;
-    carousel.autoscroll = -0.1;
-    
-    [self.carousel reloadData];
 }
 
 - (void)viewDidUnload
@@ -181,7 +191,26 @@
 
 - (void)carousel:(iCarousel *)carousl didSelectItemAtIndex:(NSInteger)index{
     // When the user taps on the middle image, the autoscroll will be disabled and the animation will stop.
+    if(self.firstClickDone && self.currentSelectedIndex == index && carousel.currentItemIndex == index){
+        NSLog(@"Second click for index %ld done!", (long)index);
+        FXImageView* fxImageView = (FXImageView*)carousel.currentItemView;
+        
+        ShareImageViewController* shareViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ShareImageViewController"];
+        shareViewController.image = fxImageView.image;
+        shareViewController.imageProperties = self.imageURLs[index];
+        if(!self.isPersonalGallery){
+            shareViewController.publicImage = YES;
+        }
+        
+        [self.navigationController pushViewController:shareViewController animated:YES];
+        
+        self.firstClickDone = NO;
+        return;
+    }
+    
     if (carousel.currentItemIndex == index) {
+        self.currentSelectedIndex = index;
+        self.firstClickDone = YES;
         carousel.autoscroll = 0;
     }
     

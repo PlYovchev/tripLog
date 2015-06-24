@@ -109,7 +109,7 @@
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
         // If some error occures on the console is printed error message with description
-        if (!error) {
+        if (error) {
             NSLog(@"Error %@", error.description);
         }
         // Set text field values if no errors are recieved

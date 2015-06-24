@@ -11,10 +11,13 @@
 #import "TripLogLocationController.h"
 #import "TripLogController.h"
 
+#define REGION_RADIUS 1000
+
 @interface TripLogLocationController () <CLLocationManagerDelegate>
 
 @property (nonatomic) CLLocationManager* locationManager;
 @property (nonatomic) CLAuthorizationStatus status;
+@property (nonatomic) NSMutableArray* lastSubmitedRegions;
 
 @end
 
@@ -50,12 +53,18 @@ static TripLogLocationController* locationController;
             self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
             
             [CLLocationManager authorizationStatus];
-            
-            //[self.locationManager startUpdatingLocation];
         }
     }
     
     return locationController;
+}
+
+-(NSMutableArray *)lastSubmitedRegions{
+    if(!_lastSubmitedRegions){
+        _lastSubmitedRegions = [NSMutableArray array];
+    }
+    
+    return _lastSubmitedRegions;
 }
 
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
@@ -72,16 +81,37 @@ static TripLogLocationController* locationController;
 -(void)startMonitorTripLocation:(Trip*) trip{
     TripLogController* tripController = [TripLogController sharedInstance];
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([trip.latitude doubleValue], [trip.longitude doubleValue]);
-    CLLocationDistance radius = 1000;
     NSString* regionIdentifier = [NSString stringWithFormat:@"%@ %@", trip.tripId, tripController.loggedUser.userId];
     CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:coord
-                                                                 radius:radius
+                                                                 radius:REGION_RADIUS
                                                              identifier:regionIdentifier];
     region.notifyOnEntry = YES;
     region.notifyOnExit = YES;
     
+//  Cant determine the state for the region for some reason!
 //    [self.locationManager requestStateForRegion:region];
-    [self.locationManager startMonitoringForRegion:region];
+    [self.lastSubmitedRegions addObject:region];
+    [self.locationManager startUpdatingLocation];
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+     didUpdateLocations:(NSArray *)locations{
+    CLLocation* location = [locations lastObject];
+    NSDate* eventDate = location.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (fabs(howRecent) < 15.0) {
+        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+        for (CLCircularRegion* circularRegion in self.lastSubmitedRegions) {
+            if([circularRegion containsCoordinate:coord]){
+                [self locationManager:manager didEnterRegion:circularRegion];
+            }
+            
+            [self.locationManager startMonitoringForRegion:circularRegion];
+        }
+        
+        [self.lastSubmitedRegions removeAllObjects];
+        [self.locationManager stopUpdatingLocation];
+    }
 }
 
 -(void)stopMonitorTripLocation:(Trip*)trip{
@@ -106,6 +136,7 @@ static TripLogLocationController* locationController;
     localNotif.alertAction = @"View";
     NSDictionary *infoDict = [NSDictionary dictionaryWithObject:region.identifier forKey:TRIP_ENTER_REGION_KEY];
     localNotif.userInfo = infoDict;
+    localNotif.applicationIconBadgeNumber =+1;
     
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
 }
@@ -120,6 +151,7 @@ static TripLogLocationController* locationController;
  //   [manager stopMonitoringForRegion:circularRegion];
     TripLogController* tripController = [TripLogController sharedInstance];
     tripController.enteredTripLocation = nil;
+    [tripController onExitRegion];
 }
 
 

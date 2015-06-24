@@ -8,6 +8,7 @@
 
 #import "SettingsTableViewController.h"
 #import "AppDelegate.h"
+#import "TripLogController.h"
 
 @interface SettingsTableViewController ()
 
@@ -51,6 +52,8 @@
     
     // Set user defaults value for auto submit
     if (self.swithAutoSubmitToServer == sender) {
+        TripLogController* tripController = [TripLogController sharedInstance];
+        tripController.autoSubmitTripToServer = self.swithAutoSubmitToServer.isOn;
         [userDefaults setBool:self.swithAutoSubmitToServer.isOn forKey:@"autoSubmitKey"];
         [userDefaults synchronize];
     }
@@ -70,11 +73,14 @@
         [userDefaults setBool:YES forKey:@"autoLoginKey"];
         [userDefaults synchronize];
         
+        TripLogController* tripController = [TripLogController sharedInstance];
+        [tripController stopRefreshTimer];
         
-//        [self performSegueWithIdentifier:@"logoutSegue" sender:self];
         UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UINavigationController* controller = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
-        [self presentViewController:controller animated:YES completion:nil];
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        appDelegate.window.rootViewController = controller;
+        [appDelegate.window makeKeyAndVisible];;
     }
 }
 

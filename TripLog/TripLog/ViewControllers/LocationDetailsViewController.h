@@ -11,5 +11,6 @@
 @interface LocationDetailsViewController : UIViewController
 
 @property (nonatomic, getter=isAtTripLocation) BOOL atTripLocation;
+@property (nonatomic, getter=isLocationVisited) BOOL locationVisited;
 
 @end

@@ -129,12 +129,6 @@
         tripManager.selectedTrip = trip;
         UIViewController *detailsController = [self.storyboard instantiateViewControllerWithIdentifier:@"locationDetailsVC"];
         [self.navigationController pushViewController:detailsController animated:YES];
-        
-//        TripLogLocationController* locationController = [TripLogLocationController sharedInstance];
-//        [locationController stopMonitorTripLocation:trip];
-//        
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Observe!" message:@"Notification started!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: nil];
-//        [alertView show];
     }
 }
 

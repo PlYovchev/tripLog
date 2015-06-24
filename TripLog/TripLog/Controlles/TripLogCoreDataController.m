@@ -298,11 +298,15 @@ static TripLogCoreDataController* coreDataController;
         return _fetchedResultsController;
     }
     
+    [NSFetchedResultsController deleteCacheWithName:nil];
+    
+    TripLogController* tripController = [TripLogController sharedInstance];
     NSManagedObjectContext *context = self.mainManagedObjectContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Trip"
                                               inManagedObjectContext:context];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"country" ascending:YES];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"isPrivate = NO || creator = %@", tripController.loggedUser];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"rating" ascending:NO];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     [fetchRequest setSortDescriptors:sortDescriptors];
     
@@ -333,6 +337,35 @@ static TripLogCoreDataController* coreDataController;
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"trip = %@ AND user = %@", trip, user];
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"isDone" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    [fetchRequest setEntity:entity];
+    
+    [fetchRequest setFetchBatchSize:20];
+    
+    _toDoListFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context
+                                                                              sectionNameKeyPath:nil
+                                                                                       cacheName:nil];
+    
+    return _toDoListFetchedResultsController;
+}
+
+-(NSFetchedResultsController *)visitedTripsFetchedResultsController{
+    if (_toDoListFetchedResultsController != nil) {
+        return _toDoListFetchedResultsController;
+    }
+    
+    TripLogController* tripController = [TripLogController sharedInstance];
+    User* user = [tripController loggedUser];
+    
+    NSManagedObjectContext *context = self.mainManagedObjectContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Trip"
+                                              inManagedObjectContext:context];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"ANY visitedByUsers == %@", user];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"rating" ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     [fetchRequest setSortDescriptors:sortDescriptors];
     

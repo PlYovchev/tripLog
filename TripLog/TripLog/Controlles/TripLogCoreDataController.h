@@ -25,6 +25,8 @@
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSFetchedResultsController *toDoListFetchedResultsController;
+@property (strong, nonatomic) NSFetchedResultsController *visitedTripsFetchedResultsController;
+
 @property (nonatomic) NSMutableDictionary* searchCriteria;
 
 +(id)sharedInstance;

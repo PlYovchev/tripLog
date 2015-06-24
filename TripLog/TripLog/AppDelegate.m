@@ -40,7 +40,6 @@
 }
 
 -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
-    //NSLog(@"Recieved Notification %@",notification);
     NSString* identifier = [[notification userInfo] objectForKey:TRIP_ENTER_REGION_KEY];
     if(identifier){
         NSArray* ids = [identifier componentsSeparatedByString:@" "];
@@ -55,6 +54,9 @@
             tripController.loggedUser = user;
             [tripController onEnterRegion];
             NSLog(@"%@", tripId);
+            
+            UIApplication* app = [UIApplication sharedApplication];
+            app.applicationIconBadgeNumber = 0;
         }
     }
 }

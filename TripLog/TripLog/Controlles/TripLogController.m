@@ -12,12 +12,15 @@
 #import "TripLogCoreDataController.h"
 #import "AppDelegate.h"
 #import "LocationDetailsViewController.h"
+#import "Trip+DictionaryInitializator.h"
 
 #define HAS_SAVED_USER_DATA_KEY @"hasUserDataKey"
 #define USER_ID_KEY @"userId"
 #define SESSION_KEY @"sessionKey"
 
 @interface TripLogController ()
+
+@property (nonatomic) NSTimer* refreshTimer;
 
 @end
 
@@ -49,10 +52,16 @@ static NSOperationQueue *sharedQueue;
         self = [super init];
         if(self){
             tripController = self;
+            [self setInitialValuesFromUserDefaults];
         }
     }
     
     return tripController;
+}
+
+-(void)setInitialValuesFromUserDefaults{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    _autoSubmitTripToServer = [userDefaults objectForKey:@"autoSubmitKey"];
 }
 
 -(void)fetchTrips{
@@ -63,15 +72,38 @@ static NSOperationQueue *sharedQueue;
         TripLogCoreDataController* coreDataController = [TripLogCoreDataController sharedInstance];
         [coreDataController addTripsFromArray:trips];
     }];
+    
+    NSLog(@"fetched");
 }
 
 -(void)saveTrip:(NSDictionary*)tripProperties{
     TripLogCoreDataController* dataController = [TripLogCoreDataController sharedInstance];
     [dataController addTrip:tripProperties];
     
-    if ([[TripLogController sharedInstance] autoSubmitTripToServer]) {
-#warning set push request to Parse
-        // TODO:
+    if ([[tripProperties objectForKey:IS_PRIVATE_KEY] boolValue] == NO || [[TripLogController sharedInstance] autoSubmitTripToServer]){
+        NSString* tripId = [tripProperties objectForKey:ID_KEY];
+        NSString* name = [tripProperties objectForKey:NAME_KEY];
+        NSString* city = [tripProperties objectForKey:CITY_KEY];
+        NSString* country = [tripProperties objectForKey:COUNTRY_KEY];
+        NSString* tripDescription = [tripProperties objectForKey:DESCRIPTION_KEY];
+        NSNumber* isPrivate = [tripProperties objectForKey:IS_PRIVATE_KEY];
+        
+        NSDictionary* location = [tripProperties objectForKey:LOCATION_KEY];
+        NSNumber* latitude = [location objectForKey:LATITUDE_KEY];
+        NSNumber* longitude = [location objectForKey:LONGITUDE_KEY];
+        
+        TripLogWebServiceController* webController = [TripLogWebServiceController sharedInstance];
+        [webController sendPostRequestForTripToParseWithName:name country:country city:city description:tripDescription raiting:0 isPrivate:[isPrivate boolValue] latitude:latitude longitude:longitude  userId:self.loggedUser.userId withCompletitionHandler:^(NSDictionary *response) {
+            TripLogCoreDataController* dataController = [TripLogCoreDataController sharedInstance];
+            NSManagedObjectContext* context = dataController.workerManagedObjectContext;
+            Trip* trip = [[dataController tripsWithId:tripId inContext:context] firstObject];
+            trip.tripId = [response objectForKey:ID_KEY];
+            [context performBlockAndWait:^{
+                [context save:nil];
+            }];
+            Trip* newTrip = [[dataController tripsWithId:[response objectForKey:ID_KEY]] firstObject];
+            NSLog(@"%@ %@", newTrip.tripId, newTrip.name);
+        }];
     }
 }
 
@@ -101,12 +133,16 @@ static NSOperationQueue *sharedQueue;
     TripLogController* tripController = [TripLogController sharedInstance];
     tripController.loggedUser = loggedUser;
     tripController.currentSessionToken = sessionToken;
-    
+
     if(shouldSave){
         [self saveUserDataInUserDefaultsWithUserId:userId andSessionToken:sessionToken];
     }
     
     [self presentTripTabBarViewController];
+}
+
+-(void)stopRefreshTimer{
+    [self.refreshTimer invalidate];
 }
 
 -(void)saveUserDataInUserDefaultsWithUserId:(NSString*)userId andSessionToken:(NSString*)sessionToken{
@@ -121,13 +157,13 @@ static NSOperationQueue *sharedQueue;
 -(void)presentTripTabBarViewController{
     if ([NSThread isMainThread]) {
         [self fetchTrips];
-        
+        self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(fetchTrips) userInfo:nil repeats:YES];
+
         UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UITabBarController* controller = [storyboard instantiateViewControllerWithIdentifier:@"TripTabViewController"];
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         appDelegate.window.rootViewController = controller;
         [appDelegate.window makeKeyAndVisible];
-        // [appDelegate.window.rootViewController presentViewController:controller animated:YES completion:nil];
     } else {
         //Or call the same method on main thread
         [self performSelectorOnMainThread:@selector(presentTripTabBarViewController)
@@ -136,6 +172,10 @@ static NSOperationQueue *sharedQueue;
 }
 
 -(void)onEnterRegion{
+    [self.loggedUser addTripsVisitedObject:self.enteredTripLocation];
+    TripLogCoreDataController* dataController = [TripLogCoreDataController sharedInstance];
+    [dataController.mainManagedObjectContext save:nil];
+    
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UITabBarController* tabController = [storyboard instantiateViewControllerWithIdentifier:@"TripTabViewController"];
     LocationDetailsViewController* locationDetailsViewController = [storyboard instantiateViewControllerWithIdentifier:@"locationDetailsVC"];
@@ -154,6 +194,39 @@ static NSOperationQueue *sharedQueue;
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     appDelegate.window.rootViewController = tabController;
     [appDelegate.window makeKeyAndVisible];
+    
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Success!"
+                                                                             message:@"You arrived at trip location!"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                               style:UIAlertActionStyleDefault
+                               handler:nil];
+    
+    [alertController addAction:okAction];
+    [tabController.selectedViewController presentViewController:alertController animated:YES completion:nil];
+}
+
+-(void)onExitRegion{
+    self.enteredTripLocation = nil;
+    
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UITabBarController* tabController = [storyboard instantiateViewControllerWithIdentifier:@"TripTabViewController"];
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    appDelegate.window.rootViewController = tabController;
+    [appDelegate.window makeKeyAndVisible];
+    
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Exit!"
+                                                                             message:@"You left the trip location!"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                               style:UIAlertActionStyleDefault
+                               handler:nil];
+    
+    [alertController addAction:okAction];
+    [tabController.selectedViewController presentViewController:alertController animated:YES completion:nil];
 }
 
 @end

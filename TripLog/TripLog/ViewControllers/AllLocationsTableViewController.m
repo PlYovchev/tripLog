@@ -36,6 +36,7 @@ static NSString *CellIdentifier = @"locationCell";
     tripCDManager = [TripLogCoreDataController sharedInstance];
     tripManager = [TripLogController sharedInstance];
     
+    tripCDManager.fetchedResultsController = nil;
     tripCDManager.fetchedResultsController.delegate = self;
     
     NSError *error;
@@ -60,14 +61,15 @@ static NSString *CellIdentifier = @"locationCell";
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
-    self.tableView.delegate = nil;
-    self.tableView.dataSource = nil;
     tripCDManager.fetchedResultsController.delegate = nil;
 }
 -(void)viewWillAppear:(BOOL)animated{
     tripCDManager.fetchedResultsController.delegate = self;
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+    
+    NSError *error;
+    if (![tripCDManager.fetchedResultsController performFetch:&error]) {
+        NSLog(@"Fetching data failed. Error %@, %@", error, [error userInfo]);
+    }
 }
 
 #pragma mark UI appearance methods

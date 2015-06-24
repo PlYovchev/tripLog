@@ -31,6 +31,9 @@
 -(bool)tryLogWithSavedUserData;
 -(void)logTheUserwithUserId:(NSString *)userId andSessionToken:(NSString *)sessionToken andSaveUserData:(BOOL)shouldSave;
 
+-(void)stopRefreshTimer;
+
 -(void)onEnterRegion;
+-(void)onExitRegion;
 
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyTripLogViewController : UIViewController
+@interface MyTripLogTableViewController : UITableViewController
 
 @end

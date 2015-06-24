@@ -126,7 +126,7 @@ static TripLogWebServiceController* webController;
 
 #pragma mark Fetch/Send objects to Parse
 
--(void)sendPostRequestForTripToParseWithName:(NSString*)name country:(NSString*)country city:(NSString*)city description:(NSString*)description raiting:(int)raiting isPrivate:(BOOL)isPrivate userId:(NSString*)userId withCompletitionHandler: (void (^)(NSDictionary* response)) completition{
+-(void)sendPostRequestForTripToParseWithName:(NSString*)name country:(NSString*)country city:(NSString*)city description:(NSString*)description raiting:(int)raiting isPrivate:(BOOL)isPrivate latitude:(NSNumber*)latitude longitude:(NSNumber*)longitude userId:(NSString*)userId withCompletitionHandler: (void (^)(NSDictionary* response)) completition{
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     
@@ -142,7 +142,7 @@ static TripLogWebServiceController* webController;
     [request setHTTPMethod:@"POST"];
     
     
-    NSDictionary *dict = @{@"Name":name, @"Country":country, @"City":city, @"Description":description, @"Raiting":[NSNumber numberWithInt:raiting], @"IsPrivate":[NSNumber numberWithBool:isPrivate], @"User":@{ @"__type": @"Pointer",@"className": @"_User",@"objectId": userId}};
+    NSDictionary *dict = @{@"Name":name, @"Country":country, @"City":city, @"Description":description, @"Raiting":[NSNumber numberWithInt:raiting], @"IsPrivate":[NSNumber numberWithBool:isPrivate], @"Location": @{@"__type": @"GeoPoint", @"latitude": latitude, @"longitude": longitude }, @"User":@{ @"__type": @"Pointer",@"className": @"_User",@"objectId": userId}};
     
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
     [request setHTTPBody:jsonData];
@@ -190,9 +190,12 @@ static TripLogWebServiceController* webController;
 -(void)sendGetRequestForTripsWithCompletionHandler:(void (^)(NSDictionary* result)) completion{
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     [configuration setHTTPAdditionalHeaders:mainHeaders];
+    TripLogController* tripController = [TripLogController sharedInstance];
+    NSString* urlString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Trip?where={\"$or\":[{\"IsPrivate\":false},{\"User\": {\"__type\": \"Pointer\",\"className\": \"_User\",\"objectId\": \"%@\"}}]}", tripController.loggedUser.userId];
+    NSString* encodedUrlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:@"https://api.parse.com/1/classes/Trip"]
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:encodedUrlString]
                                             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
@@ -254,7 +257,42 @@ static TripLogWebServiceController* webController;
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     [configuration setHTTPAdditionalHeaders:mainHeaders];
     
-    NSString *urlString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Images?where={\"Trip\": {\"__type\": \"Pointer\",\"className\": \"Trip\",\"objectId\": \"%@\"}}", tripId];
+    NSString *urlString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Images?where={\"Trip\": {\"__type\": \"Pointer\",\"className\": \"Trip\",\"objectId\": \"%@\"}, \"IsPublic\":true}", tripId];
+    NSString* urlString2 = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:urlString2] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
+        
+        if ([httpResponse statusCode] == 200) {
+            NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            completition(result);
+            NSMutableArray *results = [result objectForKey:@"results"];
+            
+            if([results count] > 0){
+                self.imageURL = [[results[0] objectForKey:@"Image"] objectForKey:@"url"];
+                NSLog(@"%@", [[results[0] objectForKey:@"Image"] objectForKey:@"url"]);
+                NSLog(@"ImageURL:%@",self.imageURL);
+            }else{
+                NSLog(@"Fetch unsuccessfull!");
+            }
+        }
+        else {
+            NSLog(@"%@", error);
+        }
+    }];
+    
+    [dataTask resume];
+}
+
+-(void)sendGetRequestForImagesWithTripId: (NSString*)tripId userId:(NSString*)userId andCompletitionHandler: (void (^)(NSDictionary *result)) completition{
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    [configuration setHTTPAdditionalHeaders:mainHeaders];
+    
+    NSString *urlString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Images?where={\"Trip\": {\"__type\": \"Pointer\",\"className\": \"Trip\",\"objectId\": \"%@\"},\"User\": {\"__type\": \"Pointer\",\"className\": \"_User\",\"objectId\": \"%@\"}}", tripId, userId];
     NSString* urlString2 = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
@@ -364,6 +402,96 @@ static TripLogWebServiceController* webController;
     else {
         NSLog(@"%@", error);
     }
+}
+
+-(void)sendPutRequestForShareImageWithImageId: (NSString*)imageId andCompletitionHandler: (void (^)(NSDictionary *result,NSInteger status)) completition{
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession* session = [NSURLSession sessionWithConfiguration:configuration];
+    NSString *urlString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Images/%@", imageId];
+    NSString* urlStringEncoded = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlStringEncoded]];
+    [request setHTTPMethod:@"PUT"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    for (NSString* key in mainHeaders.allKeys) {
+        [request addValue:[mainHeaders objectForKey:key] forHTTPHeaderField:key];
+    }
+    NSDictionary *dict = @{@"IsPublic":@(YES)};
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    [request setHTTPBody:jsonData];
+    
+    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        NSInteger status = [httpResponse statusCode];
+        NSDictionary* result;
+        if (status == 200) {
+            result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        }
+        else {
+            NSLog(@"%@", error);
+        }
+        
+        completition(result, status);
+    }];
+    
+    [dataTask resume];
+}
+
+-(void)sendPostRequestForImageWithData:(NSData*)imageData usedId:(NSString*)userId tripId:(NSString*)tripId isPublic:(NSNumber*)isPublic andCompletitionHandler: (void (^)(NSDictionary *result, NSInteger statusCode)) completition{
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    NSString *urlString = [NSString stringWithFormat:@"https://api.parse.com/1/files/%@and%@", userId,tripId];
+    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"image/jpeg" forHTTPHeaderField:@"Content-Type"];
+    for (NSString* key in mainHeaders.allKeys) {
+        [request addValue:[mainHeaders objectForKey:key] forHTTPHeaderField:key];
+    }
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+    
+    NSURLSessionUploadTask* uploadTask = [session uploadTaskWithRequest:request fromData:imageData completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        if ([httpResponse statusCode] == 201) {
+            NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            NSString* name = [result objectForKey:@"name"];
+            
+            NSString *urlStringImages = @"https://api.parse.com/1/classes/Images";
+            [request setURL:[NSURL URLWithString:urlStringImages]];
+            [request setHTTPMethod:@"POST"];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+            
+            NSDictionary *dict = @{@"Image":@{@"name":name, @"__type":@"File"}, @"User":@{ @"__type": @"Pointer", @"className": @"_User",@"objectId": userId}, @"Trip":@{ @"__type": @"Pointer", @"className": @"Trip", @"objectId": tripId}, @"IsPublic":isPublic};
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+            [request setHTTPBody:jsonData];
+            
+            NSURLResponse* response;
+            NSError* error = nil;
+            
+            //Capturing server response
+            NSData* data = [NSURLConnection sendSynchronousRequest:request  returningResponse:&response error:&error];
+            
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+            NSInteger status = [httpResponse statusCode];
+            NSDictionary *secondaryResult;
+            if (status == 201) {
+                secondaryResult = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            }
+            else {
+                NSLog(@"%@", error);
+            }
+            
+            completition(secondaryResult, status);
+        }
+        else {
+            NSLog(@"%@", error);
+        }
+    }];
+    
+    [uploadTask resume];
 }
 
 
